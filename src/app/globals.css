@@ -1,26 +1,46 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* ── Brand palette ── */
+  --color-grand-blue:    #0B3A5C;
+  --color-grand-blue-80: #1B5080;
+  --color-lime:          #C8E63C;
+  --color-lime-muted:    #E8F5A3;
+
+  /* ── Ink family ── */
+  --color-ink:           #111827;
+  --color-ink-muted:     #374151;
+  --color-ink-subtle:    #6B7280;
+
+  /* ── Surfaces ── */
+  --color-surface:       #FFFFFF;
+  --color-surface-muted: #F8F7F4;
+  --color-surface-tint:  #EEF3F8;
+
+  /* ── Range accents ── */
+  --color-golden:        #C49A2A;
+  --color-golden-muted:  #FBF3DF;
+  --color-silver:        #8FA3AE;
+  --color-silver-muted:  #EDF1F3;
+  --color-drive:         #D94F1E;
+  --color-drive-muted:   #FCEEE8;
+
+  /* ── Typography ── */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* ── Colour aliases for Tailwind bg-background etc ── */
+  --color-background: var(--color-surface);
+  --color-foreground: var(--color-ink);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #FFFFFF;
+  --foreground: #111827;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-sans, Arial, sans-serif);
 }
