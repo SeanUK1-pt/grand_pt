@@ -1,19 +1,129 @@
 @import "tailwindcss";
 
+/* =================================================================
+   SLIPSTREAM — RIB dealer brand tokens
+   Dark, performance-led base + three differentiated range accents.
+   Source of truth: raw CSS variables in :root.
+   Exposed to Tailwind as utilities via @theme inline below.
+   ================================================================= */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ---- Neutrals: cool ink charcoal family ---- */
+  --ink: #0e1822; /* deepest canvas / page background */
+  --ink-raised: #16222e; /* cards & panels on the ink canvas */
+  --ink-overlay: #20303f; /* hover / elevated / pressed states */
+  --ink-line: #2b3c4c; /* hairline borders & dividers on dark */
+
+  /* ---- Light surfaces (for light sections / inverted blocks) ---- */
+  --surface: #fafafa; /* light canvas */
+  --surface-muted: #eef1f3; /* muted light panels */
+  --surface-line: #d9dfe3; /* borders on light */
+
+  /* ---- Text / foreground ---- */
+  --text-strong: #f4f7f9; /* primary text on ink */
+  --text-muted: #9cb0bf; /* secondary text on ink */
+  --text-subtle: #647888; /* captions / disabled on ink */
+  --text-inverse: #0e1822; /* text on light surfaces & on accents */
+
+  /* ---- Golden Line accent (premium flagship) ---- */
+  --golden: #f2a33c;
+  --golden-hover: #f6b25c;
+  --golden-soft: #3a2c16; /* badge / chip background on ink */
+  --golden-contrast: #1a1206; /* text/icon on solid golden */
+
+  /* ---- Silver Line accent (approachable / family) ---- */
+  --silver: #34c2cc;
+  --silver-hover: #54d2db;
+  --silver-soft: #11323a; /* badge / chip background on ink */
+  --silver-contrast: #042024; /* text/icon on solid silver */
+
+  /* ---- Drive Line accent (fastest hulls / sport) ---- */
+  --drive: #ff5638;
+  --drive-hover: #ff7058;
+  --drive-soft: #3c1812; /* badge / chip background on ink */
+  --drive-contrast: #2a0a05; /* text/icon on solid drive */
+
+  /* ---- Focus ring ---- */
+  --ring: #34c2cc;
+
+  /* ---- Radius scale (taut, technical corners) ---- */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1.25rem;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Base background/foreground (wired to ink so the dark base is the default) */
+  --color-background: var(--ink);
+  --color-foreground: var(--text-strong);
+
+  /* Neutrals */
+  --color-ink: var(--ink);
+  --color-ink-raised: var(--ink-raised);
+  --color-ink-overlay: var(--ink-overlay);
+  --color-ink-line: var(--ink-line);
+
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-surface-line: var(--surface-line);
+
+  /* Text */
+  --color-text-strong: var(--text-strong);
+  --color-text-muted: var(--text-muted);
+  --color-text-subtle: var(--text-subtle);
+  --color-text-inverse: var(--text-inverse);
+
+  /* Golden Line */
+  --color-golden: var(--golden);
+  --color-golden-hover: var(--golden-hover);
+  --color-golden-soft: var(--golden-soft);
+  --color-golden-contrast: var(--golden-contrast);
+
+  /* Silver Line */
+  --color-silver: var(--silver);
+  --color-silver-hover: var(--silver-hover);
+  --color-silver-soft: var(--silver-soft);
+  --color-silver-contrast: var(--silver-contrast);
+
+  /* Drive Line */
+  --color-drive: var(--drive);
+  --color-drive-hover: var(--drive-hover);
+  --color-drive-soft: var(--drive-soft);
+  --color-drive-contrast: var(--drive-contrast);
+
+  /* Ring */
+  --color-ring: var(--ring);
+
+  /* Fonts */
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* ---- Type scale (paired with the sporty / semi-luxury direction) ---- */
+  --text-caption: 0.75rem; /* 12px — labels, eyebrows */
+  --text-caption--line-height: 1rem;
+  --text-body-sm: 0.875rem; /* 14px — dense UI text */
+  --text-body-sm--line-height: 1.4;
+  --text-body: 1rem; /* 16px — base body */
+  --text-body--line-height: 1.55;
+  --text-lead: 1.25rem; /* 20px — intro paragraphs */
+  --text-lead--line-height: 1.5;
+  --text-title: 1.75rem; /* 28px — card / section titles */
+  --text-title--line-height: 1.2;
+  --text-headline: 2.5rem; /* 40px — section headlines */
+  --text-headline--line-height: 1.12;
+  --text-display: 4rem; /* 64px — hero display */
+  --text-display--line-height: 1.04;
+
+  /* Radius */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--ink);
+  color: var(--text-strong);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
 }
