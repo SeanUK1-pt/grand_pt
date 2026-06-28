@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "RIB Dealer — Brand Colour Study",
+  title: "Grand Dealer — Brand Token Proof Sheet",
   description:
-    "Two palette directions for a sporty, semi-luxury RIB dealer, with three differentiated range accents.",
+    "Light, Grand-blue-led token set for the dealer subsite, with three distinct range accents.",
 };
 
 export default function RootLayout({
@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full bg-[#FAFAFA] antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full bg-surface antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

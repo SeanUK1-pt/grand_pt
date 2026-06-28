@@ -1,11 +1,19 @@
 const neutrals = [
-  { token: "--color-ink", cls: "bg-ink", hex: "#0E1822", role: "Page canvas" },
-  { token: "--color-ink-raised", cls: "bg-ink-raised", hex: "#16222E", role: "Cards & panels" },
-  { token: "--color-ink-overlay", cls: "bg-ink-overlay", hex: "#20303F", role: "Hover / pressed" },
-  { token: "--color-ink-line", cls: "bg-ink-line", hex: "#2B3C4C", role: "Borders on dark" },
-  { token: "--color-surface", cls: "bg-surface", hex: "#FAFAFA", role: "Light canvas" },
-  { token: "--color-surface-muted", cls: "bg-surface-muted", hex: "#EEF1F3", role: "Muted light panel" },
-  { token: "--color-surface-line", cls: "bg-surface-line", hex: "#D9DFE3", role: "Borders on light" },
+  { token: "--color-surface", cls: "bg-surface", hex: "#FFFFFF", role: "Page canvas" },
+  { token: "--color-surface-muted", cls: "bg-surface-muted", hex: "#F2F5F7", role: "Muted band" },
+  { token: "--color-surface-sunken", cls: "bg-surface-sunken", hex: "#E8EDF1", role: "Insets / wells" },
+  { token: "--color-surface-line", cls: "bg-surface-line", hex: "#D8E0E6", role: "Borders on light" },
+  { token: "--color-ink", cls: "bg-ink", hex: "#0C2336", role: "Dark feature canvas" },
+  { token: "--color-ink-raised", cls: "bg-ink-raised", hex: "#122E45", role: "Cards on ink" },
+  { token: "--color-ink-overlay", cls: "bg-ink-overlay", hex: "#1B3C57", role: "Hover on ink" },
+  { token: "--color-ink-line", cls: "bg-ink-line", hex: "#2A475F", role: "Borders on ink" },
+] as const
+
+const brandSwatches = [
+  { token: "--color-brand", cls: "bg-brand", hex: "#01539D", role: "Grand blue — primary", contrast: "text-brand-contrast" },
+  { token: "--color-brand-hover", cls: "bg-brand-hover", hex: "#0468BF", role: "Brand hover", contrast: "text-brand-contrast" },
+  { token: "--color-brand-active", cls: "bg-brand-active", hex: "#013F78", role: "Brand pressed", contrast: "text-brand-contrast" },
+  { token: "--color-pop", cls: "bg-pop", hex: "#A6CC0F", role: "Grand lime — pop", contrast: "text-pop-contrast" },
 ] as const
 
 const typeScale = [
@@ -20,6 +28,7 @@ const typeScale = [
 
 type Range = {
   label: string
+  model: string
   desc: string
   solid: string
   solidContrast: string
@@ -31,6 +40,7 @@ type Range = {
 const ranges: Range[] = [
   {
     label: "Golden Line",
+    model: "Golden Line 580",
     desc: "Premium liveaboard flagship — the top of the range.",
     solid: "bg-golden",
     solidContrast: "text-golden-contrast",
@@ -40,6 +50,7 @@ const ranges: Range[] = [
   },
   {
     label: "Silver Line",
+    model: "Silver Line 360",
     desc: "Approachable family and day-boat range — clean and calm.",
     solid: "bg-silver",
     solidContrast: "text-silver-contrast",
@@ -49,6 +60,7 @@ const ranges: Range[] = [
   },
   {
     label: "Drive Line",
+    model: "Drive Line 300",
     desc: "Fastest performance hulls — the loudest of the three.",
     solid: "bg-drive",
     solidContrast: "text-drive-contrast",
@@ -82,21 +94,43 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-ink font-sans text-text-strong">
+    <div className="min-h-screen bg-surface font-sans text-text-strong">
       <main className="mx-auto max-w-6xl px-6 py-16 sm:px-8">
-        <header className="border-b border-ink-line pb-10">
-          <p className="text-caption font-semibold uppercase tracking-[0.18em] text-golden">
-            Slipstream · Token proof sheet
+        <header className="border-b border-surface-line pb-10">
+          <p className="text-caption font-semibold uppercase tracking-[0.18em] text-brand">
+            Coastline · Grand dealer token proof sheet
           </p>
           <h1 className="mt-3 text-headline font-semibold tracking-tight text-balance sm:text-display">
             Brand tokens, shown in full
           </h1>
           <p className="mt-5 max-w-2xl text-lead text-text-muted text-pretty">
-            A visual reference for the Slipstream token set — neutrals, the type
-            scale, the three range accents in both solid and soft states, sample
-            cards on the real card background, and the radius and spacing rhythm.
+            A light, Grand-blue-led token set for the dealer subsite — surfaces,
+            the primary blue and lime pop, the type scale, three distinct range
+            accents in solid and soft states, sample cards, and the radius and
+            spacing rhythm.
           </p>
         </header>
+
+        {/* Brand + pop swatches */}
+        <section className="pt-12">
+          <SectionLabel>Primary brand &amp; pop</SectionLabel>
+          <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {brandSwatches.map((b) => (
+              <div
+                key={b.token}
+                className="overflow-hidden rounded-lg border border-surface-line"
+              >
+                <div className={`flex h-24 items-end p-3 ${b.cls}`}>
+                  <span className={`font-mono text-caption ${b.contrast}`}>{b.hex}</span>
+                </div>
+                <div className="bg-surface px-3 py-3">
+                  <p className="text-body-sm font-semibold leading-tight">{b.role}</p>
+                  <p className="mt-1 font-mono text-caption text-text-muted">{b.token}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* Neutral swatches */}
         <section className="pt-12">
@@ -105,10 +139,10 @@ export default function Page() {
             {neutrals.map((n) => (
               <div
                 key={n.token}
-                className="overflow-hidden rounded-lg border border-ink-line"
+                className="overflow-hidden rounded-lg border border-surface-line"
               >
                 <div className={`h-24 ${n.cls}`} />
-                <div className="bg-ink-raised px-3 py-3">
+                <div className="bg-surface px-3 py-3">
                   <p className="text-body-sm font-semibold leading-tight">{n.role}</p>
                   <p className="mt-1 font-mono text-caption text-text-muted">{n.token}</p>
                   <p className="font-mono text-caption uppercase text-text-subtle">{n.hex}</p>
@@ -121,14 +155,14 @@ export default function Page() {
         {/* Type scale */}
         <section className="pt-14">
           <SectionLabel>Type scale — Geist Sans</SectionLabel>
-          <div className="mt-4 divide-y divide-ink-line rounded-xl border border-ink-line bg-ink-raised">
+          <div className="mt-4 divide-y divide-surface-line rounded-xl border border-surface-line bg-surface">
             {typeScale.map((t) => (
               <div
                 key={t.token}
                 className="flex flex-col gap-1 px-5 py-5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
               >
                 <p className={`${t.cls} ${t.weight} text-text-strong text-pretty`}>
-                  Slipstream
+                  Grand Marine
                 </p>
                 <p className="shrink-0 font-mono text-caption text-text-muted">
                   {t.token} · {t.px}
@@ -140,12 +174,12 @@ export default function Page() {
 
         {/* Accent badges: solid + soft */}
         <section className="pt-14">
-          <SectionLabel>Accent badges — solid pill &amp; soft tag</SectionLabel>
+          <SectionLabel>Range accents — solid pill &amp; soft tag</SectionLabel>
           <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
             {ranges.map((r) => (
               <div
                 key={r.label}
-                className="rounded-xl border border-ink-line bg-ink-raised p-5"
+                className="rounded-xl border border-surface-line bg-surface p-5"
               >
                 <p className="text-body-sm font-semibold text-text-strong">{r.label}</p>
                 <div className="mt-4 flex flex-wrap items-center gap-3">
@@ -171,14 +205,14 @@ export default function Page() {
           </div>
         </section>
 
-        {/* Sample cards on ink-raised */}
+        {/* Sample cards on surface */}
         <section className="pt-14">
-          <SectionLabel>Sample range cards on ink-raised</SectionLabel>
+          <SectionLabel>Sample range cards</SectionLabel>
           <div className="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-3">
             {ranges.map((r) => (
               <article
                 key={r.label}
-                className="rounded-xl border border-ink-line bg-ink-raised p-6"
+                className="rounded-xl border border-surface-line bg-surface p-6 shadow-sm"
               >
                 <span
                   className={`inline-flex items-center rounded-full px-3 py-1 text-caption font-semibold uppercase tracking-wider ${r.soft} text-text-strong`}
@@ -186,7 +220,7 @@ export default function Page() {
                   {r.label}
                 </span>
                 <h3 className="mt-4 text-title font-semibold tracking-tight text-text-strong">
-                  Sea Spirit 38
+                  {r.model}
                 </h3>
                 <p className="mt-2 text-body-sm leading-relaxed text-text-muted text-pretty">
                   {r.desc}
@@ -202,6 +236,37 @@ export default function Page() {
           </div>
         </section>
 
+        {/* Dark feature section (retained ink family) */}
+        <section className="pt-14">
+          <SectionLabel>Optional dark feature section</SectionLabel>
+          <div className="mt-4 rounded-xl border border-ink-line bg-ink p-8">
+            <span className="inline-flex items-center rounded-full bg-brand px-3 py-1 text-caption font-semibold uppercase tracking-wider text-brand-contrast">
+              Showroom
+            </span>
+            <h3 className="mt-4 text-title font-semibold tracking-tight text-ink-text sm:text-headline">
+              A premium band, used sparingly
+            </h3>
+            <p className="mt-3 max-w-xl text-body text-ink-text-muted text-pretty">
+              The ink family keeps a dark, high-end option for hero or flagship
+              moments — without making the whole site dark and off-brand.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <button
+                type="button"
+                className="rounded-md bg-brand px-5 py-2.5 text-body-sm font-semibold text-brand-contrast"
+              >
+                Book a viewing
+              </button>
+              <button
+                type="button"
+                className="rounded-md bg-pop px-5 py-2.5 text-body-sm font-semibold text-pop-contrast"
+              >
+                Build your boat
+              </button>
+            </div>
+          </div>
+        </section>
+
         {/* Radius + spacing ruler */}
         <section className="pt-14 pb-8">
           <SectionLabel>Radius scale</SectionLabel>
@@ -209,7 +274,7 @@ export default function Page() {
             {radii.map((r) => (
               <div key={r.token} className="flex flex-col items-center gap-2">
                 <div
-                  className={`h-20 w-20 border border-golden bg-ink-overlay ${r.cls}`}
+                  className={`h-20 w-20 border border-brand bg-brand-soft ${r.cls}`}
                 />
                 <p className="font-mono text-caption text-text-muted">{r.label}</p>
               </div>
@@ -226,7 +291,7 @@ export default function Page() {
                   </p>
                   <div className={`flex ${g.cls}`}>
                     {[0, 1, 2, 3].map((i) => (
-                      <div key={i} className="h-8 w-8 rounded-sm bg-silver" />
+                      <div key={i} className="h-8 w-8 rounded-sm bg-brand" />
                     ))}
                   </div>
                 </div>
