@@ -47,10 +47,10 @@
   --ring: #34c2cc;
 
   /* ---- Radius scale (taut, technical corners) ---- */
-  --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.875rem;
-  --radius-xl: 1.25rem;
+  --r-sm: 0.25rem;
+  --r-md: 0.5rem;
+  --r-lg: 0.875rem;
+  --r-xl: 1.25rem;
 }
 
 @theme inline {
@@ -116,10 +116,10 @@
   --text-display--line-height: 1.04;
 
   /* Radius */
-  --radius-sm: var(--radius-sm);
-  --radius-md: var(--radius-md);
-  --radius-lg: var(--radius-lg);
-  --radius-xl: var(--radius-xl);
+  --radius-sm: var(--r-sm);
+  --radius-md: var(--r-md);
+  --radius-lg: var(--r-lg);
+  --radius-xl: var(--r-xl);
 }
 
 body {
