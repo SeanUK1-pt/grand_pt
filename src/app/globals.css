@@ -42,10 +42,10 @@
   --golden-soft: #f6ead4; /* badge / chip background on light */
   --golden-contrast: #ffffff; /* text/icon on solid golden */
 
-  /* ---- Silver Line accent (approachable / family) — deep teal ---- */
-  --silver: #0e7c86;
-  --silver-hover: #149aa6;
-  --silver-soft: #d7eef0; /* badge / chip background on light */
+  /* ---- Silver Line accent (practical / family) — cool steel grey-blue ---- */
+  --silver: #5b6e7d; /* desaturated steel, sits quietly beside Golden/Drive */
+  --silver-hover: #6d8190; /* lighter brushed-steel hover */
+  --silver-soft: #e7ecf0; /* cool grey tint for badges/chips on light */
   --silver-contrast: #ffffff; /* text/icon on solid silver */
 
   /* ---- Drive Line accent (fastest hulls / sport) — signal red ---- */
