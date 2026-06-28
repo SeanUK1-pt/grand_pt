@@ -136,22 +136,20 @@ export default function Page() {
               ))}
             </div>
             {/* Same card on a muted/dark band to verify it holds up */}
-            <div className="mt-6 rounded-xl bg-ink p-6">
+            <div className="mt-6 w-full max-w-sm rounded-xl bg-ink p-6">
               <p className="mb-4 text-body-sm font-medium text-ink-text-muted">
                 ModelCard on an ink band (card keeps its own light surface)
               </p>
-              <div className="max-w-sm">
-                <ModelCard
-                  range="golden"
-                  modelName="G680"
-                  heroImage="/boats/golden.png"
-                  specs={demoSpecs}
-                  priceFrom={89400}
-                  priceLabel="Base specification, VAT included"
-                  href="#"
-                  cta="Build yours →"
-                />
-              </div>
+              <ModelCard
+                range="golden"
+                modelName="G680"
+                heroImage="/boats/golden.png"
+                specs={demoSpecs}
+                priceFrom={89400}
+                priceLabel="Base specification, VAT included"
+                href="#"
+                cta="Build yours →"
+              />
             </div>
           </section>
         </div>
