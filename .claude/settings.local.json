@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh auth *)",
+      "Bash(git --version)",
+      "Bash(npm --version)",
+      "Bash(git config *)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-turbopack)",
+      "Read(//Users/sean/Documents/Claude/Projects/**)",
+      "Bash(npx create-next-app@latest grand-pt --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-turbopack)",
+      "Bash(mv /Users/sean/Documents/Claude/Projects/grand-pt/* /Users/sean/Documents/Claude/Projects/Grand_pt/)",
+      "Bash(mv /Users/sean/Documents/Claude/Projects/grand-pt/.* /Users/sean/Documents/Claude/Projects/Grand_pt/)",
+      "Bash(rmdir /Users/sean/Documents/Claude/Projects/grand-pt)",
+      "Bash(git remote *)",
+      "Bash(git branch *)",
+      "Bash(git add *)",
+      "Bash(git commit -m 'Initial Next.js scaffold *)"
+    ]
+  }
+}
