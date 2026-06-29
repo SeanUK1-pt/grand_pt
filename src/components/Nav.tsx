@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NavMobile from "./NavMobile";
 
 const links = [
   { label: "Golden Line", href: "/ranges/golden-line/" },
@@ -18,7 +19,9 @@ export default function Nav() {
         >
           Grand Boats
         </Link>
-        <nav aria-label="Main navigation">
+
+        {/* Desktop links */}
+        <nav aria-label="Main navigation" className="hidden md:block">
           <ul className="flex items-center gap-6">
             {links.map(({ label, href }) => (
               <li key={href}>
@@ -32,6 +35,9 @@ export default function Nav() {
             ))}
           </ul>
         </nav>
+
+        {/* Mobile hamburger + drawer */}
+        <NavMobile />
       </div>
     </header>
   );
