@@ -1,7 +1,9 @@
 import RangeBadge from "@/components/RangeBadge";
 import SpecStrip from "@/components/SpecStrip";
 import RangeHero from "@/components/RangeHero";
+import SpecSheet from "@/components/SpecSheet";
 import { ranges } from "@/data/ranges";
+import { getModelBySlug } from "@/data/models";
 import type { RangeAccent } from "@/data/ranges";
 
 const accents: RangeAccent[] = ["golden", "silver", "drive"];
@@ -11,6 +13,8 @@ const demoSpecs = [
   { value: "2.90m", label: "Beam" },
   { value: "200 hp", label: "Max power" },
 ];
+
+const demoModel = getModelBySlug("g680")!;
 
 export default function DevPreview() {
   return (
@@ -70,6 +74,16 @@ export default function DevPreview() {
             />
           </div>
         ))}
+      </section>
+
+      {/* ── SpecSheet ── */}
+      <section className="mx-auto max-w-5xl px-6 pb-16">
+        <h2 className="mb-8 text-xs font-semibold uppercase tracking-widest text-ink-subtle">
+          SpecSheet
+        </h2>
+        <div className="rounded-2xl bg-surface p-8 shadow-sm">
+          <SpecSheet specs={demoModel.fullSpecs} accent={demoModel.range} />
+        </div>
       </section>
 
     </div>
