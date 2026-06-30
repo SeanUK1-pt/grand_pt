@@ -1,13 +1,7 @@
 import Link from "next/link";
 import NavMobile from "./NavMobile";
-
-const links = [
-  { label: "Golden Line", href: "/ranges/golden-line/" },
-  { label: "Silver Line", href: "/ranges/silver-line/" },
-  { label: "Drive Line", href: "/ranges/drive-line/" },
-  { label: "Our Story", href: "/our-story/" },
-  { label: "Contact", href: "/contact/" },
-];
+import { navLinks } from "@/data/nav-links";
+import messages from "@/messages/en.json";
 
 export default function Nav() {
   return (
@@ -23,13 +17,13 @@ export default function Nav() {
         {/* Desktop links */}
         <nav aria-label="Main navigation" className="hidden md:block">
           <ul className="flex items-center gap-6">
-            {links.map(({ label, href }) => (
+            {navLinks.map(({ key, href }) => (
               <li key={href}>
                 <Link
                   href={href}
                   className="text-sm text-white/80 transition-colors hover:text-white"
                 >
-                  {label}
+                  {messages.nav[key]}
                 </Link>
               </li>
             ))}

@@ -1,3 +1,11 @@
+// FeaturedModel type lives here (not models.ts) so models.ts's `Model = FeaturedModel & {...}`
+// type-only import below has somewhere to point. This does NOT create a runtime
+// circular dependency: the import below pulls only the `models` array and the
+// `toFeaturedModel` function (values), while models.ts only imports the
+// `FeaturedModel` *type* from this file — type-only imports are erased at
+// compile time, so there's nothing left for the bundler to cycle on.
+import { models, toFeaturedModel } from "./models";
+
 export type FeaturedModel = {
   slug: string;
   name: string;
@@ -7,29 +15,15 @@ export type FeaturedModel = {
   href: string;
 };
 
-export const featuredModels: FeaturedModel[] = [
-  {
-    slug: "g680",
-    name: "G680",
-    range: "golden",
-    tagline: "Built to be lived aboard.",
-    image: "/images/lifestyle/g680-morning.jpg",
-    href: "/ranges/golden-line/g680/",
-  },
-  {
-    slug: "s520",
-    name: "S520",
-    range: "silver",
-    tagline: "The boat that says yes to a normal Tuesday.",
-    image: "/images/lifestyle/s520-afternoon.jpg",
-    href: "/ranges/silver-line/s520/",
-  },
-  {
-    slug: "d400",
-    name: "D400",
-    range: "drive",
-    tagline: "Deep-V, raised tube, no apology.",
-    image: "/images/lifestyle/d400-open-sea.jpg",
-    href: "/ranges/drive-line/d400/",
-  },
-];
+// Curated slugs — one per range, hand-picked for the home page. Edit this
+// list to change which models are featured; name/tagline/image/href are
+// derived from models.ts, not duplicated here.
+const featuredSlugs = ["g680", "s520", "d400"];
+
+export const featuredModels: FeaturedModel[] = featuredSlugs.map((slug) => {
+  const model = models.find((m) => m.slug === slug);
+  if (!model) {
+    throw new Error(`featuredSlugs references "${slug}", which doesn't exist in models.ts`);
+  }
+  return toFeaturedModel(model);
+});

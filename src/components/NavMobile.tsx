@@ -3,14 +3,8 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-
-const links = [
-  { label: "Golden Line", href: "/ranges/golden-line/" },
-  { label: "Silver Line", href: "/ranges/silver-line/" },
-  { label: "Drive Line", href: "/ranges/drive-line/" },
-  { label: "Our Story", href: "/our-story/" },
-  { label: "Contact", href: "/contact/" },
-];
+import { navLinks } from "@/data/nav-links";
+import messages from "@/messages/en.json";
 
 export default function NavMobile() {
   const [open, setOpen] = useState(false);
@@ -47,13 +41,13 @@ export default function NavMobile() {
         >
           <nav aria-label="Mobile navigation">
             <ul className="flex flex-col gap-1">
-              {links.map(({ label, href }) => (
+              {navLinks.map(({ key, href }) => (
                 <li key={href}>
                   <Link
                     href={href}
                     className="block py-3 text-xl font-medium text-white/80 transition-colors hover:text-white"
                   >
-                    {label}
+                    {messages.nav[key]}
                   </Link>
                 </li>
               ))}

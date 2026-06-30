@@ -1,4 +1,12 @@
 import Link from "next/link";
+import { navLinks } from "@/data/nav-links";
+import messages from "@/messages/en.json";
+
+// First 3 entries are the range links, last 2 are company links — same
+// grouping as before, now derived from the shared navLinks list instead of
+// a separate hardcoded array.
+const rangeLinks = navLinks.slice(0, 3);
+const companyLinks = navLinks.slice(3);
 
 export default function Footer() {
   return (
@@ -16,16 +24,17 @@ export default function Footer() {
           <div>
             <p className="text-sm font-medium text-white">Ranges</p>
             <ul className="mt-3 space-y-2 text-sm">
-              <li><Link href="/ranges/golden-line/" className="hover:text-white">Golden Line</Link></li>
-              <li><Link href="/ranges/silver-line/" className="hover:text-white">Silver Line</Link></li>
-              <li><Link href="/ranges/drive-line/" className="hover:text-white">Drive Line</Link></li>
+              {rangeLinks.map(({ key, href }) => (
+                <li key={href}><Link href={href} className="hover:text-white">{messages.nav[key]}</Link></li>
+              ))}
             </ul>
           </div>
           <div>
             <p className="text-sm font-medium text-white">Company</p>
             <ul className="mt-3 space-y-2 text-sm">
-              <li><Link href="/our-story/" className="hover:text-white">Our Story</Link></li>
-              <li><Link href="/contact/" className="hover:text-white">Contact</Link></li>
+              {companyLinks.map(({ key, href }) => (
+                <li key={href}><Link href={href} className="hover:text-white">{messages.nav[key]}</Link></li>
+              ))}
             </ul>
           </div>
           <div>
