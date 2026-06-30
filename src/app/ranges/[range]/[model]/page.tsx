@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import RangeBadge from "@/components/RangeBadge";
 import SpecStrip from "@/components/SpecStrip";
+import SpecSheet from "@/components/SpecSheet";
 import FeatureList from "@/components/FeatureList";
 import ModelCard from "@/components/ModelCard";
 import { ranges, getRangeBySlug } from "@/data/ranges";
@@ -111,11 +112,22 @@ export default async function ModelPage({ params }: Props) {
         </div>
       </section>
 
-      {/* ── Feature blocks ── */}
-      <section aria-label="Features" className="bg-surface py-20">
+      {/* ── Full specification — comprehensive detail, distinct from the
+            quick-glance SpecStrip above ── */}
+      <section aria-label="Full specification" className="bg-surface py-20">
         <div className="mx-auto max-w-7xl px-6">
           <h2 className="mb-12 text-sm font-medium uppercase tracking-widest text-ink-subtle">
-            Detail
+            Full specification
+          </h2>
+          <SpecSheet specs={model.fullSpecs} accent={model.range} />
+        </div>
+      </section>
+
+      {/* ── Features — equipment/layout highlights, not specs ── */}
+      <section aria-label="Features" className="bg-surface-muted py-20">
+        <div className="mx-auto max-w-7xl px-6">
+          <h2 className="mb-12 text-sm font-medium uppercase tracking-widest text-ink-subtle">
+            Features
           </h2>
           <FeatureList features={model.features} accent={model.range} />
         </div>
@@ -125,7 +137,7 @@ export default async function ModelPage({ params }: Props) {
       {relatedModels.length > 0 && (
         <section
           aria-label={`More from ${range.name}`}
-          className="bg-surface-muted py-20"
+          className="bg-surface py-20"
         >
           <div className="mx-auto max-w-7xl px-6">
             <h2 className="mb-10 text-sm font-medium uppercase tracking-widest text-ink-subtle">
