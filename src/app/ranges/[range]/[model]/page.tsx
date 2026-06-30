@@ -44,6 +44,13 @@ export default async function ModelPage({ params }: Props) {
     (m) => m.slug !== model.slug
   );
 
+  // When a model has layouts, each layout carries its own price (once real
+  // pricing data lands) — showing a single top-level "From €X" alongside
+  // per-tile prices risks the two figures disagreeing. Suppress the hero
+  // price for layouted models; price only appears per-tile, where it's
+  // unambiguous which configuration it refers to.
+  const hasLayouts = !!model.layouts && model.layouts.length > 0;
+
   const enquireHref = `/ranges/${rangeSlug}/enquire/?bm=${model.slug}`;
   const priceFormatted = new Intl.NumberFormat("en-PT", {
     style: "currency",
@@ -91,16 +98,19 @@ export default async function ModelPage({ params }: Props) {
             <SpecStrip specs={model.specs} surface="dark" />
           </div>
 
-          {/* Price — same hierarchy as ModelCard name/tagline: xl semibold + sm subtle */}
-          <div className="mt-10 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-3">
-            <span className="text-xl font-semibold text-surface">
-              From {priceFormatted}
-            </span>
-            <span className="text-sm text-surface/50">{model.priceLabel}</span>
-          </div>
+          {/* Price — same hierarchy as ModelCard name/tagline: xl semibold + sm subtle.
+              Suppressed for layouted models — see hasLayouts comment above. */}
+          {!hasLayouts && (
+            <div className="mt-10 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-3">
+              <span className="text-xl font-semibold text-surface">
+                From {priceFormatted}
+              </span>
+              <span className="text-sm text-surface/50">{model.priceLabel}</span>
+            </div>
+          )}
 
           {/* Primary CTA */}
-          <div className="mt-8">
+          <div className={hasLayouts ? "mt-10" : "mt-8"}>
             <Link
               href={enquireHref}
               className="inline-flex items-center rounded-full bg-lime px-6 py-3 text-sm font-semibold text-ink transition-opacity hover:opacity-90"
