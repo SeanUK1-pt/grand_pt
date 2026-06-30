@@ -3,13 +3,94 @@ import type { Range } from "./ranges";
 
 export type ModelSpec = { value: string; label: string };
 
+export type SpecCategory = {
+  category: string;
+  items: { label: string; value: string }[];
+};
+
+export type Feature = {
+  title: string;
+  description: string;
+  image?: string;
+};
+
 export type Model = FeaturedModel & {
   rangeSlug: Range["slug"];
   positioning: string;
   specs: ModelSpec[];
   priceFrom: number;
   priceLabel: string;
+  fullSpecs: SpecCategory[];
+  features: Feature[];
 };
+
+// PLACEHOLDER — structural scaffold only. Every value below is "TBC" pending
+// real spec sheets and feature copy. Do not treat any number/description here
+// as accurate; nothing here should be invented or guessed at.
+function placeholderFullSpecs(): SpecCategory[] {
+  return [
+    {
+      category: "Dimensions",
+      items: [
+        { label: "LOA", value: "TBC" },
+        { label: "Beam", value: "TBC" },
+        { label: "Tube diameter", value: "TBC" },
+        { label: "Dry weight", value: "TBC" },
+        { label: "Draft", value: "TBC" },
+      ],
+    },
+    {
+      category: "Performance",
+      items: [
+        { label: "Max power", value: "TBC" },
+        { label: "Recommended power", value: "TBC" },
+        { label: "Max speed", value: "TBC" },
+        { label: "Cruising speed", value: "TBC" },
+        { label: "Fuel capacity", value: "TBC" },
+      ],
+    },
+    {
+      category: "Capacity",
+      items: [
+        { label: "Max persons", value: "TBC" },
+        { label: "Max load", value: "TBC" },
+        { label: "CE category", value: "TBC" },
+      ],
+    },
+    {
+      category: "Construction",
+      items: [
+        { label: "Hull material", value: "TBC" },
+        { label: "Tube material", value: "TBC" },
+        { label: "Tube chambers", value: "TBC" },
+        { label: "Deck material", value: "TBC" },
+      ],
+    },
+  ];
+}
+
+// PLACEHOLDER — feature titles describe the standard category set; descriptions
+// are generic placeholders pending real equipment/layout copy per model.
+function placeholderFeatures(): Feature[] {
+  return [
+    {
+      title: "Helm & console",
+      description: "PLACEHOLDER — description of console layout and instrumentation pending.",
+    },
+    {
+      title: "Deck layout",
+      description: "PLACEHOLDER — description of seating and deck arrangement pending.",
+    },
+    {
+      title: "Storage",
+      description: "PLACEHOLDER — description of stowage and locker provision pending.",
+    },
+    {
+      title: "Standard equipment",
+      description: "PLACEHOLDER — list of standard-fit equipment pending.",
+    },
+  ];
+}
 
 export const models: Model[] = [
   // ── Golden Line ───────────────────────────────────────────────
@@ -29,6 +110,8 @@ export const models: Model[] = [
     ],
     priceFrom: 48000,
     priceLabel: "Base specification, VAT included",
+    fullSpecs: placeholderFullSpecs(),
+    features: placeholderFeatures(),
   },
   {
     slug: "g750",
@@ -46,6 +129,8 @@ export const models: Model[] = [
     ],
     priceFrom: 58000,
     priceLabel: "Base specification, VAT included",
+    fullSpecs: placeholderFullSpecs(),
+    features: placeholderFeatures(),
   },
   {
     slug: "g580",
@@ -63,6 +148,8 @@ export const models: Model[] = [
     ],
     priceFrom: 36000,
     priceLabel: "Base specification, VAT included",
+    fullSpecs: placeholderFullSpecs(),
+    features: placeholderFeatures(),
   },
 
   // ── Silver Line ───────────────────────────────────────────────
@@ -82,6 +169,8 @@ export const models: Model[] = [
     ],
     priceFrom: 24000,
     priceLabel: "Base specification, VAT included",
+    fullSpecs: placeholderFullSpecs(),
+    features: placeholderFeatures(),
   },
   {
     slug: "s460",
@@ -99,6 +188,8 @@ export const models: Model[] = [
     ],
     priceFrom: 18000,
     priceLabel: "Base specification, VAT included",
+    fullSpecs: placeholderFullSpecs(),
+    features: placeholderFeatures(),
   },
   {
     slug: "s600",
@@ -116,6 +207,8 @@ export const models: Model[] = [
     ],
     priceFrom: 30000,
     priceLabel: "Base specification, VAT included",
+    fullSpecs: placeholderFullSpecs(),
+    features: placeholderFeatures(),
   },
 
   // ── Drive Line ────────────────────────────────────────────────
@@ -135,6 +228,8 @@ export const models: Model[] = [
     ],
     priceFrom: 14000,
     priceLabel: "Base specification, VAT included",
+    fullSpecs: placeholderFullSpecs(),
+    features: placeholderFeatures(),
   },
   {
     slug: "d500",
@@ -152,6 +247,8 @@ export const models: Model[] = [
     ],
     priceFrom: 20000,
     priceLabel: "Base specification, VAT included",
+    fullSpecs: placeholderFullSpecs(),
+    features: placeholderFeatures(),
   },
   {
     slug: "d330",
@@ -169,6 +266,8 @@ export const models: Model[] = [
     ],
     priceFrom: 9500,
     priceLabel: "Base specification, VAT included",
+    fullSpecs: placeholderFullSpecs(),
+    features: placeholderFeatures(),
   },
 ];
 
