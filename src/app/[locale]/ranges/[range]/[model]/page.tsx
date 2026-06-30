@@ -1,18 +1,19 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
+import { setRequestLocale } from "next-intl/server";
 import RangeBadge from "@/components/RangeBadge";
 import SpecStrip from "@/components/SpecStrip";
 import SpecSheet from "@/components/SpecSheet";
 import FeatureList from "@/components/FeatureList";
 import LayoutTiles from "@/components/LayoutTiles";
 import ModelCard from "@/components/ModelCard";
-import { ranges, getRangeBySlug } from "@/data/ranges";
+import { getRangeBySlug } from "@/data/ranges";
 import { models, getModelBySlug, getModelsByRange } from "@/data/models";
 import type { Range } from "@/data/ranges";
 
 type Props = {
-  params: Promise<{ range: string; model: string }>;
+  params: Promise<{ locale: string; range: string; model: string }>;
 };
 
 export async function generateStaticParams() {
@@ -33,7 +34,8 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function ModelPage({ params }: Props) {
-  const { range: rangeSlug, model: modelSlug } = await params;
+  const { locale, range: rangeSlug, model: modelSlug } = await params;
+  setRequestLocale(locale);
 
   // Validate both slugs and that the model belongs to the stated range
   const range = getRangeBySlug(rangeSlug as Range["slug"]);

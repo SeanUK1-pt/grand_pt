@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { setRequestLocale } from "next-intl/server";
 import RangeHero from "@/components/RangeHero";
 import ModelCard from "@/components/ModelCard";
 import { ranges, getRangeBySlug } from "@/data/ranges";
@@ -6,7 +7,7 @@ import { getModelsByRange } from "@/data/models";
 import type { Range } from "@/data/ranges";
 
 type Props = {
-  params: Promise<{ range: string }>;
+  params: Promise<{ locale: string; range: string }>;
 };
 
 export async function generateStaticParams() {
@@ -24,7 +25,9 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function RangePage({ params }: Props) {
-  const { range: rangeSlug } = await params;
+  const { locale, range: rangeSlug } = await params;
+  setRequestLocale(locale);
+
   const range = getRangeBySlug(rangeSlug as Range["slug"]);
 
   if (!range) notFound();

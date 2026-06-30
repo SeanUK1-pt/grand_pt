@@ -1,14 +1,15 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { navLinks } from "@/data/nav-links";
-import messages from "@/messages/en.json";
 
 export default function NavMobile() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const t = useTranslations("nav");
 
   useEffect(() => { setOpen(false); }, [pathname]);
 
@@ -47,7 +48,7 @@ export default function NavMobile() {
                     href={href}
                     className="block py-3 text-xl font-medium text-white/80 transition-colors hover:text-white"
                   >
-                    {messages.nav[key]}
+                    {t(key)}
                   </Link>
                 </li>
               ))}

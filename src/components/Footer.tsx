@@ -1,6 +1,6 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { getTranslations } from "next-intl/server";
 import { navLinks } from "@/data/nav-links";
-import messages from "@/messages/en.json";
 
 // First 3 entries are the range links, last 2 are company links — same
 // grouping as before, now derived from the shared navLinks list instead of
@@ -8,7 +8,9 @@ import messages from "@/messages/en.json";
 const rangeLinks = navLinks.slice(0, 3);
 const companyLinks = navLinks.slice(3);
 
-export default function Footer() {
+export default async function Footer() {
+  const t = await getTranslations("nav");
+
   return (
     <footer className="bg-grand-blue text-white/70">
       <div className="mx-auto max-w-7xl px-6 py-12">
@@ -25,7 +27,7 @@ export default function Footer() {
             <p className="text-sm font-medium text-white">Ranges</p>
             <ul className="mt-3 space-y-2 text-sm">
               {rangeLinks.map(({ key, href }) => (
-                <li key={href}><Link href={href} className="hover:text-white">{messages.nav[key]}</Link></li>
+                <li key={href}><Link href={href} className="hover:text-white">{t(key)}</Link></li>
               ))}
             </ul>
           </div>
@@ -33,7 +35,7 @@ export default function Footer() {
             <p className="text-sm font-medium text-white">Company</p>
             <ul className="mt-3 space-y-2 text-sm">
               {companyLinks.map(({ key, href }) => (
-                <li key={href}><Link href={href} className="hover:text-white">{messages.nav[key]}</Link></li>
+                <li key={href}><Link href={href} className="hover:text-white">{t(key)}</Link></li>
               ))}
             </ul>
           </div>

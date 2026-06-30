@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useEffect, useReducer, useRef, useCallback } from "react";
 import type { HomeHeroSlide } from "@/data/home-hero-slides";
 

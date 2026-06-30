@@ -1,9 +1,11 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { getTranslations } from "next-intl/server";
 import NavMobile from "./NavMobile";
 import { navLinks } from "@/data/nav-links";
-import messages from "@/messages/en.json";
 
-export default function Nav() {
+export default async function Nav() {
+  const t = await getTranslations("nav");
+
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-grand-blue/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
@@ -23,7 +25,7 @@ export default function Nav() {
                   href={href}
                   className="text-sm text-white/80 transition-colors hover:text-white"
                 >
-                  {messages.nav[key]}
+                  {t(key)}
                 </Link>
               </li>
             ))}

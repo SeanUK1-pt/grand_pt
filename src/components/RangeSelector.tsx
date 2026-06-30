@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { ranges } from "@/data/ranges";
 import type { RangeAccent } from "@/data/ranges";
 

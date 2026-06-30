@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import type { FeaturedModel } from "@/data/featured-models";
 
 const rangeLabel: Record<FeaturedModel["range"], string> = {
