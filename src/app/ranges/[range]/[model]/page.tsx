@@ -5,6 +5,7 @@ import RangeBadge from "@/components/RangeBadge";
 import SpecStrip from "@/components/SpecStrip";
 import SpecSheet from "@/components/SpecSheet";
 import FeatureList from "@/components/FeatureList";
+import LayoutTiles from "@/components/LayoutTiles";
 import ModelCard from "@/components/ModelCard";
 import { ranges, getRangeBySlug } from "@/data/ranges";
 import { models, getModelBySlug, getModelsByRange } from "@/data/models";
@@ -111,6 +112,25 @@ export default async function ModelPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* ── Layouts — only rendered when the model has multiple deck layouts
+            (currently Silver Line); LayoutTiles itself also no-ops on an
+            empty array, this guard just avoids invoking it needlessly ── */}
+      {model.layouts && model.layouts.length > 0 && (
+        <section aria-label="Layouts" className="bg-surface-muted py-20">
+          <div className="mx-auto max-w-7xl px-6">
+            <h2 className="mb-12 text-sm font-medium uppercase tracking-widest text-ink-subtle">
+              Choose a layout
+            </h2>
+            <LayoutTiles
+              layouts={model.layouts}
+              accent={model.range}
+              modelSlug={model.slug}
+              rangeSlug={rangeSlug}
+            />
+          </div>
+        </section>
+      )}
 
       {/* ── Full specification — comprehensive detail, distinct from the
             quick-glance SpecStrip above ── */}
