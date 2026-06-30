@@ -14,6 +14,15 @@ export type Feature = {
   image?: string;
 };
 
+export type ModelLayout = {
+  name: string;
+  useCaseLine: string;
+  priceFrom?: number;
+  priceLabel?: string;
+  specs?: { label: string; value: string }[];
+  image?: string;
+};
+
 export type Model = FeaturedModel & {
   rangeSlug: Range["slug"];
   positioning: string;
@@ -22,6 +31,8 @@ export type Model = FeaturedModel & {
   priceLabel: string;
   fullSpecs: SpecCategory[];
   features: Feature[];
+  /** Only set for models with multiple deck layouts (currently Silver Line). */
+  layouts?: ModelLayout[];
 };
 
 // PLACEHOLDER — structural scaffold only. Every value below is "TBC" pending
@@ -88,6 +99,56 @@ function placeholderFeatures(): Feature[] {
     {
       title: "Standard equipment",
       description: "PLACEHOLDER — list of standard-fit equipment pending.",
+    },
+  ];
+}
+
+// PLACEHOLDER — layout names, useCaseLine framing, and specs are all
+// structural placeholders. "TBC" values and generic framing lines stand in
+// for real layout content pending copy/spec sheets; nothing here is a real
+// number. Only specs that DIFFER per layout belong here — shared specs
+// (LOA, beam, etc.) live in the model's fullSpecs, not repeated per layout.
+function placeholderLayoutsThreeWay(): ModelLayout[] {
+  return [
+    {
+      name: "Open",
+      useCaseLine: "PLACEHOLDER — light and simple framing for the Open layout pending.",
+      specs: [
+        { label: "Seating", value: "TBC" },
+        { label: "Dry weight", value: "TBC" },
+      ],
+    },
+    {
+      name: "Sport",
+      useCaseLine: "PLACEHOLDER — performance-oriented framing for the Sport layout pending.",
+      specs: [
+        { label: "Seating", value: "TBC" },
+        { label: "Dry weight", value: "TBC" },
+        { label: "Max HP", value: "TBC" },
+      ],
+    },
+    {
+      name: "Lux",
+      useCaseLine: "PLACEHOLDER — comfort-oriented framing for the Lux layout pending.",
+      specs: [
+        { label: "Seating", value: "TBC" },
+        { label: "Dry weight", value: "TBC" },
+      ],
+    },
+  ];
+}
+
+// Smallest Silver Line hull — only one layout offered. A single-entry array,
+// not a special case the layout-tile UI needs to handle differently.
+function placeholderLayoutsOpenOnly(): ModelLayout[] {
+  return [
+    {
+      name: "Open",
+      useCaseLine: "PLACEHOLDER — light and simple framing for the Open layout pending.",
+      specs: [
+        { label: "Seating", value: "TBC" },
+        { label: "Dry weight", value: "TBC" },
+      ],
     },
   ];
 }
@@ -171,6 +232,7 @@ export const models: Model[] = [
     priceLabel: "Base specification, VAT included",
     fullSpecs: placeholderFullSpecs(),
     features: placeholderFeatures(),
+    layouts: placeholderLayoutsThreeWay(),
   },
   {
     slug: "s460",
@@ -190,6 +252,7 @@ export const models: Model[] = [
     priceLabel: "Base specification, VAT included",
     fullSpecs: placeholderFullSpecs(),
     features: placeholderFeatures(),
+    layouts: placeholderLayoutsOpenOnly(),
   },
   {
     slug: "s600",
@@ -209,6 +272,7 @@ export const models: Model[] = [
     priceLabel: "Base specification, VAT included",
     fullSpecs: placeholderFullSpecs(),
     features: placeholderFeatures(),
+    layouts: placeholderLayoutsThreeWay(),
   },
 
   // ── Drive Line ────────────────────────────────────────────────
