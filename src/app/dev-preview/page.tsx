@@ -2,9 +2,29 @@ import RangeBadge from "@/components/RangeBadge";
 import SpecStrip from "@/components/SpecStrip";
 import RangeHero from "@/components/RangeHero";
 import SpecSheet from "@/components/SpecSheet";
+import FeatureList from "@/components/FeatureList";
 import { ranges } from "@/data/ranges";
 import { getModelBySlug } from "@/data/models";
 import type { RangeAccent } from "@/data/ranges";
+import type { Feature } from "@/data/models";
+
+const demoFeaturesWithImages: Feature[] = [
+  {
+    title: "Centre console helm",
+    description: "Protected instrumentation bay with ergonomic layout for extended passages.",
+    image: "/images/lifestyle/g680-morning.jpg",
+  },
+  {
+    title: "Convertible bow sundeck",
+    description: "Forward seating converts to a full sundeck in under a minute.",
+    image: "/images/lifestyle/g680-morning.jpg",
+  },
+  {
+    title: "Fridge-freezer & sink",
+    description: "Galley unit built into the console for full-day trips.",
+    image: "/images/lifestyle/g680-morning.jpg",
+  },
+];
 
 const accents: RangeAccent[] = ["golden", "silver", "drive"];
 
@@ -83,6 +103,26 @@ export default function DevPreview() {
         </h2>
         <div className="rounded-2xl bg-surface p-8 shadow-sm">
           <SpecSheet specs={demoModel.fullSpecs} accent={demoModel.range} />
+        </div>
+      </section>
+
+      {/* ── FeatureList — with images ── */}
+      <section className="mx-auto max-w-5xl px-6 pb-16">
+        <h2 className="mb-8 text-xs font-semibold uppercase tracking-widest text-ink-subtle">
+          FeatureList — with images
+        </h2>
+        <div className="rounded-2xl bg-surface p-8 shadow-sm">
+          <FeatureList features={demoFeaturesWithImages} accent={demoModel.range} />
+        </div>
+      </section>
+
+      {/* ── FeatureList — text-only (no images) ── */}
+      <section className="mx-auto max-w-5xl px-6 pb-16">
+        <h2 className="mb-8 text-xs font-semibold uppercase tracking-widest text-ink-subtle">
+          FeatureList — text-only
+        </h2>
+        <div className="rounded-2xl bg-surface p-8 shadow-sm">
+          <FeatureList features={demoModel.features} accent={demoModel.range} />
         </div>
       </section>
 
