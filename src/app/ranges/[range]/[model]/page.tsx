@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import RangeBadge from "@/components/RangeBadge";
 import SpecStrip from "@/components/SpecStrip";
+import FeatureList from "@/components/FeatureList";
 import ModelCard from "@/components/ModelCard";
 import { ranges, getRangeBySlug } from "@/data/ranges";
 import { models, getModelBySlug, getModelsByRange } from "@/data/models";
@@ -28,28 +29,6 @@ export async function generateMetadata({ params }: Props) {
     description: model.positioning,
   };
 }
-
-// Placeholder feature blocks — replace copy and images when real content is available
-const featureBlocks = [
-  {
-    id: "hull",
-    heading: "Hull & structure",
-    body: "Precision-formed fibreglass hull with integrated keel protection. Built to Grand's standard construction tolerances across every unit — not a hand-built variation.",
-    image: null,
-  },
-  {
-    id: "console",
-    heading: "Console & helm",
-    body: "Centrally positioned helm with protected instrumentation bay. Ergonomics laid out for extended passages, not just marina departures.",
-    image: null,
-  },
-  {
-    id: "deck",
-    heading: "Deck & fittings",
-    body: "Teak-effect non-slip deck surface throughout. Stainless grab rails at all standing positions. Anchor locker forward with manual windlass ready fitting.",
-    image: null,
-  },
-];
 
 export default async function ModelPage({ params }: Props) {
   const { range: rangeSlug, model: modelSlug } = await params;
@@ -138,20 +117,7 @@ export default async function ModelPage({ params }: Props) {
           <h2 className="mb-12 text-sm font-medium uppercase tracking-widest text-ink-subtle">
             Detail
           </h2>
-          <div className="grid gap-8 sm:grid-cols-3">
-            {featureBlocks.map((block) => (
-              <div key={block.id} className="flex flex-col gap-4">
-                {/* Placeholder image area */}
-                <div className="aspect-[4/3] w-full rounded-xl bg-surface-tint" />
-                <h3 className="text-base font-semibold text-ink">
-                  {block.heading}
-                </h3>
-                <p className="text-sm leading-relaxed text-ink-subtle">
-                  {block.body}
-                </p>
-              </div>
-            ))}
-          </div>
+          <FeatureList features={model.features} accent={model.range} />
         </div>
       </section>
 
