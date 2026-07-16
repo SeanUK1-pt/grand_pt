@@ -21,7 +21,18 @@ export default function Page() {
 
         <RangeOverview />
 
-        {/* Featured models — real Golden Line data */}
+        {/* Premium range moment (inherently dark) */}
+        <RangeHero
+          range="golden"
+          title="The Golden Line"
+          subtitle="Enclosed cabins, offshore poise and liveaboard comfort — our flagship range, ready to configure your way."
+          voiceLine="Built to be lived aboard."
+        />
+
+        <FeatureDetail />
+
+        {/* Featured models — real Golden Line data. Placed just before the
+            enquiry band so in-stock boats lead straight into booking a viewing. */}
         <section className="w-full bg-surface-muted">
           <div className="mx-auto max-w-6xl px-6 py-20 sm:px-8">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -58,16 +69,6 @@ export default function Page() {
             </div>
           </div>
         </section>
-
-        {/* Premium range moment (inherently dark) */}
-        <RangeHero
-          range="golden"
-          title="The Golden Line"
-          subtitle="Enclosed cabins, offshore poise and liveaboard comfort — our flagship range, ready to configure your way."
-          voiceLine="Built to be lived aboard."
-        />
-
-        <FeatureDetail />
 
         {/* Enquire CTA — neutral brand band */}
         <section id="enquire" className="w-full bg-brand">

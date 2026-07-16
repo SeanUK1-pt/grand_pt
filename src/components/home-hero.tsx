@@ -28,7 +28,7 @@ export function HomeHero() {
             Your local Grand dealership
           </p>
           <h1 className="mt-4 text-headline font-semibold tracking-tight text-balance text-ink-text sm:text-display">
-            Rigid inflatables, built to be lived aboard.
+            The full Grand range, sold and serviced on your water.
           </h1>
           <p className="mt-6 max-w-xl text-lead text-ink-text-muted text-pretty">
             Explore the Golden, Silver and Drive ranges — sales, servicing and
