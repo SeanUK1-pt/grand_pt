@@ -26,7 +26,7 @@ export default async function Home({ params }: Props) {
 
       <section aria-label="Featured models" className="bg-surface py-20">
         <div className="mx-auto max-w-7xl px-6">
-          <h2 className="mb-10 text-sm font-medium uppercase tracking-widest text-ink-subtle">
+          <h2 className="mb-10 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
             Featured models
           </h2>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

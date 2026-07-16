@@ -1,46 +1,165 @@
 @import "tailwindcss";
 
-@theme inline {
-  /* ── Brand palette ── */
-  --color-grand-blue:    #0B3A5C;
-  --color-grand-blue-80: #1B5080;
-  --color-lime:          #C8E63C;
-  --color-lime-muted:    #E8F5A3;
-
-  /* ── Ink family ── */
-  --color-ink:           #111827;
-  --color-ink-muted:     #374151;
-  --color-ink-subtle:    #6B7280;
-
-  /* ── Surfaces ── */
-  --color-surface:       #FFFFFF;
-  --color-surface-muted: #F8F7F4;
-  --color-surface-tint:  #EEF3F8;
-
-  /* ── Range accents ── */
-  --color-golden:        #C49A2A;
-  --color-golden-muted:  #FBF3DF;
-  --color-silver:        #8FA3AE;
-  --color-silver-muted:  #EDF1F3;
-  --color-drive:         #D94F1E;
-  --color-drive-muted:   #FCEEE8;
-
-  /* ── Typography ── */
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-
-  /* ── Colour aliases for Tailwind bg-background etc ── */
-  --color-background: var(--color-surface);
-  --color-foreground: var(--color-ink);
-}
+/* =================================================================
+   COASTLINE — Grand RIB dealer brand tokens
+   Light, bright base led by Grand's signature blue (#01539D),
+   with a lime energy pop and three distinct range accents.
+   The dark "ink" family is retained for optional premium feature
+   sections within an otherwise light site.
+   Source of truth: raw CSS variables in :root.
+   Exposed to Tailwind as utilities via @theme inline below.
+   ================================================================= */
 
 :root {
-  --background: #FFFFFF;
-  --foreground: #111827;
+  /* ---- Light surfaces (the default canvas, mirrors grandboats.com) ---- */
+  --surface: #ffffff; /* page background */
+  --surface-muted: #f2f5f7; /* muted panels / alternating bands */
+  --surface-sunken: #e8edf1; /* insets, wells, table headers */
+  --surface-line: #d8e0e6; /* hairline borders & dividers on light */
+
+  /* ---- Text / foreground (on light surfaces) ---- */
+  --text-strong: #0c1a28; /* primary headings & body */
+  --text-muted: #4a5a68; /* secondary text */
+  --text-subtle: #7c8a96; /* captions / disabled */
+  --text-inverse: #ffffff; /* text on dark / on accents */
+
+  /* ---- Primary: Grand blue (sampled from grandboats.com) ---- */
+  --brand: #01539d;
+  --brand-hover: #0468bf; /* lighter hover for buttons/links */
+  --brand-active: #013f78; /* pressed / deep */
+  --brand-soft: #e2edf6; /* tint for chips/badges on light */
+  --brand-contrast: #ffffff; /* text/icon on solid brand */
+
+  /* ---- Pop: Grand lime (energy accent, used sparingly) ---- */
+  --pop: #a6cc0f;
+  --pop-hover: #b8dd2a;
+  --pop-soft: #eef6cf;
+  --pop-contrast: #1c2606; /* text/icon on solid lime */
+
+  /* ---- Golden Line accent (premium flagship) — deep brass ---- */
+  --golden: #a66a0c;
+  --golden-hover: #c0801c;
+  --golden-soft: #f6ead4; /* badge / chip background on light */
+  --golden-contrast: #ffffff; /* text/icon on solid golden */
+
+  /* ---- Silver Line accent (practical / family) — cool steel grey-blue ---- */
+  --silver: #5b6e7d; /* desaturated steel, sits quietly beside Golden/Drive */
+  --silver-hover: #6d8190; /* lighter brushed-steel hover */
+  --silver-soft: #e7ecf0; /* cool grey tint for badges/chips on light */
+  --silver-contrast: #ffffff; /* text/icon on solid silver */
+
+  /* ---- Drive Line accent (fastest hulls / sport) — signal red ---- */
+  --drive: #d83a1e;
+  --drive-hover: #ed4f33;
+  --drive-soft: #fbe2dc; /* badge / chip background on light */
+  --drive-contrast: #ffffff; /* text/icon on solid drive */
+
+  /* ---- Ink family (retained for optional dark feature sections) ---- */
+  --ink: #0c2336; /* navy-leaning dark canvas */
+  --ink-raised: #122e45; /* cards & panels on ink */
+  --ink-overlay: #1b3c57; /* hover / elevated on ink */
+  --ink-line: #2a475f; /* hairline borders on ink */
+  --ink-text: #eef4f9; /* primary text on ink */
+  --ink-text-muted: #9db3c4; /* secondary text on ink */
+
+  /* ---- Focus ring (uses brand blue) ---- */
+  --ring: #0468bf;
+
+  /* ---- Radius scale (taut, technical corners) ---- */
+  --r-sm: 0.25rem; /* 4px  — inputs, small chips */
+  --r-md: 0.5rem; /* 8px  — buttons, badges */
+  --r-lg: 0.875rem; /* 14px — cards */
+  --r-xl: 1.25rem; /* 20px — large feature panels */
+}
+
+@theme inline {
+  /* Base background/foreground (wired to the light surface as default) */
+  --color-background: var(--surface);
+  --color-foreground: var(--text-strong);
+
+  /* Light surfaces */
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-surface-line: var(--surface-line);
+
+  /* Text */
+  --color-text-strong: var(--text-strong);
+  --color-text-muted: var(--text-muted);
+  --color-text-subtle: var(--text-subtle);
+  --color-text-inverse: var(--text-inverse);
+
+  /* Primary brand */
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-active: var(--brand-active);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-contrast: var(--brand-contrast);
+
+  /* Lime pop */
+  --color-pop: var(--pop);
+  --color-pop-hover: var(--pop-hover);
+  --color-pop-soft: var(--pop-soft);
+  --color-pop-contrast: var(--pop-contrast);
+
+  /* Golden Line */
+  --color-golden: var(--golden);
+  --color-golden-hover: var(--golden-hover);
+  --color-golden-soft: var(--golden-soft);
+  --color-golden-contrast: var(--golden-contrast);
+
+  /* Silver Line */
+  --color-silver: var(--silver);
+  --color-silver-hover: var(--silver-hover);
+  --color-silver-soft: var(--silver-soft);
+  --color-silver-contrast: var(--silver-contrast);
+
+  /* Drive Line */
+  --color-drive: var(--drive);
+  --color-drive-hover: var(--drive-hover);
+  --color-drive-soft: var(--drive-soft);
+  --color-drive-contrast: var(--drive-contrast);
+
+  /* Ink family */
+  --color-ink: var(--ink);
+  --color-ink-raised: var(--ink-raised);
+  --color-ink-overlay: var(--ink-overlay);
+  --color-ink-line: var(--ink-line);
+  --color-ink-text: var(--ink-text);
+  --color-ink-text-muted: var(--ink-text-muted);
+
+  /* Ring */
+  --color-ring: var(--ring);
+
+  /* Fonts */
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* ---- Type scale (sporty / semi-luxury, Geist Sans) ---- */
+  --text-caption: 0.75rem; /* 12px — labels, eyebrows */
+  --text-caption--line-height: 1rem;
+  --text-body-sm: 0.875rem; /* 14px — dense UI text */
+  --text-body-sm--line-height: 1.4;
+  --text-body: 1rem; /* 16px — base body */
+  --text-body--line-height: 1.55;
+  --text-lead: 1.25rem; /* 20px — intro paragraphs */
+  --text-lead--line-height: 1.5;
+  --text-title: 1.75rem; /* 28px — card / section titles */
+  --text-title--line-height: 1.2;
+  --text-headline: 2.5rem; /* 40px — section headlines */
+  --text-headline--line-height: 1.12;
+  --text-display: 4rem; /* 64px — hero display */
+  --text-display--line-height: 1.04;
+
+  /* Radius */
+  --radius-sm: var(--r-sm);
+  --radius-md: var(--r-md);
+  --radius-lg: var(--r-lg);
+  --radius-xl: var(--r-xl);
 }
 
 body {
-  background: var(--color-surface);
-  color: var(--color-ink);
-  font-family: var(--font-sans, Arial, sans-serif);
+  background: var(--surface);
+  color: var(--text-strong);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
 }

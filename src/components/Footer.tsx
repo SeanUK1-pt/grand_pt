@@ -12,43 +12,43 @@ export default async function Footer() {
   const t = await getTranslations("nav");
 
   return (
-    <footer className="bg-grand-blue text-white/70">
+    <footer className="bg-ink text-ink-text-muted">
       <div className="mx-auto max-w-7xl px-6 py-12">
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
           <div className="col-span-2 md:col-span-1">
-            <p className="text-base font-semibold text-white">Grand Boats</p>
-            <p className="mt-2 text-sm leading-6">
+            <p className="text-body font-semibold text-ink-text">Grand Boats</p>
+            <p className="mt-2 text-body-sm leading-relaxed">
               Premium recreational boats,
               <br />
               built in Ukraine.
             </p>
           </div>
           <div>
-            <p className="text-sm font-medium text-white">Ranges</p>
-            <ul className="mt-3 space-y-2 text-sm">
+            <p className="text-caption font-semibold uppercase tracking-[0.14em] text-ink-text">Ranges</p>
+            <ul className="mt-3 space-y-2 text-body-sm">
               {rangeLinks.map(({ key, href }) => (
-                <li key={href}><Link href={href} className="hover:text-white">{t(key)}</Link></li>
+                <li key={href}><Link href={href} className="hover:text-ink-text">{t(key)}</Link></li>
               ))}
             </ul>
           </div>
           <div>
-            <p className="text-sm font-medium text-white">Company</p>
-            <ul className="mt-3 space-y-2 text-sm">
+            <p className="text-caption font-semibold uppercase tracking-[0.14em] text-ink-text">Company</p>
+            <ul className="mt-3 space-y-2 text-body-sm">
               {companyLinks.map(({ key, href }) => (
-                <li key={href}><Link href={href} className="hover:text-white">{t(key)}</Link></li>
+                <li key={href}><Link href={href} className="hover:text-ink-text">{t(key)}</Link></li>
               ))}
             </ul>
           </div>
           <div>
-            <p className="text-sm font-medium text-white">Dealer</p>
-            <p className="mt-3 text-sm leading-6">
+            <p className="text-caption font-semibold uppercase tracking-[0.14em] text-ink-text">Dealer</p>
+            <p className="mt-3 text-body-sm leading-relaxed">
               Algarve Boat Group
               <br />
               Portimão, Portugal
             </p>
           </div>
         </div>
-        <div className="mt-10 border-t border-white/10 pt-6 text-xs">
+        <div className="mt-10 border-t border-ink-line pt-6 text-caption">
           © {new Date().getFullYear()} Grand Boats / Algarve Boat Group. All rights reserved.
         </div>
       </div>

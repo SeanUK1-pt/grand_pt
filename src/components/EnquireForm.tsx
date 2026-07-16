@@ -34,12 +34,11 @@ const accentBar: Record<RangeAccent, string> = {
   drive: "bg-drive",
 };
 
-// Same contrast-safe solid-button convention established in RangeBadge:
-// golden's mid-tone needs text-ink, silver/drive are dark enough for text-surface.
+// Same -contrast token convention established in RangeBadge.
 const accentButton: Record<RangeAccent, string> = {
-  golden: "bg-golden text-ink",
-  silver: "bg-silver text-surface",
-  drive: "bg-drive text-surface",
+  golden: "bg-golden text-golden-contrast",
+  silver: "bg-silver text-silver-contrast",
+  drive: "bg-drive text-drive-contrast",
 };
 
 const initialState: EnquiryActionState = { status: "idle" };
@@ -52,7 +51,7 @@ function SubmitButton({ accent }: { accent: RangeAccent }) {
     <button
       type="submit"
       disabled={pending}
-      className={`inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition-opacity hover:opacity-90 disabled:opacity-60 ${accentButton[accent]}`}
+      className={`inline-flex items-center justify-center rounded-md px-6 py-3 text-body-sm font-semibold transition-opacity hover:opacity-90 disabled:opacity-60 ${accentButton[accent]}`}
     >
       {pending ? t("submitting") : t("submit")}
     </button>
@@ -83,37 +82,37 @@ export default function EnquireForm({
 
   if (state.status === "success") {
     return (
-      <div className="overflow-hidden rounded-2xl bg-surface-muted">
+      <div className="overflow-hidden rounded-lg border border-surface-line bg-surface shadow-sm">
         <div className={`h-1.5 ${accentBar[range]}`} aria-hidden />
         <div className="p-8">
-          <h2 className="text-2xl font-semibold text-ink">
+          <h2 className="text-title font-semibold tracking-tight text-text-strong">
             {t("success.heading")}
           </h2>
-          <p className="mt-2 text-base text-ink-subtle">{t("success.body")}</p>
+          <p className="mt-2 text-body text-text-muted">{t("success.body")}</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="overflow-hidden rounded-2xl bg-surface-muted">
+    <div className="overflow-hidden rounded-lg border border-surface-line bg-surface shadow-sm">
       <div className={`h-1.5 ${accentBar[range]}`} aria-hidden />
       <div className="p-8">
-        <h2 className="text-2xl font-semibold text-ink">{heading}</h2>
-        <p className="mt-2 text-base text-ink-subtle">
+        <h2 className="text-title font-semibold tracking-tight text-text-strong">{heading}</h2>
+        <p className="mt-2 text-body text-text-muted">
           {t(`intro.${range}`, { modelName })}
         </p>
 
         {decodedExtras.length > 0 && (
-          <div className="mt-6 border-t border-ink/10 pt-6">
-            <p className="text-sm font-semibold uppercase tracking-wide text-ink-subtle">
+          <div className="mt-6 border-t border-surface-line pt-6">
+            <p className="text-caption font-semibold uppercase tracking-[0.12em] text-text-subtle">
               {t("extrasHeading")}
             </p>
             <ul className="mt-3 flex flex-col gap-1.5">
               {decodedExtras.map((extra) => (
                 <li
                   key={extra.partNumber}
-                  className="flex items-baseline gap-2 text-sm text-ink"
+                  className="flex items-baseline gap-2 text-body-sm text-text-strong"
                 >
                   <span aria-hidden className={`h-1 w-1 rounded-full ${accentBar[range]}`} />
                   {extra.name}
@@ -125,7 +124,7 @@ export default function EnquireForm({
 
         <form action={formAction} className="mt-8 flex flex-col gap-4">
           <div>
-            <label htmlFor="name" className="text-sm font-medium text-ink">
+            <label htmlFor="name" className="text-body-sm font-medium text-text-strong">
               {t("fields.name")}
             </label>
             <input
@@ -133,12 +132,12 @@ export default function EnquireForm({
               name="name"
               type="text"
               required
-              className="mt-1.5 w-full rounded-lg border border-ink/15 bg-surface px-3 py-2 text-sm text-ink outline-none focus:border-ink/40"
+              className="mt-1.5 w-full rounded-sm border border-surface-line bg-surface px-3 py-2 text-body-sm text-text-strong outline-none focus:border-brand"
             />
           </div>
 
           <div>
-            <label htmlFor="email" className="text-sm font-medium text-ink">
+            <label htmlFor="email" className="text-body-sm font-medium text-text-strong">
               {t("fields.email")}
             </label>
             <input
@@ -146,36 +145,36 @@ export default function EnquireForm({
               name="email"
               type="email"
               required
-              className="mt-1.5 w-full rounded-lg border border-ink/15 bg-surface px-3 py-2 text-sm text-ink outline-none focus:border-ink/40"
+              className="mt-1.5 w-full rounded-sm border border-surface-line bg-surface px-3 py-2 text-body-sm text-text-strong outline-none focus:border-brand"
             />
           </div>
 
           <div>
-            <label htmlFor="phone" className="text-sm font-medium text-ink">
+            <label htmlFor="phone" className="text-body-sm font-medium text-text-strong">
               {t("fields.phone")}
             </label>
             <input
               id="phone"
               name="phone"
               type="tel"
-              className="mt-1.5 w-full rounded-lg border border-ink/15 bg-surface px-3 py-2 text-sm text-ink outline-none focus:border-ink/40"
+              className="mt-1.5 w-full rounded-sm border border-surface-line bg-surface px-3 py-2 text-body-sm text-text-strong outline-none focus:border-brand"
             />
           </div>
 
           <div>
-            <label htmlFor="notes" className="text-sm font-medium text-ink">
+            <label htmlFor="notes" className="text-body-sm font-medium text-text-strong">
               {t("fields.notes")}
             </label>
             <textarea
               id="notes"
               name="notes"
               rows={4}
-              className="mt-1.5 w-full rounded-lg border border-ink/15 bg-surface px-3 py-2 text-sm text-ink outline-none focus:border-ink/40"
+              className="mt-1.5 w-full rounded-sm border border-surface-line bg-surface px-3 py-2 text-body-sm text-text-strong outline-none focus:border-brand"
             />
           </div>
 
           {state.status === "error" && (
-            <p role="alert" className="text-sm text-drive">
+            <p role="alert" className="text-body-sm text-drive">
               {state.message ?? t("errors.required")}
             </p>
           )}

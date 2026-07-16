@@ -8,7 +8,7 @@ export default async function Nav() {
   const t = await getTranslations("nav");
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-grand-blue/95 backdrop-blur-sm">
+    <header className="fixed inset-x-0 top-0 z-50 bg-ink/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link href="/" className="shrink-0">
           <Image
@@ -28,7 +28,7 @@ export default async function Nav() {
               <li key={href}>
                 <Link
                   href={href}
-                  className="text-sm text-white/80 transition-colors hover:text-white"
+                  className="text-body-sm font-medium text-ink-text-muted transition-colors hover:text-ink-text"
                 >
                   {t(key)}
                 </Link>

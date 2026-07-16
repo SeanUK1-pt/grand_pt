@@ -20,11 +20,14 @@ const accentRule: Record<RangeAccent, string> = {
 
 export default function FeatureList({ features, accent }: Props) {
   return (
-    <div className="grid gap-8 sm:grid-cols-3">
+    <div className="grid gap-6 sm:grid-cols-3">
       {features.map((feature) => (
-        <div key={feature.title} className="flex flex-col gap-4">
+        <article
+          key={feature.title}
+          className="flex flex-col overflow-hidden rounded-lg border border-surface-line bg-surface shadow-sm"
+        >
           {feature.image ? (
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-surface-tint">
+            <div className="relative aspect-[4/3] w-full overflow-hidden bg-surface-sunken">
               <Image
                 src={feature.image}
                 alt={feature.title}
@@ -36,14 +39,16 @@ export default function FeatureList({ features, accent }: Props) {
           ) : (
             // No image — a thin accent rule stands in for the image block so the
             // card still reads as a deliberate layout, not a missing asset.
-            <div className={`h-0.5 w-8 ${accentRule[accent]}`} aria-hidden />
+            <div className={`h-0.5 w-8 ${accentRule[accent]} mx-6 mt-6`} aria-hidden />
           )}
 
-          <h3 className="text-base font-semibold text-ink">{feature.title}</h3>
-          <p className="text-sm leading-relaxed text-ink-subtle">
-            {feature.description}
-          </p>
-        </div>
+          <div className="flex flex-1 flex-col gap-3 p-6">
+            <h3 className="text-title font-semibold tracking-tight text-text-strong">{feature.title}</h3>
+            <p className="text-body leading-relaxed text-text-muted text-pretty">
+              {feature.description}
+            </p>
+          </div>
+        </article>
       ))}
     </div>
   );

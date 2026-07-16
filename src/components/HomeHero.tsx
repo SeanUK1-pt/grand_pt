@@ -85,7 +85,7 @@ export default function HomeHero({ slides }: { slides: HomeHeroSlide[] }) {
           <Link
             href={slide.href}
             tabIndex={i === current ? 0 : -1}
-            className="block h-full w-full outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2"
+            className="block h-full w-full outline-none focus-visible:ring-2 focus-visible:ring-pop focus-visible:ring-offset-2"
           >
             {/* Full-bleed image */}
             <Image
@@ -105,10 +105,10 @@ export default function HomeHero({ slides }: { slides: HomeHeroSlide[] }) {
 
             {/* Text overlay — lower third */}
             <div className="absolute inset-x-0 bottom-20 px-8 md:px-16 lg:px-24">
-              <p className="text-sm font-medium uppercase tracking-widest text-white/60">
+              <p className="text-caption font-semibold uppercase tracking-[0.18em] text-ink-text-muted">
                 {slide.modelName}
               </p>
-              <p className="mt-2 max-w-2xl text-3xl font-semibold leading-snug text-white md:text-4xl lg:text-5xl">
+              <p className="mt-2 max-w-2xl text-headline font-semibold leading-tight text-balance text-ink-text sm:text-display">
                 {slide.moodLine}
               </p>
             </div>
@@ -133,7 +133,7 @@ export default function HomeHero({ slides }: { slides: HomeHeroSlide[] }) {
               e.stopPropagation();
               dispatch({ type: "goto", index: i });
             }}
-            className={`h-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime ${
+            className={`h-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pop ${
               i === current
                 ? "w-6 bg-white"
                 : "w-2 bg-white/40 hover:bg-white/70"

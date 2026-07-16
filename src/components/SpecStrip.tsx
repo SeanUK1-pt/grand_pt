@@ -11,21 +11,21 @@ export default function SpecStrip({ specs, surface = "light" }: Props) {
   return (
     <div
       className={`flex items-stretch divide-x ${
-        isDark ? "divide-surface/15" : "divide-ink/10"
+        isDark ? "divide-ink-line" : "divide-surface-line"
       }`}
     >
       {specs.map(({ value, label }) => (
         <div key={label} className="flex flex-col gap-0.5 px-6 first:pl-0 last:pr-0">
           <span
-            className={`text-2xl font-semibold tabular-nums leading-none ${
-              isDark ? "text-surface" : "text-ink"
+            className={`text-lead font-semibold tabular-nums leading-none tracking-tight ${
+              isDark ? "text-ink-text" : "text-text-strong"
             }`}
           >
             {value}
           </span>
           <span
-            className={`text-xs uppercase tracking-wide ${
-              isDark ? "text-surface/50" : "text-ink-subtle"
+            className={`text-caption font-medium uppercase tracking-[0.1em] ${
+              isDark ? "text-ink-text-muted" : "text-text-subtle"
             }`}
           >
             {label}

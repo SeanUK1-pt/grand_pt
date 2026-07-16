@@ -81,7 +81,7 @@ export default async function ModelPage({ params }: Props) {
       {/* ── Hero image — purely visual, no text overlay. Aspect-ratio driven
             height (not min-h) so the box never collapses even though the
             Image is `fill` and contributes no intrinsic height itself. ── */}
-      <section className="relative aspect-[16/9] w-full bg-grand-blue md:aspect-[21/9]">
+      <section className="relative aspect-[16/9] w-full bg-ink md:aspect-[21/9]">
         <Image
           src={model.image}
           alt={`${model.name} — ${positioning}`}
@@ -100,19 +100,19 @@ export default async function ModelPage({ params }: Props) {
 
       {/* ── Badge/name/positioning + specs + price — all in normal flow,
             below the photo, doing the information work the photo doesn't ── */}
-      <section className="bg-grand-blue pb-16 pt-12">
+      <section className="bg-ink pb-16 pt-12">
         <div className="mx-auto max-w-7xl px-6">
           <RangeBadge accent={model.range} variant="soft">
             {range.name}
           </RangeBadge>
-          <h1 className="mt-4 text-5xl font-semibold tracking-tight text-surface md:text-6xl lg:text-7xl">
+          <h1 className="mt-4 text-headline font-semibold tracking-tight text-balance text-ink-text sm:text-display">
             {model.name}
           </h1>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-surface/70 md:text-xl">
+          <p className="mt-4 max-w-2xl text-lead leading-relaxed text-ink-text-muted text-pretty">
             {positioning}
           </p>
 
-          <div className="mt-10 border-t border-surface/10 pt-10">
+          <div className="mt-10 border-t border-ink-line pt-10">
             <SpecStrip specs={model.specs} surface="dark" />
           </div>
 
@@ -120,11 +120,11 @@ export default async function ModelPage({ params }: Props) {
               Suppressed for layouted models and whenever no real price exists. */}
           {showPrice && (
             <div className="mt-10 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-3">
-              <span className="text-xl font-semibold text-surface">
+              <span className="text-lead font-semibold tracking-tight text-ink-text">
                 From {priceFormatted}
               </span>
               {model.priceLabel && (
-                <span className="text-sm text-surface/50">{model.priceLabel}</span>
+                <span className="text-caption text-ink-text-muted">{model.priceLabel}</span>
               )}
             </div>
           )}
@@ -133,7 +133,7 @@ export default async function ModelPage({ params }: Props) {
           <div className={showPrice ? "mt-8" : "mt-10"}>
             <Link
               href={enquireHref}
-              className="inline-flex items-center rounded-full bg-lime px-6 py-3 text-sm font-semibold text-ink transition-opacity hover:opacity-90"
+              className="inline-flex items-center rounded-md bg-pop px-6 py-3 text-body-sm font-semibold text-pop-contrast transition-opacity hover:opacity-90"
             >
               Enquire about the {model.name}
             </Link>
@@ -147,7 +147,7 @@ export default async function ModelPage({ params }: Props) {
       {model.layouts && model.layouts.length > 0 && (
         <section aria-label="Layouts" className="bg-surface-muted py-20">
           <div className="mx-auto max-w-7xl px-6">
-            <h2 className="mb-12 text-sm font-medium uppercase tracking-widest text-ink-subtle">
+            <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
               Choose a layout
             </h2>
             <LayoutTiles
@@ -164,7 +164,7 @@ export default async function ModelPage({ params }: Props) {
             quick-glance SpecStrip above ── */}
       <section aria-label="Full specification" className="bg-surface py-20">
         <div className="mx-auto max-w-7xl px-6">
-          <h2 className="mb-12 text-sm font-medium uppercase tracking-widest text-ink-subtle">
+          <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
             Full specification
           </h2>
           <SpecSheet specs={model.fullSpecs} accent={model.range} />
@@ -174,7 +174,7 @@ export default async function ModelPage({ params }: Props) {
       {/* ── Features — equipment/layout highlights, not specs ── */}
       <section aria-label="Features" className="bg-surface-muted py-20">
         <div className="mx-auto max-w-7xl px-6">
-          <h2 className="mb-12 text-sm font-medium uppercase tracking-widest text-ink-subtle">
+          <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
             Features
           </h2>
           <FeatureList features={features} accent={model.range} />
@@ -188,7 +188,7 @@ export default async function ModelPage({ params }: Props) {
           className="bg-surface py-20"
         >
           <div className="mx-auto max-w-7xl px-6">
-            <h2 className="mb-10 text-sm font-medium uppercase tracking-widest text-ink-subtle">
+            <h2 className="mb-10 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
               More from the {range.name}
             </h2>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -201,18 +201,18 @@ export default async function ModelPage({ params }: Props) {
       )}
 
       {/* ── Closing CTA ── */}
-      <section className="bg-grand-blue py-20">
+      <section className="bg-ink py-20">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <p className="text-2xl font-semibold text-surface md:text-3xl">
+          <p className="text-headline font-semibold leading-tight tracking-tight text-balance text-ink-text">
             Have a question? Talk to us about the {model.name}.
           </p>
-          <p className="mt-4 text-base text-surface/60">
+          <p className="mt-4 text-body text-ink-text-muted">
             The team at Algarve Boat Group can walk you through specifications,
             availability, and configuration options.
           </p>
           <Link
             href={enquireHref}
-            className="mt-8 inline-flex items-center rounded-full bg-lime px-6 py-3 text-sm font-semibold text-ink transition-opacity hover:opacity-90"
+            className="mt-8 inline-flex items-center rounded-md bg-pop px-6 py-3 text-body-sm font-semibold text-pop-contrast transition-opacity hover:opacity-90"
           >
             Get in touch →
           </Link>

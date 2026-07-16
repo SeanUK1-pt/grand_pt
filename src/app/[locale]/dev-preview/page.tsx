@@ -64,7 +64,7 @@ export default async function DevPreview({ params }: Props) {
 
       {/* ── RangeBadge ── */}
       <section className="mx-auto max-w-5xl px-6 py-16">
-        <h2 className="mb-8 text-xs font-semibold uppercase tracking-widest text-ink-subtle">
+        <h2 className="mb-8 text-caption font-semibold uppercase tracking-[0.12em] text-text-subtle">
           RangeBadge
         </h2>
         <div className="flex flex-wrap gap-6 items-start">
@@ -83,27 +83,27 @@ export default async function DevPreview({ params }: Props) {
 
       {/* ── SpecStrip — light surface ── */}
       <section className="mx-auto max-w-5xl px-6 pb-16">
-        <h2 className="mb-8 text-xs font-semibold uppercase tracking-widest text-ink-subtle">
+        <h2 className="mb-8 text-caption font-semibold uppercase tracking-[0.12em] text-text-subtle">
           SpecStrip — light
         </h2>
-        <div className="rounded-2xl bg-surface p-8 shadow-sm">
+        <div className="rounded-lg border border-surface-line bg-surface p-8 shadow-sm">
           <SpecStrip specs={demoSpecs} surface="light" />
         </div>
       </section>
 
       {/* ── SpecStrip — dark surface ── */}
       <section className="mx-auto max-w-5xl px-6 pb-16">
-        <h2 className="mb-8 text-xs font-semibold uppercase tracking-widest text-ink-subtle">
+        <h2 className="mb-8 text-caption font-semibold uppercase tracking-[0.12em] text-text-subtle">
           SpecStrip — dark
         </h2>
-        <div className="rounded-2xl bg-grand-blue p-8">
+        <div className="rounded-lg bg-ink p-8">
           <SpecStrip specs={demoSpecs} surface="dark" />
         </div>
       </section>
 
       {/* ── RangeHero — all three accents ── */}
       <section className="pb-4">
-        <h2 className="mx-auto max-w-5xl px-6 pb-8 pt-4 text-xs font-semibold uppercase tracking-widest text-ink-subtle">
+        <h2 className="mx-auto max-w-5xl px-6 pb-8 pt-4 text-caption font-semibold uppercase tracking-[0.12em] text-text-subtle">
           RangeHero
         </h2>
         {ranges.map((range) => (
@@ -120,30 +120,30 @@ export default async function DevPreview({ params }: Props) {
 
       {/* ── SpecSheet ── */}
       <section className="mx-auto max-w-5xl px-6 pb-16">
-        <h2 className="mb-8 text-xs font-semibold uppercase tracking-widest text-ink-subtle">
+        <h2 className="mb-8 text-caption font-semibold uppercase tracking-[0.12em] text-text-subtle">
           SpecSheet
         </h2>
-        <div className="rounded-2xl bg-surface p-8 shadow-sm">
+        <div className="rounded-lg border border-surface-line bg-surface p-8 shadow-sm">
           <SpecSheet specs={demoModel.fullSpecs} accent={demoModel.range} />
         </div>
       </section>
 
       {/* ── FeatureList — with images ── */}
       <section className="mx-auto max-w-5xl px-6 pb-16">
-        <h2 className="mb-8 text-xs font-semibold uppercase tracking-widest text-ink-subtle">
+        <h2 className="mb-8 text-caption font-semibold uppercase tracking-[0.12em] text-text-subtle">
           FeatureList — with images
         </h2>
-        <div className="rounded-2xl bg-surface p-8 shadow-sm">
+        <div className="rounded-lg border border-surface-line bg-surface p-8 shadow-sm">
           <FeatureList features={demoFeaturesWithImages} accent={demoModel.range} />
         </div>
       </section>
 
       {/* ── FeatureList — text-only (no images) ── */}
       <section className="mx-auto max-w-5xl px-6 pb-16">
-        <h2 className="mb-8 text-xs font-semibold uppercase tracking-widest text-ink-subtle">
+        <h2 className="mb-8 text-caption font-semibold uppercase tracking-[0.12em] text-text-subtle">
           FeatureList — text-only
         </h2>
-        <div className="rounded-2xl bg-surface p-8 shadow-sm">
+        <div className="rounded-lg border border-surface-line bg-surface p-8 shadow-sm">
           <FeatureList
             features={demoModel.features.map((f) => ({
               title: resolveText(f.title, locale),
@@ -157,7 +157,7 @@ export default async function DevPreview({ params }: Props) {
 
       {/* ── EnquireForm — all three range skins side by side ── */}
       <section className="mx-auto max-w-7xl px-6 pb-16">
-        <h2 className="mb-8 text-xs font-semibold uppercase tracking-widest text-ink-subtle">
+        <h2 className="mb-8 text-caption font-semibold uppercase tracking-[0.12em] text-text-subtle">
           EnquireForm — golden / silver / drive
         </h2>
         <div className="grid gap-6 lg:grid-cols-3">

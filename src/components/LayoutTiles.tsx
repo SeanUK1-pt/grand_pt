@@ -34,20 +34,20 @@ export default function LayoutTiles({ layouts, accent, modelSlug, rangeSlug }: P
         return (
           <div
             key={layout.name}
-            className="flex flex-col gap-3 overflow-hidden rounded-2xl bg-surface-muted p-5"
+            className="flex flex-col gap-3 overflow-hidden rounded-lg border border-surface-line bg-surface p-5 shadow-sm"
           >
             <div className={`h-0.5 w-8 ${accentRule[accent]}`} aria-hidden />
-            <p className="text-xl font-semibold text-ink">{layout.name}</p>
-            <p className="text-sm leading-relaxed text-ink-subtle">
+            <p className="text-title font-semibold tracking-tight text-text-strong">{layout.name}</p>
+            <p className="text-body leading-relaxed text-text-muted text-pretty">
               {layout.useCaseLine}
             </p>
 
             {layout.specs && layout.specs.length > 0 && (
-              <dl className="mt-1 flex flex-col gap-1 border-t border-ink/10 pt-3">
+              <dl className="mt-1 flex flex-col gap-1 border-t border-surface-line pt-3">
                 {layout.specs.map(({ label, value }) => (
                   <div key={label} className="flex items-baseline justify-between gap-4">
-                    <dt className="text-xs text-ink-subtle">{label}</dt>
-                    <dd className="text-xs font-medium text-ink">{value}</dd>
+                    <dt className="text-caption text-text-subtle">{label}</dt>
+                    <dd className="text-caption font-medium text-text-strong">{value}</dd>
                   </div>
                 ))}
               </dl>
@@ -55,11 +55,11 @@ export default function LayoutTiles({ layouts, accent, modelSlug, rangeSlug }: P
 
             {layout.priceFrom !== undefined && (
               <div className="mt-1 flex flex-col gap-0.5">
-                <span className="text-base font-semibold text-ink">
+                <span className="text-lead font-semibold tracking-tight text-text-strong">
                   From {formatPrice(layout.priceFrom)}
                 </span>
                 {layout.priceLabel && (
-                  <span className="text-xs text-ink-subtle">{layout.priceLabel}</span>
+                  <span className="text-caption text-text-subtle">{layout.priceLabel}</span>
                 )}
               </div>
             )}
@@ -67,7 +67,7 @@ export default function LayoutTiles({ layouts, accent, modelSlug, rangeSlug }: P
             <div className="mt-2">
               <Link
                 href={enquireHref}
-                className="inline-flex items-center rounded-full bg-lime px-6 py-3 text-sm font-semibold text-ink transition-opacity hover:opacity-90"
+                className="inline-flex items-center rounded-md bg-pop px-6 py-3 text-body-sm font-semibold text-pop-contrast transition-opacity hover:opacity-90"
               >
                 Enquire about {layout.name}
               </Link>

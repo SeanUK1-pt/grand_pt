@@ -47,7 +47,7 @@ export default async function RangePage({ params }: Props) {
       {/* Philosophy */}
       <section className="bg-surface py-16">
         <div className="mx-auto max-w-3xl px-6">
-          <p className="text-lg leading-relaxed text-ink-muted md:text-xl">
+          <p className="text-lead leading-relaxed text-text-muted text-pretty">
             {resolveText(range.philosophy, locale)}
           </p>
         </div>
@@ -56,7 +56,7 @@ export default async function RangePage({ params }: Props) {
       {/* Model grid */}
       <section aria-label={`${range.name} models`} className="bg-surface pb-24">
         <div className="mx-auto max-w-7xl px-6">
-          <h2 className="mb-10 text-sm font-medium uppercase tracking-widest text-ink-subtle">
+          <h2 className="mb-10 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
             Models
           </h2>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

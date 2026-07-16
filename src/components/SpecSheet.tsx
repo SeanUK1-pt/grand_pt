@@ -19,18 +19,18 @@ export default function SpecSheet({ specs, accent }: Props) {
         <div key={category}>
           {/* Category heading — thin accent rule as detail, matching RangeHero */}
           <div className={`h-0.5 w-8 ${accentRule[accent]}`} aria-hidden />
-          <h3 className="mt-3 text-sm font-semibold uppercase tracking-wide text-ink">
+          <h3 className="mt-3 text-caption font-semibold uppercase tracking-[0.12em] text-text-strong">
             {category}
           </h3>
 
-          <dl className="mt-4 divide-y divide-ink/10">
+          <dl className="mt-4 divide-y divide-surface-line">
             {items.map(({ label, value }) => (
               <div
                 key={label}
                 className="flex items-baseline justify-between gap-4 py-3"
               >
-                <dt className="text-sm text-ink-subtle">{label}</dt>
-                <dd className="text-sm font-medium text-ink text-right">
+                <dt className="text-body-sm text-text-subtle">{label}</dt>
+                <dd className="text-body-sm font-medium text-text-strong text-right">
                   {value}
                 </dd>
               </div>
