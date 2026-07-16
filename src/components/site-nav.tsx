@@ -1,5 +1,5 @@
 const navLinks = [
-  { label: "Ranges", href: "#" },
+  { label: "Ranges", href: "/en/ranges/golden-line" },
   { label: "Our Story", href: "#" },
   { label: "Owners", href: "#" },
   { label: "Dealers", href: "#" },
@@ -15,7 +15,7 @@ export function SiteNav() {
     <header className="w-full border-b border-surface-line bg-surface">
       <nav className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4 sm:px-8">
         {/* Logo placeholder */}
-        <a href="#" className="flex items-center gap-2" aria-label="Grand dealer home">
+        <a href="/" className="flex items-center gap-2" aria-label="Grand dealer home">
           <span className="flex h-9 w-9 items-center justify-center rounded-md bg-brand text-brand-contrast">
             <span className="text-body font-bold tracking-tight">G</span>
           </span>

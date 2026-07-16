@@ -45,7 +45,7 @@ export default function Page() {
                 </h2>
               </div>
               <a
-                href="/range"
+                href="/en/ranges/golden-line"
                 className="text-body-sm font-semibold text-brand transition-colors hover:text-brand-hover"
               >
                 See the full line-up →
@@ -90,7 +90,7 @@ export default function Page() {
                 Book a viewing
               </a>
               <a
-                href="/range"
+                href="/en/ranges/golden-line"
                 className="inline-flex items-center justify-center rounded-md border border-brand-contrast/40 px-6 py-3 text-body-sm font-semibold text-brand-contrast transition-colors hover:bg-brand-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-surface focus-visible:ring-offset-2 focus-visible:ring-offset-brand"
               >
                 Browse ranges

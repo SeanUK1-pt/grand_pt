@@ -109,7 +109,7 @@ export default function ModelPage() {
                 More from the {style.label}
               </h2>
               <a
-                href="/range"
+                href="/en/ranges/golden-line"
                 className="hidden shrink-0 text-body-sm font-semibold text-brand transition-colors hover:text-brand-hover sm:inline"
               >
                 View the full range →

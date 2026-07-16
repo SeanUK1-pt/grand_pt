@@ -1,15 +1,32 @@
-const footerColumns = [
+type FooterLink = { label: string; href: string }
+
+const footerColumns: { title: string; links: FooterLink[] }[] = [
   {
     title: "Ranges",
-    links: ["Golden Line", "Silver Line", "Drive Line", "Compare models"],
+    links: [
+      { label: "Golden Line", href: "/en/ranges/golden-line" },
+      { label: "Silver Line", href: "/en/ranges/silver-line" },
+      { label: "Drive Line", href: "/en/ranges/drive-line" },
+      { label: "Compare models", href: "#" },
+    ],
   },
   {
     title: "Brand",
-    links: ["Our Story", "Craftsmanship", "News", "Careers"],
+    links: [
+      { label: "Our Story", href: "#" },
+      { label: "Craftsmanship", href: "#" },
+      { label: "News", href: "#" },
+      { label: "Careers", href: "#" },
+    ],
   },
   {
     title: "Support",
-    links: ["Owners", "Servicing", "Parts", "Contact"],
+    links: [
+      { label: "Owners", href: "#" },
+      { label: "Servicing", href: "#" },
+      { label: "Parts", href: "#" },
+      { label: "Contact", href: "#" },
+    ],
   },
 ]
 
@@ -44,12 +61,12 @@ export function SiteFooter() {
                 </h3>
                 <ul className="mt-3 flex flex-col gap-2.5">
                   {col.links.map((link) => (
-                    <li key={link}>
+                    <li key={link.label}>
                       <a
-                        href="#"
+                        href={link.href}
                         className="text-body-sm text-ink-text-muted transition-colors hover:text-ink-text"
                       >
-                        {link}
+                        {link.label}
                       </a>
                     </li>
                   ))}

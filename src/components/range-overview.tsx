@@ -16,21 +16,21 @@ const items: RangeOverviewItem[] = [
     image: "/boats/golden.png",
     tagline: "Built to be lived aboard.",
     copy: "Premium liveaboard cruisers with enclosed cabins and offshore poise — the top of the range.",
-    href: "/range",
+    href: "/en/ranges/golden-line",
   },
   {
     range: "silver",
     image: "/boats/silver.png",
     tagline: "Yes to a normal Tuesday.",
     copy: "Approachable family and day-boats — clean, calm and easy to own from the first outing.",
-    href: "/range",
+    href: "/en/ranges/silver-line",
   },
   {
     range: "drive",
     image: "/boats/drive.png",
     tagline: "Deep-V, raised tube, no apology.",
     copy: "The fastest performance hulls in the line-up — the loudest and most focused of the three.",
-    href: "/range",
+    href: "/en/ranges/drive-line",
   },
 ]
 
