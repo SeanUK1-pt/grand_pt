@@ -24,7 +24,7 @@ export const goldenModels: Model[] = [
   {
     range: "golden",
     modelName: "G340",
-    heroImage: "/boats/golden-g340.png",
+    heroImage: "/boats/G340.png",
     positioning:
       "Classic and fair — our all-time best-selling compact yacht tender.",
     specs: [
@@ -38,7 +38,7 @@ export const goldenModels: Model[] = [
   {
     range: "golden",
     modelName: "G340N",
-    heroImage: "/boats/golden-g340n.png",
+    heroImage: "/boats/G340N.png",
     positioning:
       "Small and mighty — the remastered 340 with modern upgrades.",
     specs: [
@@ -52,7 +52,7 @@ export const goldenModels: Model[] = [
   {
     range: "golden",
     modelName: "G380",
-    heroImage: "/boats/golden-g380.png",
+    heroImage: "/boats/G380.png",
     positioning:
       "Timeless and valued — a lightweight, elegant yacht tender.",
     specs: [
@@ -66,7 +66,7 @@ export const goldenModels: Model[] = [
   {
     range: "golden",
     modelName: "G380N",
-    heroImage: "/boats/golden-g380n.png",
+    heroImage: "/boats/G380N.png",
     positioning:
       "Updated and neat — the mid-size tender, rebuilt and refined.",
     specs: [
@@ -80,7 +80,7 @@ export const goldenModels: Model[] = [
   {
     range: "golden",
     modelName: "G420",
-    heroImage: "/boats/golden-g420.png",
+    heroImage: "/boats/G420.png",
     positioning:
       "Transfer and more — an agile tender that also rides the waves.",
     specs: [
@@ -94,7 +94,7 @@ export const goldenModels: Model[] = [
   {
     range: "golden",
     modelName: "G500",
-    heroImage: "/boats/golden-g500.png",
+    heroImage: "/boats/G500.png",
     positioning:
       "Versatile and luxury — a spacious super-yacht tender for family cruising.",
     specs: [
@@ -108,7 +108,7 @@ export const goldenModels: Model[] = [
   {
     range: "golden",
     modelName: "G580",
-    heroImage: "/boats/golden-g580.png",
+    heroImage: "/boats/G580.png",
     positioning:
       "Smart and cozy — a compact centre console for solo and small-family use.",
     specs: [
@@ -122,7 +122,7 @@ export const goldenModels: Model[] = [
   {
     range: "golden",
     modelName: "G650",
-    heroImage: "/boats/golden-g650.png",
+    heroImage: "/boats/G650.png",
     positioning:
       "Famous and finest — our legendary midsize recreational cruiser.",
     specs: [
@@ -136,7 +136,7 @@ export const goldenModels: Model[] = [
   {
     range: "golden",
     modelName: "G680",
-    heroImage: "/boats/golden.png",
+    heroImage: "/boats/G680.png",
     positioning:
       "Fresh and clever — a modern midsize centre-console day cruiser.",
     specs: [
@@ -150,7 +150,7 @@ export const goldenModels: Model[] = [
   {
     range: "golden",
     modelName: "G750",
-    heroImage: "/boats/golden-g750.png",
+    heroImage: "/boats/G750.png",
     positioning:
       "Style and comfort — a large offshore centre-console cruiser.",
     specs: [
@@ -164,7 +164,7 @@ export const goldenModels: Model[] = [
   {
     range: "golden",
     modelName: "G850",
-    heroImage: "/boats/golden-g850.png",
+    heroImage: "/boats/G850.png",
     positioning:
       "Size and power — an offshore cruiser with optional twin engines.",
     specs: [
@@ -178,7 +178,7 @@ export const goldenModels: Model[] = [
   {
     range: "golden",
     modelName: "G980",
-    heroImage: "/boats/golden-g980.png",
+    heroImage: "/boats/G980.png",
     positioning:
       "Crisp and major — our flagship 10m cabin RIB for overnighting.",
     specs: [

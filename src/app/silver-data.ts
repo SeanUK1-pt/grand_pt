@@ -12,7 +12,7 @@ export const silverModels: Model[] = [
   {
     range: "silver",
     modelName: "S275",
-    heroImage: "/boats/silver-s275.png",
+    heroImage: "/boats/S275.png",
     positioning:
       "Open and tiny — a simple, low-maintenance classic sailboat tender.",
     specs: [
@@ -26,7 +26,7 @@ export const silverModels: Model[] = [
   {
     range: "silver",
     modelName: "S300",
-    heroImage: "/boats/silver-s300.png",
+    heroImage: "/boats/S300.png",
     positioning:
       "Slender and compact — a lightweight four-person tender to travel light.",
     specs: [
@@ -40,7 +40,7 @@ export const silverModels: Model[] = [
   {
     range: "silver",
     modelName: "S330",
-    heroImage: "/boats/silver-s330.png",
+    heroImage: "/boats/S330.png",
     positioning:
       "Small and handy — a lightweight, cost-effective dinghy to rely on.",
     specs: [
@@ -54,7 +54,7 @@ export const silverModels: Model[] = [
   {
     range: "silver",
     modelName: "S370N",
-    heroImage: "/boats/silver-s370n.png",
+    heroImage: "/boats/S370N.png",
     positioning:
       "Light and portable — a practical tender and capable little rider.",
     specs: [
@@ -68,7 +68,7 @@ export const silverModels: Model[] = [
   {
     range: "silver",
     modelName: "S420N",
-    heroImage: "/boats/silver-s420n.png",
+    heroImage: "/boats/S420N.png",
     positioning:
       "Rational and flexible — a multipurpose RIB for everyday use.",
     specs: [
@@ -82,7 +82,7 @@ export const silverModels: Model[] = [
   {
     range: "silver",
     modelName: "S470N",
-    heroImage: "/boats/silver-s470n.png",
+    heroImage: "/boats/S470N.png",
     positioning:
       "Economic and versatile — a practical RIB suited to many uses.",
     specs: [
