@@ -8,7 +8,8 @@ type ModelCardProps = {
   modelName: string
   heroImage: string
   specs: Spec[]
-  priceFrom: number
+  /** Omit for build-to-order models shown as "Price on application". */
+  priceFrom?: number
   priceLabel: string
   href: string
   /** CTA copy; defaults to "Explore range". */
@@ -60,10 +61,10 @@ export function ModelCard({
 
         <div className="mt-auto pt-2">
           <p className="text-caption font-medium uppercase tracking-[0.12em] text-text-subtle">
-            From
+            {priceFrom != null ? "From" : "Pricing"}
           </p>
           <p className="text-lead font-bold tracking-tight text-text-strong">
-            {priceFormatter.format(priceFrom)}
+            {priceFrom != null ? priceFormatter.format(priceFrom) : "Price on application"}
           </p>
           <p className="mt-1 text-caption text-text-muted">{priceLabel}</p>
         </div>

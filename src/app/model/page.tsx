@@ -53,10 +53,12 @@ export default function ModelPage() {
               {/* Price block — same style as ModelCard */}
               <div className="shrink-0">
                 <p className="text-caption font-medium uppercase tracking-[0.12em] text-text-subtle">
-                  From
+                  {model.priceFrom != null ? "From" : "Pricing"}
                 </p>
                 <p className="text-headline font-bold tracking-tight text-text-strong">
-                  {priceFormatter.format(model.priceFrom)}
+                  {model.priceFrom != null
+                    ? priceFormatter.format(model.priceFrom)
+                    : "On application"}
                 </p>
                 <p className="mt-1 text-caption text-text-muted">
                   {model.priceLabel}

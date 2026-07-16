@@ -8,7 +8,7 @@ import { ModelCard } from "@/components/model-card"
 import { goldenModels } from "@/app/golden-data"
 
 const featured = goldenModels.filter((m) =>
-  ["G540", "G680", "G750"].includes(m.modelName),
+  ["G680", "G750", "G980"].includes(m.modelName),
 )
 
 export default function Page() {

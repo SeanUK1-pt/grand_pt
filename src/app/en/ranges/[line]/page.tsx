@@ -76,7 +76,7 @@ export default async function RangePage({ params }: PageProps) {
               </h2>
               <p className="text-body-sm text-text-muted">
                 {hasModels
-                  ? `${info.models.length} models · from specification, VAT included`
+                  ? `${info.models.length} models · 3.3 m to 10 m · built to order`
                   : "Models are being added — enquire for current availability"}
               </p>
             </div>
