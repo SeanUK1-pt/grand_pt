@@ -1,5 +1,7 @@
 import type { RangeKey } from "@/components/range-config"
 import { goldenModels, type Model } from "@/app/golden-data"
+import { silverModels } from "@/app/silver-data"
+import { driveModels } from "@/app/drive-data"
 
 export type RangeSlug = "golden-line" | "silver-line" | "drive-line"
 
@@ -51,7 +53,7 @@ export const rangesData: Record<RangeSlug, RangeInfo> = {
       "The Silver Line strips things back to what a family actually needs: a stable, forgiving hull, sensible seating and a layout that makes a spontaneous afternoon afloat effortless.",
       "Built to the same standards as the rest of the Grand catalogue, it trades flagship extravagance for practical, low-fuss ownership — the range you reach for on an ordinary Tuesday.",
     ],
-    models: [],
+    models: silverModels,
   },
   "drive-line": {
     slug: "drive-line",
@@ -66,7 +68,7 @@ export const rangesData: Record<RangeSlug, RangeInfo> = {
       "The Drive Line is Grand at its most focused: a sharper deep-V, raised inflatable tubes and outboard power sized to make the most of it. This is a range built to carve, not to cruise.",
       "Every choice serves handling — weight distribution, running surface and helm ergonomics are tuned so the boat feels planted at speed and predictable through the turn.",
     ],
-    models: [],
+    models: driveModels,
   },
 }
 

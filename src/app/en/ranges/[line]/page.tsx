@@ -10,6 +10,17 @@ import { rangesData, rangeSlugs, type RangeSlug } from "../ranges-data"
 
 type PageProps = { params: Promise<{ line: string }> }
 
+/** Build a "min m to max m" caption from each model's LOA spec (first spec). */
+function sizeRange(models: { specs: { value: string }[] }[]): string {
+  const lengths = models
+    .map((m) => Number.parseFloat(m.specs[0]?.value ?? ""))
+    .filter((n) => !Number.isNaN(n))
+  if (lengths.length === 0) return ""
+  const min = Math.min(...lengths)
+  const max = Math.max(...lengths)
+  return min === max ? `${min.toFixed(2)} m` : `${min.toFixed(2)} m to ${max.toFixed(2)} m`
+}
+
 export function generateStaticParams() {
   return rangeSlugs.map((line) => ({ line }))
 }
@@ -76,7 +87,7 @@ export default async function RangePage({ params }: PageProps) {
               </h2>
               <p className="text-body-sm text-text-muted">
                 {hasModels
-                  ? `${info.models.length} models · 3.3 m to 10 m · built to order`
+                  ? `${info.models.length} models · ${sizeRange(info.models)} · built to order`
                   : "Models are being added — enquire for current availability"}
               </p>
             </div>
