@@ -102,7 +102,7 @@ export default async function ModelPage({ params }: Props) {
             below the photo, doing the information work the photo doesn't ── */}
       <section className="bg-ink pb-16 pt-12">
         <div className="mx-auto max-w-7xl px-6">
-          <RangeBadge accent={model.range} variant="soft">
+          <RangeBadge accent={model.range} variant="solid">
             {range.name}
           </RangeBadge>
           <h1 className="mt-4 text-headline font-semibold tracking-tight text-balance text-ink-text sm:text-display">

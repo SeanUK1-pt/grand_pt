@@ -2,30 +2,25 @@ import type { RangeAccent } from "@/data/ranges";
 
 type Props = {
   accent: RangeAccent;
+  // "solid" reads bolder (heavier weight, wider tracking) for standalone use
+  // above a hero title; "soft" is the quieter version for compact contexts
+  // like a card. Neither renders a pill/chip — just a colour-coordinated
+  // spaced-out label, no container.
   variant: "solid" | "soft";
   children: React.ReactNode;
 };
 
-// Soft: matches ModelCard's existing badge pattern exactly
-const soft: Record<RangeAccent, string> = {
-  golden: "bg-golden-soft text-golden border-golden/30",
-  silver: "bg-silver-soft text-silver border-silver/30",
-  drive:  "bg-drive-soft  text-drive  border-drive/30",
-};
-
-// Solid: accent background with the accent's own -contrast token, so the
-// text colour always matches whatever contrast that accent's hex requires.
-const solid: Record<RangeAccent, string> = {
-  golden: "bg-golden text-golden-contrast border-golden",
-  silver: "bg-silver text-silver-contrast border-silver",
-  drive:  "bg-drive  text-drive-contrast  border-drive",
+const accentText: Record<RangeAccent, string> = {
+  golden: "text-golden",
+  silver: "text-silver",
+  drive:  "text-drive",
 };
 
 export default function RangeBadge({ accent, variant, children }: Props) {
-  const colours = variant === "solid" ? solid[accent] : soft[accent];
+  const weight = variant === "solid" ? "font-bold tracking-[0.22em]" : "font-semibold tracking-[0.16em]";
   return (
     <span
-      className={`inline-flex w-fit items-center rounded-full border px-2.5 py-1 text-caption font-semibold uppercase tracking-[0.12em] ${colours}`}
+      className={`inline-block text-caption uppercase ${weight} ${accentText[accent]}`}
     >
       {children}
     </span>
