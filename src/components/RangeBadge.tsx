@@ -16,13 +16,26 @@ const accentText: Record<RangeAccent, string> = {
   drive:  "text-drive",
 };
 
+const accentRule: Record<RangeAccent, string> = {
+  golden: "bg-golden",
+  silver: "bg-silver",
+  drive:  "bg-drive",
+};
+
 export default function RangeBadge({ accent, variant, children }: Props) {
-  const weight = variant === "solid" ? "font-bold tracking-[0.22em]" : "font-semibold tracking-[0.16em]";
+  const isSolid = variant === "solid";
   return (
-    <span
-      className={`inline-block text-caption uppercase ${weight} ${accentText[accent]}`}
-    >
-      {children}
+    <span className="inline-flex flex-col items-start gap-2">
+      <span className={`h-0.5 ${isSolid ? "w-10" : "w-6"} ${accentRule[accent]}`} aria-hidden />
+      <span
+        className={`uppercase ${accentText[accent]} ${
+          isSolid
+            ? "text-body font-bold tracking-[0.18em]"
+            : "text-body-sm font-semibold tracking-[0.14em]"
+        }`}
+      >
+        {children}
+      </span>
     </span>
   );
 }
