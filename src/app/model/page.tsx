@@ -34,7 +34,7 @@ export default function ModelPage() {
               fill
               priority
               sizes="100vw"
-              className="object-cover"
+              className="object-contain p-6 sm:p-10"
             />
           </div>
 

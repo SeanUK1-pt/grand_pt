@@ -193,18 +193,18 @@ export const goldenModels: Model[] = [
 
 export const goldenFeatures = [
   {
-    image: "/details/hull.png",
-    title: "Deep-V hull construction",
-    copy: "A hand-laid deep-V hull cuts cleanly through chop and holds its line offshore, with grey hypalon tubes for reassuring stability at rest.",
+    image: "/lifestyle/feature-cockpit.jpg",
+    title: "Considered cockpit layout",
+    copy: "Twin-tone upholstery, a wet-bar console and a glass helm are arranged around a sociable cockpit that stays uncluttered underway.",
   },
   {
-    image: "/details/cabin.png",
-    title: "Enclosed cabin comfort",
-    copy: "An insulated wheelhouse with upholstered seating and a modern glass helm keeps the crew comfortable whatever the conditions.",
+    image: "/lifestyle/feature-bow.jpg",
+    title: "Generous bow lounging",
+    copy: "A deep bow cushion set into the grey hypalon tubes turns the foredeck into a sunpad, with grab rails and drainage worked in throughout.",
   },
   {
-    image: "/details/deck.png",
-    title: "Versatile deck layout",
-    copy: "A teak-style cockpit converts from sociable seating to an open sunpad, with stowage worked in throughout.",
+    image: "/lifestyle/feature-table.jpg",
+    title: "Convertible dining and teak sole",
+    copy: "A removable cockpit table over a teak-style sole converts the seating from dining to an open sunpad in seconds.",
   },
 ]

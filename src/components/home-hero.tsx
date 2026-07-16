@@ -9,12 +9,12 @@ export function HomeHero() {
   return (
     <section className="relative isolate overflow-hidden bg-ink">
       <Image
-        src="/boats/golden-g750.png"
-        alt="Grand Golden Line flagship RIB cruising on open water"
+        src="/boats/G980.png"
+        alt="Grand Golden Line G980 flagship RIB"
         fill
         priority
         sizes="100vw"
-        className="object-cover"
+        className="object-contain object-right p-6 sm:p-10 lg:object-[80%_center]"
       />
       {/* Functional legibility scrim: opaque ink on the left, clearing to the right */}
       <div

@@ -13,21 +13,21 @@ type RangeOverviewItem = {
 const items: RangeOverviewItem[] = [
   {
     range: "golden",
-    image: "/boats/golden.png",
+    image: "/boats/G980.png",
     tagline: "Built to be lived aboard.",
     copy: "Premium liveaboard cruisers with enclosed cabins and offshore poise — the top of the range.",
     href: "/en/ranges/golden-line",
   },
   {
     range: "silver",
-    image: "/boats/silver.png",
+    image: "/boats/S470N.png",
     tagline: "Yes to a normal Tuesday.",
     copy: "Approachable family and day-boats — clean, calm and easy to own from the first outing.",
     href: "/en/ranges/silver-line",
   },
   {
     range: "drive",
-    image: "/boats/drive.png",
+    image: "/boats/D950DRIVE.png",
     tagline: "Deep-V, raised tube, no apology.",
     copy: "The fastest performance hulls in the line-up — the loudest and most focused of the three.",
     href: "/en/ranges/drive-line",
@@ -69,7 +69,7 @@ export function RangeOverview() {
                   alt={`${style.label} RIB`}
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover"
+                  className="object-contain p-4"
                 />
               </div>
               <div className="flex flex-1 flex-col gap-4 p-6">

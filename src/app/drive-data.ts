@@ -12,7 +12,7 @@ export const driveModels: Model[] = [
   {
     range: "drive",
     modelName: "D600 Active",
-    heroImage: "/boats/drive-d600-active.png",
+    heroImage: "/boats/D600ACTIVE.png",
     positioning:
       "Daring and dashing — a high-performance hull with suspension sports seats.",
     specs: [
@@ -26,7 +26,7 @@ export const driveModels: Model[] = [
   {
     range: "drive",
     modelName: "D600 Drive",
-    heroImage: "/boats/drive-d600-drive.png",
+    heroImage: "/boats/D600DRIVE.png",
     positioning:
       "Adaptable and functional — a customizable RIB for commercial use.",
     specs: [
@@ -40,7 +40,7 @@ export const driveModels: Model[] = [
   {
     range: "drive",
     modelName: "D600 Lux",
-    heroImage: "/boats/drive-d600-lux.png",
+    heroImage: "/boats/D600LUX.png",
     positioning:
       "Dynamic and luxurious — leisure cruising blended with thrilling speed.",
     specs: [
@@ -54,7 +54,7 @@ export const driveModels: Model[] = [
   {
     range: "drive",
     modelName: "D950 Drive",
-    heroImage: "/boats/drive-d950-drive.png",
+    heroImage: "/boats/D950DRIVE.png",
     positioning:
       "Big and pro — a professional offshore speed boat with twin-outboard option.",
     specs: [

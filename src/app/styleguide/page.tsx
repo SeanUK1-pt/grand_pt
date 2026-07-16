@@ -21,9 +21,9 @@ const modelPreviews: {
   heroImage: string
   cta: string
 }[] = [
-  { range: "golden", modelName: "G680", heroImage: "/boats/golden.png", cta: "Build yours →" },
-  { range: "silver", modelName: "S360", heroImage: "/boats/silver.png", cta: "Explore range" },
-  { range: "drive", modelName: "D300", heroImage: "/boats/drive.png", cta: "Build yours →" },
+  { range: "golden", modelName: "G680", heroImage: "/boats/G680.png", cta: "Build yours →" },
+  { range: "silver", modelName: "S470N", heroImage: "/boats/S470N.png", cta: "Explore range" },
+  { range: "drive", modelName: "D950 Drive", heroImage: "/boats/D950DRIVE.png", cta: "Build yours →" },
 ]
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
@@ -143,7 +143,7 @@ export default function Page() {
               <ModelCard
                 range="golden"
                 modelName="G680"
-                heroImage="/boats/golden.png"
+                heroImage="/boats/G680.png"
                 specs={demoSpecs}
                 priceFrom={89400}
                 priceLabel="Base specification, VAT included"
