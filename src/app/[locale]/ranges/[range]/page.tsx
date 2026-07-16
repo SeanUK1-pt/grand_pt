@@ -4,6 +4,7 @@ import RangeHero from "@/components/RangeHero";
 import ModelCard from "@/components/ModelCard";
 import { ranges, getRangeBySlug } from "@/data/ranges";
 import { getModelsByRange } from "@/data/models";
+import { resolveText } from "@/data/localized-text";
 import type { Range } from "@/data/ranges";
 
 type Props = {
@@ -15,12 +16,12 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props) {
-  const { range: rangeSlug } = await params;
+  const { locale, range: rangeSlug } = await params;
   const range = getRangeBySlug(rangeSlug as Range["slug"]);
   if (!range) return {};
   return {
-    title: `${range.name} — Grand Boats Portugal`,
-    description: range.tagline,
+    title: `${range.name} — Algarve Boat Group`,
+    description: resolveText(range.tagline, locale),
   };
 }
 
@@ -39,15 +40,15 @@ export default async function RangePage({ params }: Props) {
       <RangeHero
         accent={range.accent}
         name={range.name}
-        tagline={range.tagline}
-        voiceLine={range.voiceLine}
+        tagline={resolveText(range.tagline, locale)}
+        voiceLine={resolveText(range.voiceLine, locale)}
       />
 
       {/* Philosophy */}
       <section className="bg-surface py-16">
         <div className="mx-auto max-w-3xl px-6">
           <p className="text-lg leading-relaxed text-ink-muted md:text-xl">
-            {range.philosophy}
+            {resolveText(range.philosophy, locale)}
           </p>
         </div>
       </section>

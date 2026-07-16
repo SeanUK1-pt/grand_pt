@@ -18,7 +18,7 @@ export type FeaturedModel = {
 // Curated slugs — one per range, hand-picked for the home page. Edit this
 // list to change which models are featured; name/tagline/image/href are
 // derived from models.ts, not duplicated here.
-const featuredSlugs = ["g680", "s520", "d400"];
+const featuredSlugs = ["g680", "s470n", "d600"];
 
 export const featuredModels: FeaturedModel[] = featuredSlugs.map((slug) => {
   const model = models.find((m) => m.slug === slug);

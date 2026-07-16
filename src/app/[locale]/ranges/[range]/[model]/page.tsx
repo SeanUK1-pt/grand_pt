@@ -10,6 +10,7 @@ import LayoutTiles from "@/components/LayoutTiles";
 import ModelCard from "@/components/ModelCard";
 import { getRangeBySlug } from "@/data/ranges";
 import { models, getModelBySlug, getModelsByRange } from "@/data/models";
+import { resolveText } from "@/data/localized-text";
 import type { Range } from "@/data/ranges";
 
 type Props = {
@@ -24,12 +25,12 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props) {
-  const { range: rangeSlug, model: modelSlug } = await params;
+  const { locale, range: rangeSlug, model: modelSlug } = await params;
   const model = getModelBySlug(modelSlug);
   if (!model || model.rangeSlug !== rangeSlug) return {};
   return {
-    title: `${model.name} — Grand Boats Portugal`,
-    description: model.positioning,
+    title: `${model.name} — Algarve Boat Group`,
+    description: resolveText(model.positioning, locale),
   };
 }
 
@@ -53,34 +54,54 @@ export default async function ModelPage({ params }: Props) {
   // unambiguous which configuration it refers to.
   const hasLayouts = !!model.layouts && model.layouts.length > 0;
 
+  // No real pricing exists for any model yet (not scraped, not supplied) —
+  // priceFrom is optional and omitted throughout the data layer. Show the
+  // price block only when a real number is actually present.
+  const showPrice = !hasLayouts && model.priceFrom !== undefined;
+
+  const positioning = resolveText(model.positioning, locale);
+  const features = model.features.map((f) => ({
+    title: resolveText(f.title, locale),
+    description: resolveText(f.description, locale),
+    image: f.image,
+  }));
+
   const enquireHref = `/ranges/${rangeSlug}/enquire/?bm=${model.slug}`;
-  const priceFormatted = new Intl.NumberFormat("en-PT", {
-    style: "currency",
-    currency: "EUR",
-    maximumFractionDigits: 0,
-  }).format(model.priceFrom);
+  const priceFormatted =
+    model.priceFrom !== undefined
+      ? new Intl.NumberFormat("en-PT", {
+          style: "currency",
+          currency: "EUR",
+          maximumFractionDigits: 0,
+        }).format(model.priceFrom)
+      : null;
 
   return (
     <>
-      {/* ── Hero ── */}
-      <section className="relative min-h-[70vh] bg-grand-blue pt-24">
-        {/* Background image */}
-        <div className="absolute inset-0">
-          <Image
-            src={model.image}
-            alt={`${model.name} — ${model.positioning}`}
-            fill
-            className="object-cover opacity-40"
-            priority
-            sizes="100vw"
-          />
-          <div
-            aria-hidden
-            className="absolute inset-0 bg-gradient-to-t from-grand-blue via-grand-blue/60 to-transparent"
-          />
-        </div>
+      {/* ── Hero image — purely visual, no text overlay. Aspect-ratio driven
+            height (not min-h) so the box never collapses even though the
+            Image is `fill` and contributes no intrinsic height itself. ── */}
+      <section className="relative aspect-[16/9] w-full bg-grand-blue md:aspect-[21/9]">
+        <Image
+          src={model.image}
+          alt={`${model.name} — ${positioning}`}
+          fill
+          className="object-cover"
+          priority
+          sizes="100vw"
+        />
+        {/* Subtle scrim — just enough for legibility of anything crossing the
+            bottom edge, not a colour wash over the photo */}
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"
+        />
+      </section>
 
-        <div className="relative mx-auto max-w-7xl px-6 pb-16 pt-16">
+      {/* ── Badge/name/positioning + specs + price — all in normal flow,
+            below the photo, doing the information work the photo doesn't ── */}
+      <section className="bg-grand-blue pb-16 pt-12">
+        <div className="mx-auto max-w-7xl px-6">
           <RangeBadge accent={model.range} variant="soft">
             {range.name}
           </RangeBadge>
@@ -88,39 +109,34 @@ export default async function ModelPage({ params }: Props) {
             {model.name}
           </h1>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-surface/70 md:text-xl">
-            {model.positioning}
+            {positioning}
           </p>
-        </div>
-      </section>
 
-      {/* ── Specs + price ── */}
-      <section className="bg-grand-blue pb-16">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="border-t border-surface/10 pt-10">
+          <div className="mt-10 border-t border-surface/10 pt-10">
             <SpecStrip specs={model.specs} surface="dark" />
           </div>
 
           {/* Price — same hierarchy as ModelCard name/tagline: xl semibold + sm subtle.
-              Suppressed for layouted models — see hasLayouts comment above. */}
-          {!hasLayouts && (
+              Suppressed for layouted models and whenever no real price exists. */}
+          {showPrice && (
             <div className="mt-10 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-3">
               <span className="text-xl font-semibold text-surface">
                 From {priceFormatted}
               </span>
-              <span className="text-sm text-surface/50">{model.priceLabel}</span>
+              {model.priceLabel && (
+                <span className="text-sm text-surface/50">{model.priceLabel}</span>
+              )}
             </div>
           )}
 
           {/* Primary CTA */}
-          <div className={hasLayouts ? "mt-10" : "mt-8"}>
+          <div className={showPrice ? "mt-8" : "mt-10"}>
             <Link
               href={enquireHref}
               className="inline-flex items-center rounded-full bg-lime px-6 py-3 text-sm font-semibold text-ink transition-opacity hover:opacity-90"
             >
               Enquire about the {model.name}
             </Link>
-            {/* TODO: confirm bm param matches builder integration spec — exact param
-                contract depends on the separate 3D-builder integration work */}
           </div>
         </div>
       </section>
@@ -161,7 +177,7 @@ export default async function ModelPage({ params }: Props) {
           <h2 className="mb-12 text-sm font-medium uppercase tracking-widest text-ink-subtle">
             Features
           </h2>
-          <FeatureList features={model.features} accent={model.range} />
+          <FeatureList features={features} accent={model.range} />
         </div>
       </section>
 

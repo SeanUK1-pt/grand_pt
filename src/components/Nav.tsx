@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 import NavMobile from "./NavMobile";
@@ -9,11 +10,15 @@ export default async function Nav() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-grand-blue/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Link
-          href="/"
-          className="text-lg font-semibold tracking-tight text-white"
-        >
-          Grand Boats
+        <Link href="/" className="shrink-0">
+          <Image
+            src="/images/logo/grand-boats-logo.svg"
+            alt="Grand Boats"
+            width={392}
+            height={74}
+            priority
+            className="h-8 w-auto"
+          />
         </Link>
 
         {/* Desktop links */}

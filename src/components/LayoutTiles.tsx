@@ -71,8 +71,6 @@ export default function LayoutTiles({ layouts, accent, modelSlug, rangeSlug }: P
               >
                 Enquire about {layout.name}
               </Link>
-              {/* TODO: confirm layout param matches builder integration spec — exact param
-                  contract depends on the separate 3D-builder integration work */}
             </div>
           </div>
         );

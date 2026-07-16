@@ -3,12 +3,28 @@ import SpecStrip from "@/components/SpecStrip";
 import RangeHero from "@/components/RangeHero";
 import SpecSheet from "@/components/SpecSheet";
 import FeatureList from "@/components/FeatureList";
+import EnquireForm from "@/components/EnquireForm";
 import { ranges } from "@/data/ranges";
 import { getModelBySlug } from "@/data/models";
+import { resolveText } from "@/data/localized-text";
 import type { RangeAccent } from "@/data/ranges";
-import type { Feature } from "@/data/models";
 
-const demoFeaturesWithImages: Feature[] = [
+const demoExtras = [
+  { partNumber: "3508", name: "Teak deck inlay" },
+  { partNumber: "1200", name: "Bow thruster" },
+];
+
+const enquireFormDemos: {
+  range: RangeAccent;
+  modelName: string;
+  layoutName?: string;
+}[] = [
+  { range: "golden", modelName: "G680" },
+  { range: "silver", modelName: "S520", layoutName: "Lux" },
+  { range: "drive", modelName: "D400" },
+];
+
+const demoFeaturesWithImages: { title: string; description: string; image?: string }[] = [
   {
     title: "Centre console helm",
     description: "Protected instrumentation bay with ergonomic layout for extended passages.",
@@ -36,7 +52,13 @@ const demoSpecs = [
 
 const demoModel = getModelBySlug("g680")!;
 
-export default function DevPreview() {
+type Props = {
+  params: Promise<{ locale: string }>;
+};
+
+export default async function DevPreview({ params }: Props) {
+  const { locale } = await params;
+
   return (
     <div className="bg-surface-muted">
 
@@ -89,8 +111,8 @@ export default function DevPreview() {
             <RangeHero
               accent={range.accent}
               name={range.name}
-              tagline={range.tagline}
-              voiceLine={range.voiceLine}
+              tagline={resolveText(range.tagline, locale)}
+              voiceLine={resolveText(range.voiceLine, locale)}
             />
           </div>
         ))}
@@ -122,7 +144,35 @@ export default function DevPreview() {
           FeatureList — text-only
         </h2>
         <div className="rounded-2xl bg-surface p-8 shadow-sm">
-          <FeatureList features={demoModel.features} accent={demoModel.range} />
+          <FeatureList
+            features={demoModel.features.map((f) => ({
+              title: resolveText(f.title, locale),
+              description: resolveText(f.description, locale),
+              image: f.image,
+            }))}
+            accent={demoModel.range}
+          />
+        </div>
+      </section>
+
+      {/* ── EnquireForm — all three range skins side by side ── */}
+      <section className="mx-auto max-w-7xl px-6 pb-16">
+        <h2 className="mb-8 text-xs font-semibold uppercase tracking-widest text-ink-subtle">
+          EnquireForm — golden / silver / drive
+        </h2>
+        <div className="grid gap-6 lg:grid-cols-3">
+          {enquireFormDemos.map((demo) => (
+            <EnquireForm
+              key={demo.range}
+              range={demo.range}
+              modelName={demo.modelName}
+              layoutName={demo.layoutName}
+              decodedExtras={demoExtras}
+              locale={locale}
+              decodeSucceeded
+              builderLinkRaw={`https://builder.grandboats.example/${demo.modelName.toLowerCase()}?options=3508-1200`}
+            />
+          ))}
         </div>
       </section>
 

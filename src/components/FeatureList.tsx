@@ -1,9 +1,14 @@
 import Image from "next/image";
-import type { Feature } from "@/data/models";
 import type { RangeAccent } from "@/data/ranges";
 
+type ResolvedFeature = {
+  title: string;
+  description: string;
+  image?: string;
+};
+
 type Props = {
-  features: Feature[];
+  features: ResolvedFeature[];
   accent: RangeAccent;
 };
 

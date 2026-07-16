@@ -5,5 +5,28 @@
     "driveLine": "Drive Line",
     "ourStory": "Our Story",
     "contact": "Contact"
+  },
+  "enquireForm": {
+    "intro": {
+      "golden": "Let's talk about bringing your {modelName} to life.",
+      "silver": "Tell us about the build you had in mind.",
+      "drive": "Configured your {modelName}. What's next?"
+    },
+    "extrasHeading": "Based on your configuration:",
+    "fields": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "notes": "Notes"
+    },
+    "submit": "Send enquiry",
+    "submitting": "Sending…",
+    "success": {
+      "heading": "Thanks — we'll be in touch.",
+      "body": "A member of the Algarve Boat Group team will follow up shortly."
+    },
+    "errors": {
+      "required": "Please fill in your name and email before sending."
+    }
   }
 }

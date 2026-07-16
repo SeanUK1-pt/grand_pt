@@ -1,5 +1,7 @@
 import { Link } from "@/i18n/navigation";
+import { getLocale } from "next-intl/server";
 import { ranges } from "@/data/ranges";
+import { resolveText } from "@/data/localized-text";
 import type { RangeAccent } from "@/data/ranges";
 
 // Card border/text + background classes per accent — same visual values as
@@ -10,7 +12,9 @@ const accentStyles: Record<RangeAccent, { border: string; bg: string }> = {
   drive:  { border: "border-drive/40 text-drive",   bg: "bg-drive-muted" },
 };
 
-export default function RangeSelector() {
+export default async function RangeSelector() {
+  const locale = await getLocale();
+
   return (
     <section aria-label="Our ranges" className="bg-surface py-20">
       <div className="mx-auto max-w-7xl px-6">
@@ -30,7 +34,7 @@ export default function RangeSelector() {
                   {r.name}
                 </span>
                 <p className="text-xl font-medium leading-snug text-ink">
-                  {r.voiceLine}
+                  {resolveText(r.voiceLine, locale)}
                 </p>
                 <span className="mt-auto text-sm font-medium text-ink-muted transition-colors group-hover:text-ink">
                   Explore →

@@ -5,5 +5,28 @@
     "driveLine": "Drive Line",
     "ourStory": "Our Story [PT translation pending]",
     "contact": "Contact [PT translation pending]"
+  },
+  "enquireForm": {
+    "intro": {
+      "golden": "Let's talk about bringing your {modelName} to life. [PT translation pending]",
+      "silver": "Tell us about the build you had in mind. [PT translation pending]",
+      "drive": "Configured your {modelName}. What's next? [PT translation pending]"
+    },
+    "extrasHeading": "Based on your configuration: [PT translation pending]",
+    "fields": {
+      "name": "Name [PT translation pending]",
+      "email": "Email [PT translation pending]",
+      "phone": "Phone [PT translation pending]",
+      "notes": "Notes [PT translation pending]"
+    },
+    "submit": "Send enquiry [PT translation pending]",
+    "submitting": "Sending… [PT translation pending]",
+    "success": {
+      "heading": "Thanks — we'll be in touch. [PT translation pending]",
+      "body": "A member of the Algarve Boat Group team will follow up shortly. [PT translation pending]"
+    },
+    "errors": {
+      "required": "Please fill in your name and email before sending. [PT translation pending]"
+    }
   }
 }
