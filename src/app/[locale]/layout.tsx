@@ -19,9 +19,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Algarve Boat Group — Grand Boats Dealer",
+  title: "Grand Boats Portugal",
   description:
-    "Algarve Boat Group is the authorised Grand Boats dealer for Portugal. Browse the Golden Line, Silver Line and Drive Line ranges.",
+    "Grand Boats Portugal — authorised dealer for the Golden Line, Silver Line and Drive Line ranges. Represented by Algarve Boat Group.",
 };
 
 export function generateStaticParams() {

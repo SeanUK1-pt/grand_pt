@@ -16,7 +16,7 @@ export default async function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-12">
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
           <div className="col-span-2 md:col-span-1">
-            <p className="text-body font-semibold text-ink-text">Grand Boats</p>
+            <p className="text-body font-semibold text-ink-text">Grand Boats Portugal</p>
             <p className="mt-2 text-body-sm leading-relaxed">
               Premium recreational boats,
               <br />
@@ -49,7 +49,7 @@ export default async function Footer() {
           </div>
         </div>
         <div className="mt-10 border-t border-ink-line pt-6 text-caption">
-          © {new Date().getFullYear()} Grand Boats / Algarve Boat Group. All rights reserved.
+          © {new Date().getFullYear()} Grand Boats Portugal. Represented by Algarve Boat Group.
         </div>
       </div>
     </footer>

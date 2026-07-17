@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props) {
   const model = getModelBySlug(modelSlug);
   if (!model || model.rangeSlug !== rangeSlug) return {};
   return {
-    title: `${model.name} — Algarve Boat Group`,
+    title: `${model.name} — Grand Boats Portugal`,
     description: resolveText(model.positioning, locale),
   };
 }

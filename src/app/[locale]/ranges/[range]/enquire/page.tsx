@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props) {
   const range = getRangeBySlug(rangeSlug as Range["slug"]);
   if (!range) return {};
   return {
-    title: `Enquire — ${range.name} — Algarve Boat Group`,
+    title: `Enquire — ${range.name} — Grand Boats Portugal`,
   };
 }
 
