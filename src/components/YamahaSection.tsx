@@ -14,7 +14,7 @@ export default async function YamahaSection() {
   const locale = await getLocale();
 
   return (
-    <section aria-label="Powered by Yamaha" className="bg-ink py-16">
+    <section aria-label="Powered by Yamaha" className="bg-ink py-12">
       <div className="mx-auto grid max-w-5xl gap-10 px-6 sm:grid-cols-2 sm:items-center">
         <div className="flex aspect-[4/3] items-center justify-center rounded-lg border border-dashed border-ink-line bg-ink-raised">
           <p className="max-w-[220px] text-center text-caption text-ink-text-muted">

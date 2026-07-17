@@ -25,7 +25,7 @@ export default async function Home({ params }: Props) {
       <HomeHero slides={homeHeroSlides} />
       <RangeSelector />
 
-      <section aria-label="Featured models" className="bg-surface py-16">
+      <section aria-label="Featured models" className="bg-surface py-12">
         <div className="mx-auto max-w-7xl px-6">
           <h2 className="mb-10 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
             Featured models

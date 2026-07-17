@@ -16,7 +16,7 @@ export default async function RangeSelector() {
   const locale = await getLocale();
 
   return (
-    <section aria-label="Our ranges" className="bg-surface py-16">
+    <section aria-label="Our ranges" className="bg-surface py-12">
       <div className="mx-auto max-w-7xl px-6">
         <h2 className="mb-10 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
           Three ranges
