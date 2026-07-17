@@ -5,7 +5,7 @@ import { Link } from "@/i18n/navigation";
 import { useEffect, useReducer, useRef, useCallback } from "react";
 import type { HomeHeroSlide } from "@/data/home-hero-slides";
 
-const INTERVAL_MS = 7000;
+const INTERVAL_MS = 8000;
 
 type State = { current: number; paused: boolean };
 type Action =

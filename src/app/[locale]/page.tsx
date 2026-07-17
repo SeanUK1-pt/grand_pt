@@ -2,6 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import HomeHero from "@/components/HomeHero";
 import RangeSelector from "@/components/RangeSelector";
 import ModelCard from "@/components/ModelCard";
+import YamahaSection from "@/components/YamahaSection";
 import BrandStrip from "@/components/BrandStrip";
 import { homeHeroSlides } from "@/data/home-hero-slides";
 import { featuredModels } from "@/data/featured-models";
@@ -24,7 +25,7 @@ export default async function Home({ params }: Props) {
       <HomeHero slides={homeHeroSlides} />
       <RangeSelector />
 
-      <section aria-label="Featured models" className="bg-surface py-20">
+      <section aria-label="Featured models" className="bg-surface py-16">
         <div className="mx-auto max-w-7xl px-6">
           <h2 className="mb-10 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
             Featured models
@@ -37,6 +38,7 @@ export default async function Home({ params }: Props) {
         </div>
       </section>
 
+      <YamahaSection />
       <BrandStrip />
     </>
   );
