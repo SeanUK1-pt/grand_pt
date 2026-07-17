@@ -30,8 +30,8 @@
     }
   },
   "contact": {
-    "heading": "Get in touch",
-    "intro": "Have a question about a Grand Boats model, or want to talk through your options? Send us a message and the Algarve Boat Group team will get back to you.",
+    "heading": "Contact Us",
+    "intro": "We're based in Portimão, Portugal, and represent Grand Boats across the country. Whether you have a question about a specific model, want to arrange a viewing, or just want to talk through what kind of boat suits your needs — get in touch.",
     "fields": {
       "name": "Name",
       "email": "Email",
@@ -46,6 +46,14 @@
     },
     "errors": {
       "required": "Please fill in your name and email before sending."
+    },
+    "address": {
+      "company": "Algarve Boat Group",
+      "location": "Portimão, Portugal",
+      "phoneLabel": "Phone",
+      "phone": "To be added",
+      "emailLabel": "Email",
+      "email": "To be added"
     }
   }
 }
