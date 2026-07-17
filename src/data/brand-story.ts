@@ -1,8 +1,5 @@
 import type { LocalizedText } from "./localized-text";
 
-// DRAFT / PLACEHOLDER copy — written by Claude, not approved marketing copy.
-// The "Founded" year in particular is an unverified placeholder (1996) and
-// must be checked against Grand's actual company history before launch.
 // "Ranges" and "Models" counts are NOT hardcoded here — they're computed
 // live from ranges.ts/models.ts in BrandStrip.tsx so they can't go stale.
 export const brandStory = {
@@ -11,14 +8,9 @@ export const brandStory = {
     pt: "Ofício e origem",
   } satisfies LocalizedText,
 
-  headline: {
-    en: "A Ukrainian boatbuilder, sold in Portugal by people who use them.",
-    pt: "Um construtor naval ucraniano, vendido em Portugal por quem os utiliza.",
-  } satisfies LocalizedText,
-
   founded: {
     label: { en: "Founded", pt: "Fundada em" } satisfies LocalizedText,
-    value: { en: "1996", pt: "1996" } satisfies LocalizedText,
+    value: { en: "2001", pt: "2001" } satisfies LocalizedText,
   },
   manufacturing: {
     label: { en: "Manufacturing", pt: "Fabrico" } satisfies LocalizedText,
@@ -27,17 +19,20 @@ export const brandStory = {
 
   columns: [
     {
-      heading: { en: "Built in Ukraine", pt: "Construído na Ucrânia" } satisfies LocalizedText,
+      heading: { en: "Hand-laid in Ukraine", pt: "Laminado à mão na Ucrânia" } satisfies LocalizedText,
       body: {
-        en: "Every Grand hull is hand-laid by the same yard, chamber by chamber — hypalon tubes, hand-finished consoles, and a level of fit and finish that doesn't change whether it's a 3.4-metre tender or a 10-metre flagship. It's a slower way to build a boat, and it's why Grand hulls hold their shape and finish years after cheaper RIBs have started to sag.",
-        pt: "Cada casco Grand é laminado à mão no mesmo estaleiro, câmara a câmara — tubos em Hypalon, consolas acabadas à mão e um nível de acabamento que não muda, seja num tender de 3,4 metros ou numa embarcação insignia de 10 metros. É uma forma mais lenta de construir um barco, e é por isso que os cascos Grand mantêm a forma e o acabamento anos depois de RIBs mais baratos já terem começado a ceder.",
+        en: "Grand Boats has manufactured every hull by hand in its Ukrainian yard since 2001. The same fiberglass lay-up process, the same quality control, the same attention to tube specification and hardware detail — across every model from the S275 to the G980.",
+        pt: "A Grand Boats fabrica cada casco à mão no seu estaleiro ucraniano desde 2001. O mesmo processo de laminação em fibra de vidro, o mesmo controlo de qualidade, a mesma atenção à especificação dos tubos e aos detalhes das ferragens — em todos os modelos, do S275 ao G980.",
       } satisfies LocalizedText,
     },
     {
-      heading: { en: "Sold through Algarve Boat Group", pt: "Vendido pela Algarve Boat Group" } satisfies LocalizedText,
+      heading: {
+        en: "Sold exclusively in Portugal through Algarve Boat Group",
+        pt: "Vendido exclusivamente em Portugal pela Algarve Boat Group",
+      } satisfies LocalizedText,
       body: {
-        en: "We're the authorised Grand dealer for Portugal, based in Portimão and working with owners along the whole coast. That means every boat that reaches you has been checked, prepped, and handed over by people who know the range — not a container drop-off with a manual in the wrong language.",
-        pt: "Somos o representante autorizado da Grand em Portugal, sediados em Portimão e a trabalhar com proprietários em toda a costa. Isso significa que cada barco que chega até si foi verificado, preparado e entregue por quem conhece a gama — não uma entrega de contentor com um manual na língua errada.",
+        en: "We carry stock of the most popular models at our Portimão base, and can order any model in the range. Our team knows these boats — we've rigged them, launched them, and used them on this coast.",
+        pt: "Temos em stock os modelos mais populares na nossa base em Portimão e podemos encomendar qualquer modelo da gama. A nossa equipa conhece estas embarcações — equipámo-las, lançámo-las à água e utilizámo-las nesta costa.",
       } satisfies LocalizedText,
     },
   ],

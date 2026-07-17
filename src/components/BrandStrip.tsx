@@ -16,16 +16,13 @@ export default async function BrandStrip() {
   ];
 
   return (
-    <section aria-label="About Grand Boats" className="bg-brand-soft py-12">
+    <section aria-label="About Grand Boats" className="bg-surface-muted py-12">
       <div className="mx-auto max-w-5xl px-6">
         <p className="text-caption font-semibold uppercase tracking-[0.16em] text-brand">
           {resolveText(brandStory.eyebrow, locale)}
         </p>
-        <p className="mt-4 max-w-3xl text-headline font-semibold leading-tight tracking-tight text-balance text-text-strong">
-          {resolveText(brandStory.headline, locale)}
-        </p>
 
-        <div className="mt-12 grid grid-cols-2 gap-6 border-y border-brand/15 py-6 sm:grid-cols-4">
+        <div className="mt-6 grid grid-cols-2 gap-6 border-y border-brand/15 py-6 sm:grid-cols-4">
           {stats.map((stat) => (
             <div key={stat.label} className="flex flex-col gap-1">
               <span className="text-headline font-semibold tracking-tight text-text-strong">
