@@ -27,6 +27,10 @@ export type ModelLayout = {
 export type Model = FeaturedModel & {
   rangeSlug: Range["slug"];
   positioning: LocalizedText;
+  // Large-to-small display order within a range (1 = largest). Drives the
+  // homepage RangeSection model strips. Not used for Drive Line, whose
+  // strip is built by hand from D950 + the D600 layouts (see RangeSection).
+  order: number;
   specs: ModelSpec[];
   // No real pricing has ever been supplied by the dealer. `priceFrom` below
   // is a PLACEHOLDER figure (invented, scaled loosely by hull size/hp) — not
@@ -80,6 +84,7 @@ export const models: Model[] = [
     name: "G340",
     range: "golden",
     rangeSlug: "golden-line",
+    order: 10,
     tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: {
       en: "The entry point to the range, with the same attention to detail as everything above it.",
@@ -150,6 +155,7 @@ export const models: Model[] = [
     name: "G340N",
     range: "golden",
     rangeSlug: "golden-line",
+    order: 11,
     tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: { en: "PLACEHOLDER — positioning line pending." },
     image: "/images/boats/g340n/detail-14.jpg",
@@ -195,6 +201,7 @@ export const models: Model[] = [
     name: "G380",
     range: "golden",
     rangeSlug: "golden-line",
+    order: 8,
     tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: {
       en: "Lightweight, refined, and easy to handle. The ideal tender for a larger vessel, or a first step into the Golden Line.",
@@ -265,6 +272,7 @@ export const models: Model[] = [
     name: "G380N",
     range: "golden",
     rangeSlug: "golden-line",
+    order: 9,
     tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: { en: "PLACEHOLDER — positioning line pending." },
     image: "/images/boats/g380n/detail-17.jpg",
@@ -310,6 +318,7 @@ export const models: Model[] = [
     name: "G420",
     range: "golden",
     rangeSlug: "golden-line",
+    order: 7,
     tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: {
       en: "A proper little cruiser — well-finished, well-thought-out, and surprisingly capable for its footprint.",
@@ -380,6 +389,7 @@ export const models: Model[] = [
     name: "G500",
     range: "golden",
     rangeSlug: "golden-line",
+    order: 6,
     tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: {
       en: "Small enough to run as a tender, capable enough to stand alone. The compact pocket cruiser that punches well above its size.",
@@ -450,6 +460,7 @@ export const models: Model[] = [
     name: "G580",
     range: "golden",
     rangeSlug: "golden-line",
+    order: 5,
     tagline: "The entry point to Golden Line quality.",
     positioning: {
       en: "The bridge between the compact tenders and the full cruisers. More boat than it looks, without the commitment of the bigger hulls.",
@@ -520,6 +531,7 @@ export const models: Model[] = [
     name: "G680",
     range: "golden",
     rangeSlug: "golden-line",
+    order: 4,
     tagline: "Built to be lived aboard.",
     positioning: {
       en: "The sweet spot. Cabin comfort, centre console simplicity, and enough hull to handle whatever the Atlantic sends.",
@@ -590,6 +602,7 @@ export const models: Model[] = [
     name: "G750",
     range: "golden",
     rangeSlug: "golden-line",
+    order: 3,
     tagline: "More space. Same conviction.",
     positioning: {
       en: "The serious cruiser of the range — big enough for overnights, fast enough to make them count.",
@@ -660,6 +673,7 @@ export const models: Model[] = [
     name: "G850",
     range: "golden",
     rangeSlug: "golden-line",
+    order: 2,
     tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: {
       en: "Eight and a half metres, up to 400HP, twin engines optional. For when the destination is further away than the horizon.",
@@ -730,6 +744,7 @@ export const models: Model[] = [
     name: "G980",
     range: "golden",
     rangeSlug: "golden-line",
+    order: 1,
     tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: {
       en: "The largest Grand ever built. Offshore range, twin-engine power, and the signature hypalon tubes that handle whatever the Atlantic throws at it.",
@@ -802,6 +817,7 @@ export const models: Model[] = [
     name: "S275",
     range: "silver",
     rangeSlug: "silver-line",
+    order: 6,
     tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: {
       en: "The lightest in the range — easy to launch, easy to handle, easy to stow.",
@@ -865,6 +881,7 @@ export const models: Model[] = [
     name: "S300",
     range: "silver",
     rangeSlug: "silver-line",
+    order: 5,
     tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: {
       en: "Compact and capable. More tender than dinghy, without the footprint of the bigger hulls.",
@@ -928,6 +945,7 @@ export const models: Model[] = [
     name: "S330",
     range: "silver",
     rangeSlug: "silver-line",
+    order: 4,
     tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: {
       en: "Clean, light, and honest. Does exactly what a good tender should do.",
@@ -991,6 +1009,7 @@ export const models: Model[] = [
     name: "S370N",
     range: "silver",
     rangeSlug: "silver-line",
+    order: 3,
     tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: {
       en: "A workhorse tender with enough polish to sit alongside premium vessels without apology.",
@@ -1054,6 +1073,7 @@ export const models: Model[] = [
     name: "S420N",
     range: "silver",
     rangeSlug: "silver-line",
+    order: 2,
     tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: {
       en: "Solid, reliable, well-sized for yacht work. Fits davits, takes a crowd, gets on with it.",
@@ -1117,6 +1137,7 @@ export const models: Model[] = [
     name: "S470N",
     range: "silver",
     rangeSlug: "silver-line",
+    order: 1,
     tagline: "The most capable tender in the range — handles serious loads and real coastal conditions without fuss.",
     positioning: {
       en: "The most capable tender in the range — handles serious loads and real coastal conditions without fuss.",
@@ -1188,6 +1209,7 @@ export const models: Model[] = [
     name: "D600",
     range: "drive",
     rangeSlug: "drive-line",
+    order: 2,
     tagline: "The performance hull with a lifestyle fit-out. Fast when you want it, comfortable when you don't.",
     // NOTE: the approved copy batch provided separate positioning/features for
     // d600-active/d600-drive/d600-lux (as if they were three distinct models),
@@ -1296,6 +1318,7 @@ export const models: Model[] = [
     name: "D950",
     range: "drive",
     rangeSlug: "drive-line",
+    order: 1,
     tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: {
       en: "Commercial-grade build, professional payload, serious offshore capability. Built to work.",
@@ -1381,4 +1404,86 @@ export function toFeaturedModel(model: Model): FeaturedModel {
     image: model.image,
     href: model.href,
   };
+}
+
+/** Lightweight shape for the homepage RangeSection model strips — deliberately
+ *  decoupled from Model so Drive Line's D600 layouts (not top-level Models)
+ *  can be represented alongside real Models in the same list. */
+export type RangeModelTile = {
+  key: string;
+  name: string;
+  image: string;
+  loa: string;
+  priceFrom?: number;
+  priceLabel?: string;
+  href: string;
+};
+
+function loaOf(specs: ModelSpec[]): string {
+  return specs.find((s) => s.label === "LOA")?.value ?? "";
+}
+
+/** Ordered large-to-small tiles for a range's homepage model strip.
+ *
+ *  Golden/Silver: every top-level Model in the range, sorted by `order`.
+ *
+ *  Drive: hand-built rather than derived from `order`, because the visual
+ *  "4 models" the design calls for (D950, D600 Lux, D600 Drive, D600
+ *  Active) doesn't match this data layer's 2 top-level Drive Models — D600's
+ *  three layouts are variants of one hull (see the NOTE above the `d600`
+ *  entry), not separate Models with their own routes. All three D600 tiles
+ *  link to the single /ranges/drive-line/d600/ page and share its LOA;
+ *  their own per-layout image/price are used where present.
+ */
+export function getRangeModelTiles(rangeSlug: Range["slug"]): RangeModelTile[] {
+  if (rangeSlug === "drive-line") {
+    const d950 = getModelBySlug("d950-drive");
+    const d600 = getModelBySlug("d600");
+    if (!d950 || !d600) return [];
+
+    const tiles: RangeModelTile[] = [
+      {
+        key: d950.slug,
+        name: d950.name,
+        image: d950.image,
+        loa: loaOf(d950.specs),
+        priceFrom: d950.priceFrom,
+        priceLabel: d950.priceLabel,
+        href: d950.href,
+      },
+    ];
+
+    const d600Loa = loaOf(d600.specs);
+    // Requested tile order is Lux, Drive, Active (largest package weight to
+    // smallest) — not the Active/Drive/Lux order layouts are stored in.
+    const layoutOrder = ["Lux", "Drive", "Active"];
+    const orderedLayouts = (d600.layouts ?? [])
+      .slice()
+      .sort((a, b) => layoutOrder.indexOf(a.name) - layoutOrder.indexOf(b.name));
+    for (const layout of orderedLayouts) {
+      tiles.push({
+        key: `d600-${layout.name.toLowerCase()}`,
+        name: `D600 ${layout.name}`,
+        image: layout.image ?? d600.image,
+        loa: d600Loa,
+        priceFrom: layout.priceFrom,
+        priceLabel: layout.priceLabel,
+        href: d600.href,
+      });
+    }
+    return tiles;
+  }
+
+  return getModelsByRange(rangeSlug)
+    .slice()
+    .sort((a, b) => a.order - b.order)
+    .map((m) => ({
+      key: m.slug,
+      name: m.name,
+      image: m.image,
+      loa: loaOf(m.specs),
+      priceFrom: m.priceFrom,
+      priceLabel: m.priceLabel,
+      href: m.href,
+    }));
 }
