@@ -2,7 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import HomeHero from "@/components/HomeHero";
 import RangeSelector from "@/components/RangeSelector";
 import ModelCard from "@/components/ModelCard";
-import YamahaSection from "@/components/YamahaSection";
+import YamahaPartner from "@/components/YamahaPartner";
 import BrandStrip from "@/components/BrandStrip";
 import { homeHeroSlides } from "@/data/home-hero-slides";
 import { featuredModels } from "@/data/featured-models";
@@ -38,7 +38,7 @@ export default async function Home({ params }: Props) {
         </div>
       </section>
 
-      <YamahaSection />
+      <YamahaPartner />
       <BrandStrip />
     </>
   );
