@@ -28,5 +28,24 @@
     "errors": {
       "required": "Please fill in your name and email before sending. [PT translation pending]"
     }
+  },
+  "contact": {
+    "heading": "Get in touch [PT translation pending]",
+    "intro": "Have a question about a Grand Boats model, or want to talk through your options? Send us a message and the Algarve Boat Group team will get back to you. [PT translation pending]",
+    "fields": {
+      "name": "Name [PT translation pending]",
+      "email": "Email [PT translation pending]",
+      "phone": "Phone [PT translation pending]",
+      "message": "Message [PT translation pending]"
+    },
+    "submit": "Send message [PT translation pending]",
+    "submitting": "Sending… [PT translation pending]",
+    "success": {
+      "heading": "Thanks — we'll be in touch. [PT translation pending]",
+      "body": "A member of the Algarve Boat Group team will follow up shortly. [PT translation pending]"
+    },
+    "errors": {
+      "required": "Please fill in your name and email before sending. [PT translation pending]"
+    }
   }
 }

@@ -56,7 +56,7 @@ export default function LayoutTiles({ layouts, accent, modelSlug, rangeSlug }: P
             {layout.priceFrom !== undefined && (
               <div className="mt-1 flex flex-col gap-0.5">
                 <span className="text-lead font-semibold tracking-tight text-text-strong">
-                  From {formatPrice(layout.priceFrom)}
+                  {formatPrice(layout.priceFrom)}
                 </span>
                 {layout.priceLabel && (
                   <span className="text-caption text-text-subtle">{layout.priceLabel}</span>

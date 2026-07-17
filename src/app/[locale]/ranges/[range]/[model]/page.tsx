@@ -121,7 +121,7 @@ export default async function ModelPage({ params }: Props) {
           {showPrice && (
             <div className="mt-10 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-3">
               <span className="text-lead font-semibold tracking-tight text-ink-text">
-                From {priceFormatted}
+                {priceFormatted}
               </span>
               {model.priceLabel && (
                 <span className="text-caption text-ink-text-muted">{model.priceLabel}</span>
