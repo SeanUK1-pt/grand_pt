@@ -22,8 +22,8 @@ export default async function Home({ params }: Props) {
   return (
     <>
       <HomeHero slides={homeHeroSlides} />
-      {ranges.map((range) => (
-        <RangeBand key={range.slug} range={range} />
+      {ranges.map((range, i) => (
+        <RangeBand key={range.slug} range={range} priority={i === 0} />
       ))}
       <YamahaPartner />
       <BrandStrip />

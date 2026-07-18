@@ -9,13 +9,18 @@ import type { Range, RangeAccent } from "@/data/ranges";
 // `detail-1` are usable here: both turned out to be transparent top-down
 // studio cutaway renders (confirmed by opening them), not photos — unusable
 // as a full-bleed background. Using each model's confirmed real on-water
-// action shot instead (already vetted earlier in this project: g750's and
-// d950-drive's were used as home-hero-carousel slides, s470n's is that
-// model's own official `image`).
+// action shot instead, all verified at 2160x945 (or close to it) — genuine
+// high-res photos, not the 802x351 slider thumbnails this was suspected to
+// be pulling from (checked every file's actual pixel dimensions; that path
+// was never in use).
+// drive-line was swapped from detail-17 (2032x889, third-party "FJORD
+// Events" charter-operator branding visible on console/jacket) to detail-22
+// (2160x945, equally dramatic lighthouse/sunset shot, clean GRAND branding,
+// no competitor logo).
 const heroImage: Record<Range["slug"], string> = {
   "golden-line": "/images/boats/g750/detail-11.jpg",
   "silver-line": "/images/boats/s470n/detail-12.jpg",
-  "drive-line": "/images/boats/d950-drive/detail-17.jpg",
+  "drive-line": "/images/boats/d950-drive/detail-22.jpg",
 };
 
 const accentRule: Record<RangeAccent, string> = {
@@ -80,7 +85,14 @@ function BandCardLink({ card }: { card: BandCard }) {
   );
 }
 
-export default async function RangeBand({ range }: { range: Range }) {
+export default async function RangeBand({
+  range,
+  priority = false,
+}: {
+  range: Range;
+  /** Set on the first band only — it's above the fold. */
+  priority?: boolean;
+}) {
   const locale = await getLocale();
   const cards = getBandCards(range.slug);
 
@@ -95,6 +107,8 @@ export default async function RangeBand({ range }: { range: Range }) {
         fill
         className="object-cover"
         sizes="100vw"
+        quality={90}
+        priority={priority}
       />
       <div
         aria-hidden
