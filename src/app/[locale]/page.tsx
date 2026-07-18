@@ -1,9 +1,10 @@
 import { setRequestLocale } from "next-intl/server";
 import HomeHero from "@/components/HomeHero";
-import RangeSection from "@/components/RangeSection";
+import RangeBand from "@/components/RangeBand";
 import YamahaPartner from "@/components/YamahaPartner";
 import BrandStrip from "@/components/BrandStrip";
 import { homeHeroSlides } from "@/data/home-hero-slides";
+import { ranges } from "@/data/ranges";
 import { routing } from "@/i18n/routing";
 
 export function generateStaticParams() {
@@ -21,7 +22,9 @@ export default async function Home({ params }: Props) {
   return (
     <>
       <HomeHero slides={homeHeroSlides} />
-      <RangeSection />
+      {ranges.map((range) => (
+        <RangeBand key={range.slug} range={range} />
+      ))}
       <YamahaPartner />
       <BrandStrip />
     </>
