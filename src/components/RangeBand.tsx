@@ -99,13 +99,13 @@ export default async function RangeBand({
   return (
     <section
       aria-label={`${range.name} range`}
-      className="relative w-full overflow-hidden rounded-none md:min-h-[70vh]"
+      className="relative w-full overflow-hidden rounded-none md:min-h-[420px]"
     >
       <Image
         src={heroImage[range.slug]}
         alt={range.name}
         fill
-        className="object-cover"
+        className="object-cover object-[center_60%]"
         sizes="100vw"
         quality={90}
         priority={priority}
@@ -115,7 +115,7 @@ export default async function RangeBand({
         className="absolute inset-0 bg-[linear-gradient(160deg,rgba(0,0,0,0.8)_0%,rgba(0,0,0,0.35)_45%,rgba(0,0,0,0.25)_100%)] md:bg-[linear-gradient(to_right,rgba(0,0,0,0.75)_0%,rgba(0,0,0,0)_50%)]"
       />
 
-      <div className="relative z-10 flex flex-col gap-8 px-6 py-12 md:min-h-[70vh] md:flex-row md:items-end md:justify-between md:px-12 md:py-16">
+      <div className="relative z-10 flex flex-col gap-8 px-6 py-12 md:min-h-[420px] md:flex-row md:items-end md:justify-between md:px-12 md:py-16">
         <div className="md:w-[45%]">
           <div className={`h-0.5 w-10 rounded-none ${accentRule[range.accent]}`} aria-hidden />
           <h2 className="mt-4 text-display font-semibold tracking-tight text-white">
