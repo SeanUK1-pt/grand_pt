@@ -1,12 +1,13 @@
+import { Fragment } from "react";
 import { setRequestLocale } from "next-intl/server";
 import HomeHero from "@/components/HomeHero";
-import RangeIndex from "@/components/RangeIndex";
+import RangeBandHeader from "@/components/RangeBandHeader";
 import RangeBand from "@/components/RangeBand";
 import YamahaPartner from "@/components/YamahaPartner";
 import BrandStrip from "@/components/BrandStrip";
 import { homeHeroSlides } from "@/data/home-hero-slides";
 import { ranges } from "@/data/ranges";
-import { driveLineIntro } from "@/data/drive-line-intro";
+import { rangesIntro } from "@/data/ranges-intro";
 import { resolveText } from "@/data/localized-text";
 import { routing } from "@/i18n/routing";
 
@@ -22,34 +23,24 @@ export default async function Home({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const goldenLine = ranges.find((r) => r.slug === "golden-line")!;
-  const silverLine = ranges.find((r) => r.slug === "silver-line")!;
-  const driveLine = ranges.find((r) => r.slug === "drive-line")!;
-
   return (
     <>
       <HomeHero slides={homeHeroSlides} />
-      <RangeIndex />
 
-      <RangeBand range={goldenLine} priority />
-      <RangeBand range={silverLine} />
-
-      <div className="h-px bg-surface-line" aria-hidden />
-      <div className="bg-surface py-10">
+      <section aria-label="Ranges intro" className="bg-surface py-12 md:py-16">
         <div className="mx-auto max-w-7xl px-6">
-          <p className="font-mono text-caption uppercase tracking-widest text-text-subtle">
-            {resolveText(driveLineIntro.eyebrow, locale)}
-          </p>
-          <h2 className="mt-2 text-headline font-semibold tracking-tight text-text-strong">
-            {driveLine.name}
+          <h2 className="text-headline font-semibold tracking-tight text-text-strong">
+            {resolveText(rangesIntro, locale)}
           </h2>
-          <p className="mt-2 max-w-lg text-body text-text-muted">
-            {resolveText(driveLineIntro.body, locale)}
-          </p>
         </div>
-      </div>
+      </section>
 
-      <RangeBand range={driveLine} />
+      {ranges.map((range, i) => (
+        <Fragment key={range.slug}>
+          <RangeBandHeader range={range} />
+          <RangeBand range={range} priority={i === 0} />
+        </Fragment>
+      ))}
 
       <BrandStrip />
       <YamahaPartner />
