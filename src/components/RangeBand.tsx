@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { getModelBySlug } from "@/data/models";
+import { getModelBySlug, getEffectiveModelCount } from "@/data/models";
 import { resolveText } from "@/data/localized-text";
 import type { Range, RangeAccent } from "@/data/ranges";
 
@@ -29,6 +29,12 @@ const accentRule: Record<RangeAccent, string> = {
   drive: "bg-drive",
 };
 
+const accentText: Record<RangeAccent, string> = {
+  golden: "text-golden",
+  silver: "text-silver",
+  drive: "text-drive",
+};
+
 type BandCard = { name: string; loa: string; priceFrom?: number; href: string };
 
 // Hardcoded per range, per spec — not dynamically selected. D600 Lux/Active
@@ -37,13 +43,15 @@ type BandCard = { name: string; loa: string; priceFrom?: number; href: string };
 // LOA/href and pull their price from the matching layout.
 function getBandCards(rangeSlug: Range["slug"]): BandCard[] {
   if (rangeSlug === "golden-line") {
-    return ["g980", "g680", "g420"].map((slug) => {
+    return ["g980", "g750", "g680"].map((slug) => {
       const m = getModelBySlug(slug)!;
       return { name: m.name, loa: m.specs[0].value, priceFrom: m.priceFrom, href: m.href };
     });
   }
   if (rangeSlug === "silver-line") {
-    return ["s470n", "s330", "s275"].map((slug) => {
+    // Silver Line is secondary — only two tiles + the "complete range" CTA,
+    // deliberately not matching Golden/Drive's three-tile count.
+    return ["s470n", "s420n"].map((slug) => {
       const m = getModelBySlug(slug)!;
       return { name: m.name, loa: m.specs[0].value, priceFrom: m.priceFrom, href: m.href };
     });
@@ -85,6 +93,23 @@ function BandCardLink({ card }: { card: BandCard }) {
   );
 }
 
+// Trailing tile in every band's model row — links to the range landing page
+// instead of a model page, no LOA/price, accent-coloured CTA line.
+function CompleteRangeTile({ range, count, locale }: { range: Range; count: number; locale: string }) {
+  const label =
+    locale === "pt" ? `Ver todos os ${count} modelos →` : `See all ${count} models →`;
+
+  return (
+    <Link
+      href={`/ranges/${range.slug}/`}
+      className="flex w-[160px] shrink-0 flex-col justify-between gap-3 rounded-none border border-white/15 bg-black/55 p-3 transition-colors hover:border-white/40 hover:bg-black/65 md:w-[200px]"
+    >
+      <h3 className="text-body-sm font-bold text-white">{range.name}</h3>
+      <p className={`font-mono text-caption font-semibold ${accentText[range.accent]}`}>{label}</p>
+    </Link>
+  );
+}
+
 export default async function RangeBand({
   range,
   priority = false,
@@ -95,6 +120,7 @@ export default async function RangeBand({
 }) {
   const locale = await getLocale();
   const cards = getBandCards(range.slug);
+  const modelCount = getEffectiveModelCount(range.slug);
 
   return (
     <section
@@ -134,6 +160,7 @@ export default async function RangeBand({
           {cards.map((card) => (
             <BandCardLink key={card.name} card={card} />
           ))}
+          <CompleteRangeTile range={range} count={modelCount} locale={locale} />
         </div>
       </div>
     </section>

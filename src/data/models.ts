@@ -1382,3 +1382,23 @@ export function toFeaturedModel(model: Model): FeaturedModel {
     href: model.href,
   };
 }
+
+/**
+ * "How many models does this range have?" for display purposes (homepage
+ * range header, "See all N models" CTA). Not the same as
+ * `getModelsByRange(slug).length` for Drive Line: that counts top-level
+ * `Model` records (d600, d950-drive = 2), but D600's three layouts
+ * (Active/Drive/Lux) are genuinely distinct products to a visitor even
+ * though they share one Model entry with a `layouts` array (see the NOTE
+ * above the `d600` entry) — not separate routable Models. This isn't a
+ * slug-matching bug; it's the data layer's deliberate merge of the D600
+ * variants, so the "visitor-facing" count for Drive Line is computed as
+ * D950 + each D600 layout (1 + 3 = 4) rather than top-level Model count.
+ */
+export function getEffectiveModelCount(rangeSlug: Range["slug"]): number {
+  if (rangeSlug === "drive-line") {
+    const d600 = getModelBySlug("d600");
+    return 1 + (d600?.layouts?.length ?? 0);
+  }
+  return getModelsByRange(rangeSlug).length;
+}

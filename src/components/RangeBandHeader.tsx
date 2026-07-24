@@ -1,6 +1,6 @@
 import { getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { getModelsByRange } from "@/data/models";
+import { getEffectiveModelCount } from "@/data/models";
 import { resolveText } from "@/data/localized-text";
 import type { Range, RangeAccent } from "@/data/ranges";
 
@@ -21,7 +21,7 @@ const accentText: Record<RangeAccent, string> = {
 // another without this consistent break.
 export default async function RangeBandHeader({ range }: { range: Range }) {
   const locale = await getLocale();
-  const count = getModelsByRange(range.slug).length;
+  const count = getEffectiveModelCount(range.slug);
 
   return (
     <div className="bg-surface py-10">

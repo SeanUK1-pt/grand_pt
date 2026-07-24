@@ -27,7 +27,7 @@ export default async function Home({ params }: Props) {
     <>
       <HomeHero slides={homeHeroSlides} />
 
-      <section aria-label="Ranges intro" className="bg-surface py-12 md:py-16">
+      <section aria-label="Ranges intro" className="bg-surface pt-12 pb-4 md:pt-16 md:pb-6">
         <div className="mx-auto max-w-7xl px-6">
           <h2 className="text-headline font-semibold tracking-tight text-text-strong">
             {resolveText(rangesIntro, locale)}
