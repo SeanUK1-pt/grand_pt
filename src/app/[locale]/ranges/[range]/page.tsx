@@ -1,13 +1,15 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { setRequestLocale } from "next-intl/server";
+import { setRequestLocale, getTranslations } from "next-intl/server";
 import RangeHero from "@/components/RangeHero";
 import ModelCard from "@/components/ModelCard";
 import SpecStrip from "@/components/SpecStrip";
+import LayoutTiles from "@/components/LayoutTiles";
 import { Link } from "@/i18n/navigation";
 import { ranges, getRangeBySlug } from "@/data/ranges";
-import { getModelsByRange } from "@/data/models";
+import { getModelsByRange, getModelBySlug } from "@/data/models";
 import { resolveText } from "@/data/localized-text";
+import type { Model } from "@/data/models";
 import type { Range } from "@/data/ranges";
 
 type Props = {
@@ -28,6 +30,46 @@ const accentRule: Record<Range["accent"], string> = {
   drive: "bg-drive",
 };
 
+// Golden Line gets three roughly-equal featured cards instead of one
+// dominant flagship; the standard grid below shows the rest, in this
+// explicit large-to-small order (ties like G380/G380N ordered base
+// model before its "N" variant, not by authoring order).
+const goldenFeaturedSlugs = ["g980", "g750", "g680"];
+const goldenGridOrder = ["g850", "g580", "g500", "g420", "g380", "g380n", "g340", "g340n"];
+
+// Full-width featured card — image one side, copy + specs + CTA the
+// other. Used for Silver's single flagship and Drive's D950 (Golden's
+// three-across featured section has its own smaller card markup below,
+// since three of these side by side would be too heavy).
+function FeaturedCard({ model, positioning, badge }: { model: Model; positioning: string; badge?: React.ReactNode }) {
+  return (
+    <Link
+      href={model.href}
+      className="group flex flex-col overflow-hidden rounded-lg border border-surface-line bg-surface shadow-sm transition-shadow hover:shadow-md lg:flex-row"
+    >
+      <div className="relative aspect-[16/9] w-full overflow-hidden bg-surface-sunken lg:aspect-auto lg:w-1/2">
+        <Image
+          src={model.image}
+          alt={`${model.name} — ${positioning}`}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          priority
+        />
+      </div>
+      <div className="flex flex-1 flex-col justify-center gap-4 p-8">
+        {badge}
+        <p className="text-headline font-semibold tracking-tight text-text-strong">{model.name}</p>
+        <p className="max-w-md text-body leading-relaxed text-text-subtle">{positioning}</p>
+        <div className="pt-2">
+          <SpecStrip specs={model.specs} />
+        </div>
+        <span className="mt-2 text-body-sm font-semibold text-brand">View model →</span>
+      </div>
+    </Link>
+  );
+}
+
 export async function generateStaticParams() {
   return ranges.map((r) => ({ range: r.slug }));
 }
@@ -45,18 +87,13 @@ export async function generateMetadata({ params }: Props) {
 export default async function RangePage({ params }: Props) {
   const { locale, range: rangeSlug } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: "rangePage" });
 
   const range = getRangeBySlug(rangeSlug as Range["slug"]);
 
   if (!range) notFound();
 
   const allModels = getModelsByRange(range.slug);
-  // Models are authored small-to-large per range; the flagship is the last
-  // (largest) one, pulled out for the featured card. The rest render below,
-  // reversed so the grid still reads large-to-small.
-  const flagship = allModels[allModels.length - 1];
-  const gridModels = allModels.slice(0, -1).reverse();
-  const flagshipPositioning = resolveText(flagship.positioning, locale);
 
   return (
     <>
@@ -88,45 +125,130 @@ export default async function RangePage({ params }: Props) {
             Models
           </h2>
 
-          {/* Flagship — featured, full-width */}
-          <Link
-            href={flagship.href}
-            className="group mb-6 flex flex-col overflow-hidden rounded-lg border border-surface-line bg-surface shadow-sm transition-shadow hover:shadow-md lg:flex-row"
-          >
-            <div className="relative aspect-[16/9] w-full overflow-hidden bg-surface-sunken lg:aspect-auto lg:w-1/2">
-              <Image
-                src={flagship.image}
-                alt={`${flagship.name} — ${flagshipPositioning}`}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                priority
-              />
-            </div>
-            <div className="flex flex-1 flex-col justify-center gap-4 p-8">
-              <span className="text-caption font-semibold uppercase tracking-[0.16em] text-brand">
-                Flagship
-              </span>
-              <p className="text-headline font-semibold tracking-tight text-text-strong">
-                {flagship.name}
-              </p>
-              <p className="max-w-md text-body leading-relaxed text-text-subtle">
-                {flagshipPositioning}
-              </p>
-              <div className="pt-2">
-                <SpecStrip specs={flagship.specs} />
+          {range.slug === "golden-line" && (
+            <>
+              {/* Three roughly-equal featured cards: current flagship (G980,
+                  flagged new/limited) alongside the two next-most-relevant
+                  models (G750, G680) — not one dominant card + two small. */}
+              <div className="mb-10 grid gap-6 lg:grid-cols-3">
+                {goldenFeaturedSlugs.map((slug) => {
+                  const model = getModelBySlug(slug)!;
+                  const positioning = resolveText(model.positioning, locale);
+                  return (
+                    <Link
+                      key={slug}
+                      href={model.href}
+                      className="group flex flex-col overflow-hidden rounded-lg border border-surface-line bg-surface shadow-sm transition-shadow hover:shadow-md"
+                    >
+                      <div className="relative aspect-[4/3] w-full overflow-hidden bg-surface-sunken">
+                        <Image
+                          src={model.image}
+                          alt={`${model.name} — ${positioning}`}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          sizes="(min-width: 1024px) 33vw, 100vw"
+                          priority
+                        />
+                      </div>
+                      <div className="flex flex-1 flex-col gap-3 p-6">
+                        {slug === "g980" && (
+                          <span className="inline-flex w-fit items-center rounded-full bg-golden-soft px-2.5 py-1 text-caption font-semibold uppercase tracking-[0.08em] text-golden">
+                            {t("newLimitedAvailability")}
+                          </span>
+                        )}
+                        <p className="text-title font-semibold tracking-tight text-text-strong">{model.name}</p>
+                        <p className="text-body leading-relaxed text-text-subtle">{positioning}</p>
+                        <div className="pt-1">
+                          <SpecStrip specs={model.specs} />
+                        </div>
+                        <span className="mt-1 text-body-sm font-semibold text-brand">View model →</span>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
-              <span className="mt-2 text-body-sm font-semibold text-brand">
-                View model →
-              </span>
-            </div>
-          </Link>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {gridModels.map((model) => (
-              <ModelCard key={model.slug} model={model} />
-            ))}
-          </div>
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {goldenGridOrder.map((slug) => (
+                  <ModelCard key={slug} model={getModelBySlug(slug)!} />
+                ))}
+              </div>
+            </>
+          )}
+
+          {range.slug === "drive-line" && (
+            <>
+              {/* D600 — one hull, three layouts, sub-sectioned as a group
+                  rather than three equal-weight grid entries. */}
+              {(() => {
+                const d600 = getModelBySlug("d600")!;
+                return (
+                  <div className="mb-16">
+                    <div className="mb-6 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                      <h3 className="text-title font-semibold tracking-tight text-text-strong">
+                        {d600.name}
+                      </h3>
+                      <span className="text-body text-text-subtle">{t("d600Tagline")}</span>
+                    </div>
+                    <LayoutTiles
+                      layouts={d600.layouts!}
+                      accent={range.accent}
+                      modelSlug={d600.slug}
+                      rangeSlug={range.slug}
+                    />
+                  </div>
+                );
+              })()}
+
+              {/* D950 — comes second in reading order: it's the larger hull,
+                  but D600 is the more commercially relevant entry point. */}
+              {(() => {
+                const d950 = getModelBySlug("d950-drive")!;
+                const positioning = resolveText(d950.positioning, locale);
+                return (
+                  <div>
+                    <h3 className="mb-6 text-title font-semibold tracking-tight text-text-strong">
+                      {d950.name}
+                    </h3>
+                    <FeaturedCard model={d950} positioning={positioning} />
+                  </div>
+                );
+              })()}
+            </>
+          )}
+
+          {range.slug === "silver-line" && (
+            <>
+              {/* Models are authored small-to-large; the flagship is the
+                  last (largest) one, pulled out for the featured card. The
+                  rest render below, reversed so the grid reads large-to-small. */}
+              {(() => {
+                const flagship = allModels[allModels.length - 1];
+                const gridModels = allModels.slice(0, -1).reverse();
+                const positioning = resolveText(flagship.positioning, locale);
+                return (
+                  <>
+                    <div className="mb-6">
+                      <FeaturedCard
+                        model={flagship}
+                        positioning={positioning}
+                        badge={
+                          <span className="text-caption font-semibold uppercase tracking-[0.16em] text-brand">
+                            Flagship
+                          </span>
+                        }
+                      />
+                    </div>
+                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                      {gridModels.map((model) => (
+                        <ModelCard key={model.slug} model={model} />
+                      ))}
+                    </div>
+                  </>
+                );
+              })()}
+            </>
+          )}
         </div>
       </section>
     </>

@@ -1,4 +1,8 @@
 {
+  "rangePage": {
+    "newLimitedAvailability": "New — limited availability",
+    "d600Tagline": "One hull, three layouts."
+  },
   "nav": {
     "goldenLine": "Golden Line",
     "silverLine": "Silver Line",
