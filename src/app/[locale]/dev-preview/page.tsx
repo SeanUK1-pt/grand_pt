@@ -7,7 +7,13 @@ import EnquireForm from "@/components/EnquireForm";
 import { ranges } from "@/data/ranges";
 import { getModelBySlug } from "@/data/models";
 import { resolveText } from "@/data/localized-text";
-import type { RangeAccent } from "@/data/ranges";
+import type { Range, RangeAccent } from "@/data/ranges";
+
+const heroImage: Record<Range["slug"], string> = {
+  "golden-line": "/images/boats/g750/detail-11.jpg",
+  "silver-line": "/images/boats/s470n/detail-12.jpg",
+  "drive-line": "/images/boats/d950-drive/detail-22.jpg",
+};
 
 const demoExtras = [
   { partNumber: "3508", name: "Teak deck inlay" },
@@ -113,6 +119,7 @@ export default async function DevPreview({ params }: Props) {
               name={range.name}
               tagline={resolveText(range.tagline, locale)}
               voiceLine={resolveText(range.voiceLine, locale)}
+              image={heroImage[range.slug]}
             />
           </div>
         ))}

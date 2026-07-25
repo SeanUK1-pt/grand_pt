@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { RangeAccent } from "@/data/ranges";
 
 type Props = {
@@ -5,6 +6,7 @@ type Props = {
   name: string;
   tagline: string;
   voiceLine: string;
+  image: string;
 };
 
 // Thin rule in the range accent colour — detail, not wash
@@ -20,10 +22,26 @@ const accentText: Record<RangeAccent, string> = {
   drive:  "text-drive",
 };
 
-export default function RangeHero({ accent, name, tagline, voiceLine }: Props) {
+export default function RangeHero({ accent, name, tagline, voiceLine, image }: Props) {
   return (
-    <section className="bg-ink pt-32 pb-20">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="relative flex min-h-[500px] items-end overflow-hidden bg-ink sm:min-h-[560px]">
+      <Image
+        src={image}
+        alt={name}
+        fill
+        priority
+        className="object-cover"
+        sizes="100vw"
+      />
+      {/* Bottom-to-top scrim — same tuning as RangeTiles' text-over-photo
+          pattern (proven for legibility of overlaid text, unlike the model
+          page hero's edge-only scrim, which has no text over the photo) */}
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.85)_0%,rgba(0,0,0,0.35)_60%,rgba(0,0,0,0.1)_100%)]"
+      />
+
+      <div className="relative mx-auto w-full max-w-7xl px-6 pb-16 pt-32">
         {/* Thin accent rule above the name */}
         <div className={`h-0.5 w-12 mb-8 ${accentRule[accent]}`} aria-hidden />
 
