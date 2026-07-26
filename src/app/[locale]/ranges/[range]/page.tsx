@@ -127,43 +127,28 @@ export default async function RangePage({ params }: Props) {
 
           {range.slug === "golden-line" && (
             <>
-              {/* Three roughly-equal featured cards: current flagship (G980,
-                  flagged new/limited) alongside the two next-most-relevant
-                  models (G750, G680) — not one dominant card + two small. */}
-              <div className="mb-10 grid gap-6 lg:grid-cols-3">
+              {/* Three featured models, each the same wide image+copy card
+                  used for a single flagship elsewhere — stacked, not
+                  squeezed into a 3-across row, so each keeps its full
+                  double-width weight. G980 carries the new/limited badge;
+                  G750 and G680 don't. */}
+              <div className="mb-10 flex flex-col gap-6">
                 {goldenFeaturedSlugs.map((slug) => {
                   const model = getModelBySlug(slug)!;
                   const positioning = resolveText(model.positioning, locale);
                   return (
-                    <Link
+                    <FeaturedCard
                       key={slug}
-                      href={model.href}
-                      className="group flex flex-col overflow-hidden rounded-lg border border-surface-line bg-surface shadow-sm transition-shadow hover:shadow-md"
-                    >
-                      <div className="relative aspect-[4/3] w-full overflow-hidden bg-surface-sunken">
-                        <Image
-                          src={model.image}
-                          alt={`${model.name} — ${positioning}`}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
-                          sizes="(min-width: 1024px) 33vw, 100vw"
-                          priority
-                        />
-                      </div>
-                      <div className="flex flex-1 flex-col gap-3 p-6">
-                        {slug === "g980" && (
+                      model={model}
+                      positioning={positioning}
+                      badge={
+                        slug === "g980" ? (
                           <span className="inline-flex w-fit items-center rounded-full bg-golden-soft px-2.5 py-1 text-caption font-semibold uppercase tracking-[0.08em] text-golden">
                             {t("newLimitedAvailability")}
                           </span>
-                        )}
-                        <p className="text-title font-semibold tracking-tight text-text-strong">{model.name}</p>
-                        <p className="text-body leading-relaxed text-text-subtle">{positioning}</p>
-                        <div className="pt-1">
-                          <SpecStrip specs={model.specs} />
-                        </div>
-                        <span className="mt-1 text-body-sm font-semibold text-brand">View model →</span>
-                      </div>
-                    </Link>
+                        ) : undefined
+                      }
+                    />
                   );
                 })}
               </div>

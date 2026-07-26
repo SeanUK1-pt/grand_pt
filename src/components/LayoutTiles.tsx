@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import type { ModelLayout } from "@/data/models";
 import type { RangeAccent } from "@/data/ranges";
@@ -34,43 +35,56 @@ export default function LayoutTiles({ layouts, accent, modelSlug, rangeSlug }: P
         return (
           <div
             key={layout.name}
-            className="flex flex-col gap-3 overflow-hidden rounded-lg border border-surface-line bg-surface p-5 shadow-sm"
+            className="flex flex-col overflow-hidden rounded-lg border border-surface-line bg-surface shadow-sm"
           >
-            <div className={`h-0.5 w-8 ${accentRule[accent]}`} aria-hidden />
-            <p className="text-title font-semibold tracking-tight text-text-strong">{layout.name}</p>
-            <p className="text-body leading-relaxed text-text-muted text-pretty">
-              {layout.useCaseLine}
-            </p>
-
-            {layout.specs && layout.specs.length > 0 && (
-              <dl className="mt-1 flex flex-col gap-1 border-t border-surface-line pt-3">
-                {layout.specs.map(({ label, value }) => (
-                  <div key={label} className="flex items-baseline justify-between gap-4">
-                    <dt className="text-caption text-text-subtle">{label}</dt>
-                    <dd className="text-caption font-medium text-text-strong">{value}</dd>
-                  </div>
-                ))}
-              </dl>
-            )}
-
-            {layout.priceFrom !== undefined && (
-              <div className="mt-1 flex flex-col gap-0.5">
-                <span className="text-lead font-semibold tracking-tight text-text-strong">
-                  {formatPrice(layout.priceFrom)}
-                </span>
-                {layout.priceLabel && (
-                  <span className="text-caption text-text-subtle">{layout.priceLabel}</span>
-                )}
+            {layout.image && (
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-surface-sunken">
+                <Image
+                  src={layout.image}
+                  alt={`${layout.name} layout`}
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                />
               </div>
             )}
+            <div className="flex flex-1 flex-col gap-3 p-5">
+              <div className={`h-0.5 w-8 ${accentRule[accent]}`} aria-hidden />
+              <p className="text-title font-semibold tracking-tight text-text-strong">{layout.name}</p>
+              <p className="text-body leading-relaxed text-text-muted text-pretty">
+                {layout.useCaseLine}
+              </p>
 
-            <div className="mt-2">
-              <Link
-                href={enquireHref}
-                className="inline-flex items-center rounded-md bg-pop px-6 py-3 text-body-sm font-semibold text-pop-contrast transition-opacity hover:opacity-90"
-              >
-                Enquire about {layout.name}
-              </Link>
+              {layout.specs && layout.specs.length > 0 && (
+                <dl className="mt-1 flex flex-col gap-1 border-t border-surface-line pt-3">
+                  {layout.specs.map(({ label, value }) => (
+                    <div key={label} className="flex items-baseline justify-between gap-4">
+                      <dt className="text-caption text-text-subtle">{label}</dt>
+                      <dd className="text-caption font-medium text-text-strong">{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              )}
+
+              {layout.priceFrom !== undefined && (
+                <div className="mt-1 flex flex-col gap-0.5">
+                  <span className="text-lead font-semibold tracking-tight text-text-strong">
+                    {formatPrice(layout.priceFrom)}
+                  </span>
+                  {layout.priceLabel && (
+                    <span className="text-caption text-text-subtle">{layout.priceLabel}</span>
+                  )}
+                </div>
+              )}
+
+              <div className="mt-2">
+                <Link
+                  href={enquireHref}
+                  className="inline-flex items-center rounded-md bg-pop px-6 py-3 text-body-sm font-semibold text-pop-contrast transition-opacity hover:opacity-90"
+                >
+                  Enquire about {layout.name}
+                </Link>
+              </div>
             </div>
           </div>
         );
