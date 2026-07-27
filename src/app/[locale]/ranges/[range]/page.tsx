@@ -169,11 +169,11 @@ export default async function RangePage({ params }: Props) {
                 const d600 = getModelBySlug("d600")!;
                 return (
                   <div className="mb-16">
-                    <div className="mb-6 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                      <h3 className="text-title font-semibold tracking-tight text-text-strong">
+                    <div className="mb-6 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                      <h3 className="text-headline font-semibold tracking-tight text-text-strong">
                         {d600.name}
                       </h3>
-                      <span className="text-body text-text-subtle">{t("d600Tagline")}</span>
+                      <span className="text-lead text-text-subtle">{t("d600Tagline")}</span>
                     </div>
                     <LayoutTiles
                       layouts={d600.layouts!}
@@ -192,9 +192,12 @@ export default async function RangePage({ params }: Props) {
                 const positioning = resolveText(d950.positioning, locale);
                 return (
                   <div>
-                    <h3 className="mb-6 text-title font-semibold tracking-tight text-text-strong">
-                      {d950.name}
-                    </h3>
+                    <div className="mb-6 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                      <h3 className="text-headline font-semibold tracking-tight text-text-strong">
+                        {d950.name}
+                      </h3>
+                      <span className="text-lead text-text-subtle">{t("d950Tagline")}</span>
+                    </div>
                     <FeaturedCard model={d950} positioning={positioning} />
                   </div>
                 );
