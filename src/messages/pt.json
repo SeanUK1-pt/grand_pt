@@ -2,55 +2,71 @@
   "rangePage": {
     "newLimitedAvailability": "Novo — disponibilidade limitada",
     "d600Tagline": "Um casco, três configurações.",
-    "d950Tagline": "Nível comercial. Feito para trabalhar."
+    "d950Tagline": "Nível comercial. Feito para trabalhar.",
+    "models": "Modelos",
+    "flagship": "Modelo principal",
+    "viewModel": "Ver modelo →"
+  },
+  "layoutTiles": {
+    "enquireAbout": "Saber mais sobre o {name}"
+  },
+  "modelPage": {
+    "enquireAboutModel": "Saber mais sobre o {name}",
+    "chooseALayout": "Escolha uma configuração",
+    "fullSpecification": "Ficha técnica completa",
+    "features": "Características",
+    "moreFromRange": "Mais da {range}",
+    "closingQuestion": "Tem alguma questão? Fale connosco sobre o {name}.",
+    "closingBody": "A equipa da Algarve Boat Group pode esclarecer especificações, disponibilidade e opções de configuração.",
+    "getInTouch": "Entre em contacto →"
   },
   "nav": {
     "goldenLine": "Golden Line",
     "silverLine": "Silver Line",
     "driveLine": "Drive Line",
-    "ourStory": "Our Story [PT translation pending]",
-    "contact": "Contact [PT translation pending]"
+    "ourStory": "A Nossa História",
+    "contact": "Contacto"
   },
   "enquireForm": {
     "intro": {
-      "golden": "Let's talk about bringing your {modelName} to life. [PT translation pending]",
-      "silver": "Tell us about the build you had in mind. [PT translation pending]",
-      "drive": "Configured your {modelName}. What's next? [PT translation pending]"
+      "golden": "Vamos falar sobre trazer o seu {modelName} à vida.",
+      "silver": "Conte-nos sobre a configuração que tinha em mente.",
+      "drive": "Configurou o seu {modelName}. E agora?"
     },
-    "extrasHeading": "Based on your configuration: [PT translation pending]",
+    "extrasHeading": "Com base na sua configuração:",
     "fields": {
-      "name": "Name [PT translation pending]",
-      "email": "Email [PT translation pending]",
-      "phone": "Phone [PT translation pending]",
-      "notes": "Notes [PT translation pending]"
+      "name": "Nome",
+      "email": "Email",
+      "phone": "Telefone",
+      "notes": "Notas"
     },
-    "submit": "Send enquiry [PT translation pending]",
-    "submitting": "Sending… [PT translation pending]",
+    "submit": "Enviar pedido",
+    "submitting": "A enviar…",
     "success": {
-      "heading": "Thanks — we'll be in touch. [PT translation pending]",
-      "body": "A member of the Algarve Boat Group team will follow up shortly. [PT translation pending]"
+      "heading": "Obrigado — entraremos em contacto.",
+      "body": "Um membro da equipa da Algarve Boat Group irá contactá-lo brevemente."
     },
     "errors": {
-      "required": "Please fill in your name and email before sending. [PT translation pending]"
+      "required": "Por favor preencha o seu nome e email antes de enviar."
     }
   },
   "contact": {
     "heading": "Contacte-nos",
     "intro": "Estamos sediados em Portimão, Portugal, e representamos a Grand Boats em todo o país. Seja para esclarecer uma dúvida sobre um modelo específico, marcar uma visita ou simplesmente falar sobre que tipo de barco se adapta às suas necessidades — entre em contacto.",
     "fields": {
-      "name": "Name [PT translation pending]",
-      "email": "Email [PT translation pending]",
-      "phone": "Phone [PT translation pending]",
-      "message": "Message [PT translation pending]"
+      "name": "Nome",
+      "email": "Email",
+      "phone": "Telefone",
+      "message": "Mensagem"
     },
-    "submit": "Send message [PT translation pending]",
-    "submitting": "Sending… [PT translation pending]",
+    "submit": "Enviar mensagem",
+    "submitting": "A enviar…",
     "success": {
-      "heading": "Thanks — we'll be in touch. [PT translation pending]",
-      "body": "A member of the Algarve Boat Group team will follow up shortly. [PT translation pending]"
+      "heading": "Obrigado — entraremos em contacto.",
+      "body": "Um membro da equipa da Algarve Boat Group irá contactá-lo brevemente."
     },
     "errors": {
-      "required": "Please fill in your name and email before sending. [PT translation pending]"
+      "required": "Por favor preencha o seu nome e email antes de enviar."
     },
     "address": {
       "company": "Algarve Boat Group",

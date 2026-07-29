@@ -41,7 +41,17 @@ const goldenGridOrder = ["g850", "g580", "g500", "g420", "g380", "g380n", "g340"
 // other. Used for Silver's single flagship and Drive's D950 (Golden's
 // three-across featured section has its own smaller card markup below,
 // since three of these side by side would be too heavy).
-function FeaturedCard({ model, positioning, badge }: { model: Model; positioning: string; badge?: React.ReactNode }) {
+function FeaturedCard({
+  model,
+  positioning,
+  badge,
+  viewModelLabel,
+}: {
+  model: Model;
+  positioning: string;
+  badge?: React.ReactNode;
+  viewModelLabel: string;
+}) {
   return (
     <Link
       href={model.href}
@@ -64,7 +74,7 @@ function FeaturedCard({ model, positioning, badge }: { model: Model; positioning
         <div className="pt-2">
           <SpecStrip specs={model.specs} />
         </div>
-        <span className="mt-2 text-body-sm font-semibold text-brand">View model →</span>
+        <span className="mt-2 text-body-sm font-semibold text-brand">{viewModelLabel}</span>
       </div>
     </Link>
   );
@@ -122,7 +132,7 @@ export default async function RangePage({ params }: Props) {
       <section aria-label={`${range.name} models`} className="bg-surface pb-24">
         <div className="mx-auto max-w-7xl px-6">
           <h2 className="mb-10 text-title font-semibold tracking-tight text-text-strong">
-            Models
+            {t("models")}
           </h2>
 
           {range.slug === "golden-line" && (
@@ -141,6 +151,7 @@ export default async function RangePage({ params }: Props) {
                       key={slug}
                       model={model}
                       positioning={positioning}
+                      viewModelLabel={t("viewModel")}
                       badge={
                         slug === "g980" ? (
                           <span className="inline-flex w-fit items-center rounded-full bg-golden-soft px-2.5 py-1 text-caption font-semibold uppercase tracking-[0.08em] text-golden">
@@ -198,7 +209,7 @@ export default async function RangePage({ params }: Props) {
                       </h3>
                       <span className="text-lead text-text-subtle">{t("d950Tagline")}</span>
                     </div>
-                    <FeaturedCard model={d950} positioning={positioning} />
+                    <FeaturedCard model={d950} positioning={positioning} viewModelLabel={t("viewModel")} />
                   </div>
                 );
               })()}
@@ -220,9 +231,10 @@ export default async function RangePage({ params }: Props) {
                       <FeaturedCard
                         model={flagship}
                         positioning={positioning}
+                        viewModelLabel={t("viewModel")}
                         badge={
                           <span className="text-caption font-semibold uppercase tracking-[0.16em] text-brand">
-                            Flagship
+                            {t("flagship")}
                           </span>
                         }
                       />

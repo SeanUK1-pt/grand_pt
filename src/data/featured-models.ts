@@ -10,7 +10,6 @@ export type FeaturedModel = {
   slug: string;
   name: string;
   range: "golden" | "silver" | "drive";
-  tagline: string;
   image: string;
   href: string;
 };

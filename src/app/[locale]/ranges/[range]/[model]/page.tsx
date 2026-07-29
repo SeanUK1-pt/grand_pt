@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
-import { setRequestLocale } from "next-intl/server";
+import { setRequestLocale, getTranslations } from "next-intl/server";
 import RangeBadge from "@/components/RangeBadge";
 import SpecStrip from "@/components/SpecStrip";
 import SpecSheet from "@/components/SpecSheet";
@@ -11,6 +11,7 @@ import ModelCard from "@/components/ModelCard";
 import { getRangeBySlug } from "@/data/ranges";
 import { models, getModelBySlug, getModelsByRange } from "@/data/models";
 import { resolveText } from "@/data/localized-text";
+import { translatePriceLabel } from "@/data/spec-labels";
 import type { Range } from "@/data/ranges";
 
 type Props = {
@@ -37,6 +38,7 @@ export async function generateMetadata({ params }: Props) {
 export default async function ModelPage({ params }: Props) {
   const { locale, range: rangeSlug, model: modelSlug } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: "modelPage" });
 
   // Validate both slugs and that the model belongs to the stated range
   const range = getRangeBySlug(rangeSlug as Range["slug"]);
@@ -124,7 +126,7 @@ export default async function ModelPage({ params }: Props) {
                 {priceFormatted}
               </span>
               {model.priceLabel && (
-                <span className="text-caption text-ink-text-muted">{model.priceLabel}</span>
+                <span className="text-caption text-ink-text-muted">{translatePriceLabel(model.priceLabel, locale)}</span>
               )}
             </div>
           )}
@@ -135,7 +137,7 @@ export default async function ModelPage({ params }: Props) {
               href={enquireHref}
               className="inline-flex items-center rounded-md bg-pop px-6 py-3 text-body-sm font-semibold text-pop-contrast transition-opacity hover:opacity-90"
             >
-              Enquire about the {model.name}
+              {t("enquireAboutModel", { name: model.name })}
             </Link>
           </div>
         </div>
@@ -148,7 +150,7 @@ export default async function ModelPage({ params }: Props) {
         <section aria-label="Layouts" className="bg-surface-muted py-20">
           <div className="mx-auto max-w-7xl px-6">
             <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
-              Choose a layout
+              {t("chooseALayout")}
             </h2>
             <LayoutTiles
               layouts={model.layouts}
@@ -165,7 +167,7 @@ export default async function ModelPage({ params }: Props) {
       <section aria-label="Full specification" className="bg-surface py-20">
         <div className="mx-auto max-w-7xl px-6">
           <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
-            Full specification
+            {t("fullSpecification")}
           </h2>
           <SpecSheet specs={model.fullSpecs} accent={model.range} />
         </div>
@@ -175,7 +177,7 @@ export default async function ModelPage({ params }: Props) {
       <section aria-label="Features" className="bg-surface-muted py-20">
         <div className="mx-auto max-w-7xl px-6">
           <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
-            Features
+            {t("features")}
           </h2>
           <FeatureList features={features} accent={model.range} />
         </div>
@@ -189,7 +191,7 @@ export default async function ModelPage({ params }: Props) {
         >
           <div className="mx-auto max-w-7xl px-6">
             <h2 className="mb-10 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
-              More from the {range.name}
+              {t("moreFromRange", { range: range.name })}
             </h2>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {relatedModels.map((m) => (
@@ -204,17 +206,16 @@ export default async function ModelPage({ params }: Props) {
       <section className="bg-ink py-20">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <p className="text-headline font-semibold leading-tight tracking-tight text-balance text-ink-text">
-            Have a question? Talk to us about the {model.name}.
+            {t("closingQuestion", { name: model.name })}
           </p>
           <p className="mt-4 text-body text-ink-text-muted">
-            The team at Algarve Boat Group can walk you through specifications,
-            availability, and configuration options.
+            {t("closingBody")}
           </p>
           <Link
             href={enquireHref}
             className="mt-8 inline-flex items-center rounded-md bg-pop px-6 py-3 text-body-sm font-semibold text-pop-contrast transition-opacity hover:opacity-90"
           >
-            Get in touch →
+            {t("getInTouch")}
           </Link>
         </div>
       </section>

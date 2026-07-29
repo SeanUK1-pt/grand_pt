@@ -1,3 +1,6 @@
+import { getLocale } from "next-intl/server";
+import { translateSpecLabel } from "@/data/spec-labels";
+
 type ModelSpec = { value: string; label: string };
 
 type Props = {
@@ -5,8 +8,9 @@ type Props = {
   surface?: "light" | "dark";
 };
 
-export default function SpecStrip({ specs, surface = "light" }: Props) {
+export default async function SpecStrip({ specs, surface = "light" }: Props) {
   const isDark = surface === "dark";
+  const locale = await getLocale();
 
   return (
     <div
@@ -21,7 +25,7 @@ export default function SpecStrip({ specs, surface = "light" }: Props) {
               isDark ? "text-ink-text-muted" : "text-text-subtle"
             }`}
           >
-            {label}
+            {translateSpecLabel(label, locale)}
           </span>
           <span
             className={`text-lead font-semibold tabular-nums leading-none tracking-tight ${

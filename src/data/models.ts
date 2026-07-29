@@ -17,7 +17,7 @@ export type Feature = {
 
 export type ModelLayout = {
   name: string;
-  useCaseLine: string;
+  useCaseLine: LocalizedText;
   priceFrom?: number;
   priceLabel?: string;
   specs?: { label: string; value: string }[];
@@ -41,30 +41,6 @@ export type Model = FeaturedModel & {
   layouts?: ModelLayout[];
 };
 
-// PLACEHOLDER — feature titles describe the standard category set; descriptions
-// are generic placeholders pending real equipment/layout copy per model. Not
-// covered by the grandboats.com scrape (spec tables + photos only).
-function placeholderFeatures(): Feature[] {
-  return [
-    {
-      title: { en: "Helm & console" },
-      description: { en: "PLACEHOLDER — description of console layout and instrumentation pending." },
-    },
-    {
-      title: { en: "Deck layout" },
-      description: { en: "PLACEHOLDER — description of seating and deck arrangement pending." },
-    },
-    {
-      title: { en: "Storage" },
-      description: { en: "PLACEHOLDER — description of stowage and locker provision pending." },
-    },
-    {
-      title: { en: "Standard equipment" },
-      description: { en: "PLACEHOLDER — list of standard-fit equipment pending." },
-    },
-  ];
-}
-
 // ── Real Grand Boats product lineup, scraped from grandboats.com (2026-07-05) ──
 // specs/fullSpecs values are verbatim from the manufacturer's own spec tables
 // (see /SCRAPED_SPECS.md for the raw source). tagline/positioning/features are
@@ -80,7 +56,6 @@ export const models: Model[] = [
     name: "G340",
     range: "golden",
     rangeSlug: "golden-line",
-    tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: {
       en: "The entry point to the range, with the same attention to detail as everything above it.",
       pt: "O ponto de entrada na gama, com o mesmo cuidado nos detalhes que todos os modelos acima.",
@@ -150,8 +125,10 @@ export const models: Model[] = [
     name: "G340N",
     range: "golden",
     rangeSlug: "golden-line",
-    tagline: "PLACEHOLDER — marketing tagline pending.",
-    positioning: { en: "PLACEHOLDER — positioning line pending." },
+    positioning: {
+      en: "A refreshed G340 — the same lightweight build and easy handling, with more power and a cleaner console for anyone who wants the classic tender brought up to date.",
+      pt: "Um G340 renovado — a mesma construção leve e fácil de manusear, com mais potência e uma consola mais moderna, para quem quer o tender clássico atualizado.",
+    },
     image: "/images/boats/g340n/detail-14.jpg",
     href: "/ranges/golden-line/g340n/",
     priceFrom: 10900,
@@ -188,14 +165,35 @@ export const models: Model[] = [
         { label: "Tube material", value: "PVC / Hypalon" },
       ] },
     ],
-    features: placeholderFeatures(),
+    features: [
+      {
+        title: { en: "More power, same lightweight build", pt: "Mais potência, a mesma construção leve" },
+        description: {
+          en: "40HP rather than the standard G340's 30HP, without adding weight worth mentioning. The extra headroom shows on a loaded tender run.",
+          pt: "40HP em vez dos 30HP do G340 standard, sem acrescentar peso que se note. A potência extra nota-se numa viagem de tender carregada.",
+        },
+      },
+      {
+        title: { en: "Updated console", pt: "Consola atualizada" },
+        description: {
+          en: "A cleaner dash with room for up to a 7-inch screen, plus the windshield and storage the standard G340 does without.",
+          pt: "Um painel mais limpo com espaço para um ecrã até 7 polegadas, além do para-brisas e arrumação que o G340 standard dispensa.",
+        },
+      },
+      {
+        title: { en: "Golden Line entry point, refreshed", pt: "Ponto de entrada da Golden Line, renovado" },
+        description: {
+          en: "Hypalon tubes, GRP stepends, and the fit and finish of the rest of the range — the same idea as the G340, brought up to date.",
+          pt: "Tubos em Hypalon, terminais em GRP e o acabamento do resto da gama — a mesma ideia do G340, atualizada.",
+        },
+      },
+    ],
   },
   {
     slug: "g380",
     name: "G380",
     range: "golden",
     rangeSlug: "golden-line",
-    tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: {
       en: "Lightweight, refined, and easy to handle. The ideal tender for a larger vessel, or a first step into the Golden Line.",
       pt: "Leve, refinado e fácil de manusear. O tender ideal para uma embarcação maior, ou um primeiro passo na Golden Line.",
@@ -265,8 +263,10 @@ export const models: Model[] = [
     name: "G380N",
     range: "golden",
     rangeSlug: "golden-line",
-    tagline: "PLACEHOLDER — marketing tagline pending.",
-    positioning: { en: "PLACEHOLDER — positioning line pending." },
+    positioning: {
+      en: "A refreshed G380 — the same lightweight build the range is known for, with 50HP rather than 40, a modern console, and the finish to match the rest of the range.",
+      pt: "Um G380 renovado — a mesma construção leve pela qual a gama é conhecida, com 50HP em vez de 40, uma consola moderna e o acabamento à altura do resto da gama.",
+    },
     image: "/images/boats/g380n/detail-17.jpg",
     href: "/ranges/golden-line/g380n/",
     priceFrom: 13900,
@@ -303,14 +303,35 @@ export const models: Model[] = [
         { label: "Tube material", value: "PVC / Hypalon" },
       ] },
     ],
-    features: placeholderFeatures(),
+    features: [
+      {
+        title: { en: "More power for the same footprint", pt: "Mais potência, no mesmo tamanho" },
+        description: {
+          en: "50HP against the standard G380's 40 — enough extra to notice fully loaded, without changing the boat's size or weight class.",
+          pt: "50HP contra os 40 do G380 standard — o suficiente para se notar com a embarcação carregada, sem alterar o tamanho ou a classe de peso.",
+        },
+      },
+      {
+        title: { en: "Modern console, proper dashboard", pt: "Consola moderna, painel a sério" },
+        description: {
+          en: "Room for up to a 7-inch screen, a real windshield, and a steering position that feels considered rather than improvised.",
+          pt: "Espaço para um ecrã até 7 polegadas, para-brisas verdadeiro e uma posição de condução que parece pensada, não improvisada.",
+        },
+      },
+      {
+        title: { en: "Golden Line tender, updated", pt: "Tender Golden Line, atualizado" },
+        description: {
+          en: "Same lightweight, Hypalon-tubed build the G380 is known for, with the console and equipment brought up to the current standard.",
+          pt: "A mesma construção leve, com tubos em Hypalon, pela qual o G380 é conhecido, com a consola e equipamento atualizados ao padrão atual.",
+        },
+      },
+    ],
   },
   {
     slug: "g420",
     name: "G420",
     range: "golden",
     rangeSlug: "golden-line",
-    tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: {
       en: "A proper little cruiser — well-finished, well-thought-out, and surprisingly capable for its footprint.",
       pt: "Um verdadeiro pequeno cruzeiro — bem acabado, bem pensado e surpreendentemente capaz para o seu tamanho.",
@@ -380,7 +401,6 @@ export const models: Model[] = [
     name: "G500",
     range: "golden",
     rangeSlug: "golden-line",
-    tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: {
       en: "Small enough to run as a tender, capable enough to stand alone. The compact pocket cruiser that punches well above its size.",
       pt: "Pequeno o suficiente para funcionar como tender, capaz o suficiente para ser independente. O pocket cruiser compacto que supera em muito o seu tamanho.",
@@ -450,7 +470,6 @@ export const models: Model[] = [
     name: "G580",
     range: "golden",
     rangeSlug: "golden-line",
-    tagline: "The entry point to Golden Line quality.",
     positioning: {
       en: "The bridge between the compact tenders and the full cruisers. More boat than it looks, without the commitment of the bigger hulls.",
       pt: "A ponte entre os tenders compactos e os cruzeiros completos. Mais barco do que parece, sem o compromisso dos cascos maiores.",
@@ -520,7 +539,6 @@ export const models: Model[] = [
     name: "G680",
     range: "golden",
     rangeSlug: "golden-line",
-    tagline: "Built to be lived aboard.",
     positioning: {
       en: "The sweet spot. Cabin comfort, centre console simplicity, and enough hull to handle whatever the Atlantic sends.",
       pt: "O equilíbrio perfeito. Conforto de cabine, simplicidade de consola central e casco suficiente para o que o Atlântico trouxer.",
@@ -590,7 +608,6 @@ export const models: Model[] = [
     name: "G750",
     range: "golden",
     rangeSlug: "golden-line",
-    tagline: "More space. Same conviction.",
     positioning: {
       en: "The serious cruiser of the range — big enough for overnights, fast enough to make them count.",
       pt: "O cruzeiro a sério da gama — grande o suficiente para pernoitas, rápido o suficiente para que valham a pena.",
@@ -660,7 +677,6 @@ export const models: Model[] = [
     name: "G850",
     range: "golden",
     rangeSlug: "golden-line",
-    tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: {
       en: "Eight and a half metres, up to 400HP, twin engines optional. For when the destination is further away than the horizon.",
       pt: "Oito metros e meio, até 400CV, dois motores opcional. Para quando o destino está mais longe do que o horizonte.",
@@ -672,7 +688,7 @@ export const models: Model[] = [
     specs: [
       { value: "8.50m", label: "LOA" },
       { value: "2.95m", label: "Beam" },
-      { value: "200 hp", label: "Max power" },
+      { value: "400 hp", label: "Max power" },
     ],
     fullSpecs: [
       { category: "Dimensions", items: [
@@ -730,7 +746,6 @@ export const models: Model[] = [
     name: "G980",
     range: "golden",
     rangeSlug: "golden-line",
-    tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: {
       en: "The largest Grand ever built. Offshore range, twin-engine power, and the signature hypalon tubes that handle whatever the Atlantic throws at it.",
       pt: "O maior Grand alguma vez construído. Autonomia oceânica, potência de dois motores e os icónicos tubos em Hypalon que aguentam o que o Atlântico lhes lançar.",
@@ -742,7 +757,7 @@ export const models: Model[] = [
     specs: [
       { value: "10.00m", label: "LOA" },
       { value: "3.40m", label: "Beam" },
-      { value: "350 hp", label: "Max power" },
+      { value: "700 hp", label: "Max power" },
     ],
     fullSpecs: [
       { category: "Dimensions", items: [
@@ -802,7 +817,6 @@ export const models: Model[] = [
     name: "S275",
     range: "silver",
     rangeSlug: "silver-line",
-    tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: {
       en: "The lightest in the range — easy to launch, easy to handle, easy to stow.",
       pt: "O mais leve da gama — fácil de lançar, fácil de manusear, fácil de arrumar.",
@@ -865,7 +879,6 @@ export const models: Model[] = [
     name: "S300",
     range: "silver",
     rangeSlug: "silver-line",
-    tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: {
       en: "Compact and capable. More tender than dinghy, without the footprint of the bigger hulls.",
       pt: "Compacto e capaz. Mais tender do que bote, sem a dimensão dos cascos maiores.",
@@ -928,7 +941,6 @@ export const models: Model[] = [
     name: "S330",
     range: "silver",
     rangeSlug: "silver-line",
-    tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: {
       en: "Clean, light, and honest. Does exactly what a good tender should do.",
       pt: "Limpo, leve e honesto. Faz exatamente o que um bom tender deve fazer.",
@@ -991,7 +1003,6 @@ export const models: Model[] = [
     name: "S370N",
     range: "silver",
     rangeSlug: "silver-line",
-    tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: {
       en: "A workhorse tender with enough polish to sit alongside premium vessels without apology.",
       pt: "Um tender de trabalho com acabamento suficiente para estar ao lado de embarcações premium sem necessitar de se desculpar.",
@@ -1054,7 +1065,6 @@ export const models: Model[] = [
     name: "S420N",
     range: "silver",
     rangeSlug: "silver-line",
-    tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: {
       en: "Solid, reliable, well-sized for yacht work. Fits davits, takes a crowd, gets on with it.",
       pt: "Sólido, fiável, bem dimensionado para trabalho em iate. Adapta-se a davits, transporta muita gente, cumpre a sua função.",
@@ -1117,7 +1127,6 @@ export const models: Model[] = [
     name: "S470N",
     range: "silver",
     rangeSlug: "silver-line",
-    tagline: "The most capable tender in the range — handles serious loads and real coastal conditions without fuss.",
     positioning: {
       en: "The most capable tender in the range — handles serious loads and real coastal conditions without fuss.",
       pt: "O tender mais capaz da gama — lida com cargas a sério e condições costeiras reais sem complicações.",
@@ -1188,7 +1197,6 @@ export const models: Model[] = [
     name: "D600",
     range: "drive",
     rangeSlug: "drive-line",
-    tagline: "The performance hull with a lifestyle fit-out. Fast when you want it, comfortable when you don't.",
     // NOTE: the approved copy batch provided separate positioning/features for
     // d600-active/d600-drive/d600-lux (as if they were three distinct models),
     // but this data layer models them as ONE d600 Model with a `layouts` array.
@@ -1258,7 +1266,10 @@ export const models: Model[] = [
     layouts: [
       {
         name: "Active",
-        useCaseLine: "PLACEHOLDER — framing for the Active layout pending.",
+        useCaseLine: {
+          en: "Straightforward and capable — sports seats, hydraulic steering, built for performance over comfort.",
+          pt: "Direto e capaz — bancos desportivos, direção hidráulica, construído para o desempenho antes do conforto.",
+        },
         image: "/images/boats/d600-active/detail-13.jpg",
         priceFrom: 42000,
         priceLabel: "Guide price from, VAT included",
@@ -1269,7 +1280,10 @@ export const models: Model[] = [
       },
       {
         name: "Drive",
-        useCaseLine: "PLACEHOLDER — framing for the Drive layout pending.",
+        useCaseLine: {
+          en: "Built to work — a customisable deck for sightseeing, fishing, diving, or commercial service.",
+          pt: "Construído para trabalhar — um convés personalizável para passeios, pesca, mergulho ou serviço comercial.",
+        },
         image: "/images/boats/d600-drive/detail-12.jpg",
         priceFrom: 45000,
         priceLabel: "Guide price from, VAT included",
@@ -1280,7 +1294,10 @@ export const models: Model[] = [
       },
       {
         name: "Lux",
-        useCaseLine: "PLACEHOLDER — framing for the Lux layout pending.",
+        useCaseLine: {
+          en: "The relaxed side of D600 — sundecks, freshwater, and finish that trades nothing off the performance underneath.",
+          pt: "O lado descontraído do D600 — solários, água doce e um acabamento que não sacrifica o desempenho por baixo.",
+        },
         image: "/images/boats/d600-lux/detail-11.jpg",
         priceFrom: 52000,
         priceLabel: "Guide price from, VAT included",
@@ -1296,7 +1313,6 @@ export const models: Model[] = [
     name: "D950",
     range: "drive",
     rangeSlug: "drive-line",
-    tagline: "PLACEHOLDER — marketing tagline pending.",
     positioning: {
       en: "Commercial-grade build, professional payload, serious offshore capability. Built to work.",
       pt: "Construção de grau comercial, carga útil profissional, capacidade oceânica a sério. Construído para trabalhar.",
@@ -1308,7 +1324,7 @@ export const models: Model[] = [
     specs: [
       { value: "9.54m", label: "LOA" },
       { value: "3.19m", label: "Beam" },
-      { value: "350 hp", label: "Max power" },
+      { value: "700 hp", label: "Max power" },
     ],
     fullSpecs: [
       { category: "Dimensions", items: [
@@ -1377,7 +1393,6 @@ export function toFeaturedModel(model: Model): FeaturedModel {
     slug: model.slug,
     name: model.name,
     range: model.range,
-    tagline: model.tagline,
     image: model.image,
     href: model.href,
   };

@@ -2,7 +2,23 @@
   "rangePage": {
     "newLimitedAvailability": "New — limited availability",
     "d600Tagline": "One hull, three layouts.",
-    "d950Tagline": "Commercial-grade. Built to work."
+    "d950Tagline": "Commercial-grade. Built to work.",
+    "models": "Models",
+    "flagship": "Flagship",
+    "viewModel": "View model →"
+  },
+  "layoutTiles": {
+    "enquireAbout": "Enquire about {name}"
+  },
+  "modelPage": {
+    "enquireAboutModel": "Enquire about the {name}",
+    "chooseALayout": "Choose a layout",
+    "fullSpecification": "Full specification",
+    "features": "Features",
+    "moreFromRange": "More from the {range}",
+    "closingQuestion": "Have a question? Talk to us about the {name}.",
+    "closingBody": "The team at Algarve Boat Group can walk you through specifications, availability, and configuration options.",
+    "getInTouch": "Get in touch →"
   },
   "nav": {
     "goldenLine": "Golden Line",
