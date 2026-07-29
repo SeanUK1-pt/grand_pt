@@ -6,6 +6,7 @@ import RangeBadge from "@/components/RangeBadge";
 import SpecStrip from "@/components/SpecStrip";
 import SpecSheet from "@/components/SpecSheet";
 import FeatureList from "@/components/FeatureList";
+import EquipmentList from "@/components/EquipmentList";
 import LayoutTiles from "@/components/LayoutTiles";
 import ModelCard from "@/components/ModelCard";
 import { getRangeBySlug } from "@/data/ranges";
@@ -39,6 +40,7 @@ export default async function ModelPage({ params }: Props) {
   const { locale, range: rangeSlug, model: modelSlug } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "modelPage" });
+  const tLayout = await getTranslations({ locale, namespace: "layoutTiles" });
 
   // Validate both slugs and that the model belongs to the stated range
   const range = getRangeBySlug(rangeSlug as Range["slug"]);
@@ -67,6 +69,28 @@ export default async function ModelPage({ params }: Props) {
     description: resolveText(f.description, locale),
     image: f.image,
   }));
+  const standardFeatures = model.standardFeatures.map((f) => resolveText(f, locale));
+  const optionalEquipment = model.optionalEquipment.map((f) => resolveText(f, locale));
+
+  // Layouted models (currently D600) get each layout's own full detail
+  // section further down the page instead of one generic spec/equipment/
+  // features block — see the `hasLayouts` render branch below.
+  const layoutDetails = (model.layouts ?? [])
+    .filter((l) => l.positioning && l.fullSpecs && l.features)
+    .map((l) => ({
+      name: l.name,
+      image: l.image,
+      positioning: resolveText(l.positioning!, locale),
+      fullSpecs: l.fullSpecs!,
+      standardFeatures: (l.standardFeatures ?? []).map((f) => resolveText(f, locale)),
+      optionalEquipment: (l.optionalEquipment ?? []).map((f) => resolveText(f, locale)),
+      features: l.features!.map((f) => ({
+        title: resolveText(f.title, locale),
+        description: resolveText(f.description, locale),
+        image: f.image,
+      })),
+      enquireHref: `/ranges/${rangeSlug}/enquire/?bm=${model.slug}&layout=${encodeURIComponent(l.name)}`,
+    }));
 
   const enquireHref = `/ranges/${rangeSlug}/enquire/?bm=${model.slug}`;
   const priceFormatted =
@@ -162,32 +186,118 @@ export default async function ModelPage({ params }: Props) {
         </section>
       )}
 
-      {/* ── Full specification — comprehensive detail, distinct from the
-            quick-glance SpecStrip above ── */}
-      <section aria-label="Full specification" className="bg-surface py-20">
-        <div className="mx-auto max-w-7xl px-6">
-          <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
-            {t("fullSpecification")}
-          </h2>
-          <SpecSheet specs={model.fullSpecs} accent={model.range} />
-        </div>
-      </section>
+      {hasLayouts && layoutDetails.length > 0 ? (
+        /* ── Per-layout detail — each layout gets its own full spec/
+              equipment/features section, one after another, rather than
+              one generic block that could only speak for one layout. ── */
+        layoutDetails.map((layout, i) => (
+          <section
+            key={layout.name}
+            aria-label={`${layout.name} details`}
+            className={i % 2 === 0 ? "bg-surface py-20" : "bg-surface-muted py-20"}
+          >
+            <div className="mx-auto max-w-7xl px-6">
+              <div className="mb-10 flex flex-col gap-8 lg:flex-row lg:items-center">
+                {layout.image && (
+                  <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-surface-sunken lg:w-2/5 lg:shrink-0">
+                    <Image
+                      src={layout.image}
+                      alt={`${model.name} ${layout.name} — ${layout.positioning}`}
+                      fill
+                      className="object-cover"
+                      sizes="(min-width: 1024px) 40vw, 100vw"
+                    />
+                  </div>
+                )}
+                <div>
+                  <h2 className="text-headline font-semibold tracking-tight text-text-strong">
+                    {model.name} {layout.name}
+                  </h2>
+                  <p className="mt-4 max-w-xl text-lead leading-relaxed text-text-muted text-pretty">
+                    {layout.positioning}
+                  </p>
+                  <div className="mt-6">
+                    <Link
+                      href={layout.enquireHref}
+                      className="inline-flex items-center rounded-md bg-pop px-6 py-3 text-body-sm font-semibold text-pop-contrast transition-opacity hover:opacity-90"
+                    >
+                      {tLayout("enquireAbout", { name: layout.name })}
+                    </Link>
+                  </div>
+                </div>
+              </div>
 
-      {/* ── Features — equipment/layout highlights, not specs ── */}
-      <section aria-label="Features" className="bg-surface-muted py-20">
-        <div className="mx-auto max-w-7xl px-6">
-          <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
-            {t("features")}
-          </h2>
-          <FeatureList features={features} accent={model.range} />
-        </div>
-      </section>
+              <h3 className="mb-8 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
+                {t("fullSpecification")}
+              </h3>
+              <SpecSheet specs={layout.fullSpecs} accent={model.range} />
+
+              <h3 className="mb-8 mt-16 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
+                {t("equipment")}
+              </h3>
+              <EquipmentList
+                standard={layout.standardFeatures}
+                optional={layout.optionalEquipment}
+                standardLabel={t("standardFeatures")}
+                optionalLabel={t("optionalEquipment")}
+                accent={model.range}
+              />
+
+              <h3 className="mb-8 mt-16 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
+                {t("features")}
+              </h3>
+              <FeatureList features={layout.features} accent={model.range} />
+            </div>
+          </section>
+        ))
+      ) : (
+        <>
+          {/* ── Full specification — comprehensive detail, distinct from the
+                quick-glance SpecStrip above ── */}
+          <section aria-label="Full specification" className="bg-surface py-20">
+            <div className="mx-auto max-w-7xl px-6">
+              <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
+                {t("fullSpecification")}
+              </h2>
+              <SpecSheet specs={model.fullSpecs} accent={model.range} />
+            </div>
+          </section>
+
+          {/* ── Equipment — literal standard/optional checklists from the
+                manufacturer spec sheet, distinct from the curated Features
+                below ── */}
+          <section aria-label="Equipment" className="bg-surface-muted py-20">
+            <div className="mx-auto max-w-7xl px-6">
+              <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
+                {t("equipment")}
+              </h2>
+              <EquipmentList
+                standard={standardFeatures}
+                optional={optionalEquipment}
+                standardLabel={t("standardFeatures")}
+                optionalLabel={t("optionalEquipment")}
+                accent={model.range}
+              />
+            </div>
+          </section>
+
+          {/* ── Features — equipment/layout highlights, not specs ── */}
+          <section aria-label="Features" className="bg-surface py-20">
+            <div className="mx-auto max-w-7xl px-6">
+              <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
+                {t("features")}
+              </h2>
+              <FeatureList features={features} accent={model.range} />
+            </div>
+          </section>
+        </>
+      )}
 
       {/* ── More from the range ── */}
       {relatedModels.length > 0 && (
         <section
           aria-label={`More from ${range.name}`}
-          className="bg-surface py-20"
+          className="bg-surface-muted py-20"
         >
           <div className="mx-auto max-w-7xl px-6">
             <h2 className="mb-10 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
