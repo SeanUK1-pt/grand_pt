@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 import NavMobile from "./NavMobile";
+import LanguageSwitcher from "./LanguageSwitcher";
 import { navLinks } from "@/data/nav-links";
 
 export default async function Nav() {
@@ -22,20 +23,23 @@ export default async function Nav() {
         </Link>
 
         {/* Desktop links */}
-        <nav aria-label="Main navigation" className="hidden md:block">
-          <ul className="flex items-center gap-6">
-            {navLinks.map(({ key, href }) => (
-              <li key={href}>
-                <Link
-                  href={href}
-                  className="text-body-sm font-medium text-ink-text-muted transition-colors hover:text-ink-text"
-                >
-                  {t(key)}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <div className="hidden items-center gap-6 md:flex">
+          <nav aria-label="Main navigation">
+            <ul className="flex items-center gap-6">
+              {navLinks.map(({ key, href }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className="text-body-sm font-medium text-ink-text-muted transition-colors hover:text-ink-text"
+                  >
+                    {t(key)}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <LanguageSwitcher dark />
+        </div>
 
         {/* Mobile hamburger + drawer */}
         <NavMobile />

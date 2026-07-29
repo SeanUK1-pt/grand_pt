@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { navLinks } from "@/data/nav-links";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function NavMobile() {
   const [open, setOpen] = useState(false);
@@ -54,6 +55,9 @@ export default function NavMobile() {
               ))}
             </ul>
           </nav>
+          <div className="mt-8 border-t border-ink-line pt-6">
+            <LanguageSwitcher dark />
+          </div>
         </div>
       )}
     </>
