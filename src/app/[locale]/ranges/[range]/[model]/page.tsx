@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
 import { setRequestLocale, getTranslations } from "next-intl/server";
@@ -8,6 +7,8 @@ import SpecSheet from "@/components/SpecSheet";
 import FeatureList from "@/components/FeatureList";
 import EquipmentList from "@/components/EquipmentList";
 import Gallery from "@/components/Gallery";
+import HeroImage from "@/components/HeroImage";
+import PhotoLightboxProvider from "@/components/PhotoLightbox";
 import LayoutTiles from "@/components/LayoutTiles";
 import ModelCard from "@/components/ModelCard";
 import { getRangeBySlug } from "@/data/ranges";
@@ -15,6 +16,7 @@ import { models, getModelBySlug, getModelsByRange } from "@/data/models";
 import { resolveText } from "@/data/localized-text";
 import { translatePriceLabel } from "@/data/spec-labels";
 import type { Range } from "@/data/ranges";
+import Image from "next/image";
 
 type Props = {
   params: Promise<{ locale: string; range: string; model: string }>;
@@ -73,6 +75,11 @@ export default async function ModelPage({ params }: Props) {
   const standardFeatures = model.standardFeatures.map((f) => resolveText(f, locale));
   const optionalEquipment = model.optionalEquipment.map((f) => resolveText(f, locale));
 
+  // Hero + gallery, in lightbox paging order — hero is always index 0.
+  const galleryImages = model.gallery ?? [];
+  const allPhotos = [model.image, ...galleryImages];
+  const hasGallery = galleryImages.length > 0;
+
   // Layouted models (currently D600) get each layout's own full detail
   // section further down the page instead of one generic spec/equipment/
   // features block — see the `hasLayouts` render branch below.
@@ -93,12 +100,6 @@ export default async function ModelPage({ params }: Props) {
       enquireHref: `/ranges/${rangeSlug}/enquire/?bm=${model.slug}&layout=${encodeURIComponent(l.name)}`,
     }));
 
-  // Both branches above alternate surface/surface-muted per section; whichever
-  // one renders, "More from the range" needs to continue that alternation
-  // rather than assume a fixed background.
-  const lastSectionWasMuted =
-    hasLayouts && layoutDetails.length > 0 ? layoutDetails.length % 2 === 0 : true;
-
   const enquireHref = `/ranges/${rangeSlug}/enquire/?bm=${model.slug}`;
   const priceFormatted =
     model.priceFrom !== undefined
@@ -109,27 +110,28 @@ export default async function ModelPage({ params }: Props) {
         }).format(model.priceFrom)
       : null;
 
+  // Content bands (everything between the intro and "More from the range")
+  // alternate surface/surface-muted regardless of which sections actually
+  // render for a given model — a running counter beats hardcoding per
+  // section, since Layouts/Gallery/per-layout counts all vary.
+  let bandIndex = 0;
+  const nextBand = () => (bandIndex++ % 2 === 0 ? "bg-surface py-20" : "bg-surface-muted py-20");
+
+  // Quick-jump nav — only lists sections that actually render for this model.
+  const quickLinks = [
+    hasLayouts && { href: "#layouts", label: t("chooseALayout") },
+    { href: "#features", label: t("features") },
+    { href: "#full-specification", label: t("fullSpecification") },
+    { href: "#equipment", label: t("equipment") },
+    hasGallery && { href: "#gallery", label: t("gallery") },
+  ].filter((l): l is { href: string; label: string } => !!l);
+
   return (
-    <>
-      {/* ── Hero image — purely visual, no text overlay. Aspect-ratio driven
+    <PhotoLightboxProvider>
+      {/* ── Hero image — click to open the lightbox. Aspect-ratio driven
             height (not min-h) so the box never collapses even though the
             Image is `fill` and contributes no intrinsic height itself. ── */}
-      <section className="relative aspect-[16/9] w-full bg-ink md:aspect-[21/9]">
-        <Image
-          src={model.image}
-          alt={`${model.name} — ${positioning}`}
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-        />
-        {/* Subtle scrim — just enough for legibility of anything crossing the
-            bottom edge, not a colour wash over the photo */}
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"
-        />
-      </section>
+      <HeroImage images={allPhotos} alt={`${model.name} — ${positioning}`} />
 
       {/* ── Badge/name/positioning + specs + price — all in normal flow,
             below the photo, doing the information work the photo doesn't ── */}
@@ -171,27 +173,32 @@ export default async function ModelPage({ params }: Props) {
               {t("enquireAboutModel", { name: model.name })}
             </Link>
           </div>
+
+          {/* Quick-jump nav — plain in-page anchors, no scroll tracking */}
+          {quickLinks.length > 0 && (
+            <nav aria-label="Page sections" className="mt-10 border-t border-ink-line pt-6">
+              <ul className="flex flex-wrap gap-x-6 gap-y-2">
+                {quickLinks.map((link) => (
+                  <li key={link.href}>
+                    <a
+                      href={link.href}
+                      className="text-body-sm font-medium text-ink-text-muted transition-colors hover:text-ink-text"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )}
         </div>
       </section>
-
-      {/* ── Gallery — extra photos beyond the hero, spot-checked same as
-            `image` (see the gallery field's comment in models.ts) ── */}
-      {model.gallery && model.gallery.length > 0 && (
-        <section aria-label="Gallery" className="bg-surface py-20">
-          <div className="mx-auto max-w-7xl px-6">
-            <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
-              {t("gallery")}
-            </h2>
-            <Gallery images={model.gallery} alt={model.name} />
-          </div>
-        </section>
-      )}
 
       {/* ── Layouts — only rendered when the model has multiple deck layouts
             (currently Silver Line); LayoutTiles itself also no-ops on an
             empty array, this guard just avoids invoking it needlessly ── */}
       {model.layouts && model.layouts.length > 0 && (
-        <section aria-label="Layouts" className="bg-surface-muted py-20">
+        <section id="layouts" aria-label="Layouts" className={`scroll-mt-24 ${nextBand()}`}>
           <div className="mx-auto max-w-7xl px-6">
             <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
               {t("chooseALayout")}
@@ -209,12 +216,14 @@ export default async function ModelPage({ params }: Props) {
       {hasLayouts && layoutDetails.length > 0 ? (
         /* ── Per-layout detail — each layout gets its own full spec/
               equipment/features section, one after another, rather than
-              one generic block that could only speak for one layout. ── */
+              one generic block that could only speak for one layout.
+              Characteristics (Features) lead, then spec, then equipment. ── */
         layoutDetails.map((layout, i) => (
           <section
             key={layout.name}
+            id={i === 0 ? "features" : undefined}
             aria-label={`${layout.name} details`}
-            className={i % 2 === 0 ? "bg-surface py-20" : "bg-surface-muted py-20"}
+            className={`scroll-mt-24 ${nextBand()}`}
           >
             <div className="mx-auto max-w-7xl px-6">
               <div className="mb-10 flex flex-col gap-8 lg:flex-row lg:items-center">
@@ -248,11 +257,22 @@ export default async function ModelPage({ params }: Props) {
               </div>
 
               <h3 className="mb-8 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
+                {t("features")}
+              </h3>
+              <FeatureList features={layout.features} accent={model.range} />
+
+              <h3
+                id={i === 0 ? "full-specification" : undefined}
+                className="mb-8 mt-16 scroll-mt-24 text-caption font-semibold uppercase tracking-[0.16em] text-brand"
+              >
                 {t("fullSpecification")}
               </h3>
               <SpecSheet specs={layout.fullSpecs} accent={model.range} />
 
-              <h3 className="mb-8 mt-16 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
+              <h3
+                id={i === 0 ? "equipment" : undefined}
+                className="mb-8 mt-16 scroll-mt-24 text-caption font-semibold uppercase tracking-[0.16em] text-brand"
+              >
                 {t("equipment")}
               </h3>
               <EquipmentList
@@ -262,19 +282,25 @@ export default async function ModelPage({ params }: Props) {
                 optionalLabel={t("optionalEquipment")}
                 accent={model.range}
               />
-
-              <h3 className="mb-8 mt-16 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
-                {t("features")}
-              </h3>
-              <FeatureList features={layout.features} accent={model.range} />
             </div>
           </section>
         ))
       ) : (
         <>
+          {/* ── Features — characteristics/highlights, leads before the raw
+                spec sheet ── */}
+          <section id="features" aria-label="Features" className={`scroll-mt-24 ${nextBand()}`}>
+            <div className="mx-auto max-w-7xl px-6">
+              <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
+                {t("features")}
+              </h2>
+              <FeatureList features={features} accent={model.range} />
+            </div>
+          </section>
+
           {/* ── Full specification — comprehensive detail, distinct from the
                 quick-glance SpecStrip above ── */}
-          <section aria-label="Full specification" className="bg-surface-muted py-20">
+          <section id="full-specification" aria-label="Full specification" className={`scroll-mt-24 ${nextBand()}`}>
             <div className="mx-auto max-w-7xl px-6">
               <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
                 {t("fullSpecification")}
@@ -285,8 +311,8 @@ export default async function ModelPage({ params }: Props) {
 
           {/* ── Equipment — literal standard/optional checklists from the
                 manufacturer spec sheet, distinct from the curated Features
-                below ── */}
-          <section aria-label="Equipment" className="bg-surface py-20">
+                above ── */}
+          <section id="equipment" aria-label="Equipment" className={`scroll-mt-24 ${nextBand()}`}>
             <div className="mx-auto max-w-7xl px-6">
               <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
                 {t("equipment")}
@@ -300,24 +326,28 @@ export default async function ModelPage({ params }: Props) {
               />
             </div>
           </section>
-
-          {/* ── Features — equipment/layout highlights, not specs ── */}
-          <section aria-label="Features" className="bg-surface-muted py-20">
-            <div className="mx-auto max-w-7xl px-6">
-              <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
-                {t("features")}
-              </h2>
-              <FeatureList features={features} accent={model.range} />
-            </div>
-          </section>
         </>
+      )}
+
+      {/* ── Gallery — extra photos beyond the hero, spot-checked same as
+            `image` (see the gallery field's comment in models.ts). Last of
+            the content sections, right before "More from the range". ── */}
+      {hasGallery && (
+        <section id="gallery" aria-label="Gallery" className={`scroll-mt-24 ${nextBand()}`}>
+          <div className="mx-auto max-w-7xl px-6">
+            <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
+              {t("gallery")}
+            </h2>
+            <Gallery images={galleryImages} allImages={allPhotos} alt={model.name} />
+          </div>
+        </section>
       )}
 
       {/* ── More from the range ── */}
       {relatedModels.length > 0 && (
         <section
           aria-label={`More from ${range.name}`}
-          className={lastSectionWasMuted ? "bg-surface py-20" : "bg-surface-muted py-20"}
+          className={nextBand()}
         >
           <div className="mx-auto max-w-7xl px-6">
             <h2 className="mb-10 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
@@ -349,6 +379,6 @@ export default async function ModelPage({ params }: Props) {
           </Link>
         </div>
       </section>
-    </>
+    </PhotoLightboxProvider>
   );
 }
