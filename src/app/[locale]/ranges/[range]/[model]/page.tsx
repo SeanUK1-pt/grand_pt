@@ -117,6 +117,10 @@ export default async function ModelPage({ params }: Props) {
   let bandIndex = 0;
   const nextBand = () => (bandIndex++ % 2 === 0 ? "bg-surface py-20" : "bg-surface-muted py-20");
 
+  // Section h2s repeat the model name — scrolled past the hero/H1, "Features"
+  // alone doesn't say which model you're looking at.
+  const heading = (label: string) => `${model.name} — ${label}`;
+
   // Quick-jump nav — only lists sections that actually render for this model.
   const quickLinks = [
     hasLayouts && { href: "#layouts", label: t("chooseALayout") },
@@ -206,7 +210,7 @@ export default async function ModelPage({ params }: Props) {
         <section id="layouts" aria-label="Layouts" className={`scroll-mt-24 ${nextBand()}`}>
           <div className="mx-auto max-w-7xl px-6">
             <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
-              {t("chooseALayout")}
+              {heading(t("chooseALayout"))}
             </h2>
             <LayoutTiles
               layouts={model.layouts}
@@ -262,7 +266,7 @@ export default async function ModelPage({ params }: Props) {
               </div>
 
               <h3 className="mb-8 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
-                {t("features")}
+                {heading(`${layout.name} — ${t("features")}`)}
               </h3>
               <FeatureList features={layout.features} accent={model.range} />
 
@@ -270,7 +274,7 @@ export default async function ModelPage({ params }: Props) {
                 id={i === 0 ? "full-specification" : undefined}
                 className="mb-8 mt-16 scroll-mt-24 text-caption font-semibold uppercase tracking-[0.16em] text-brand"
               >
-                {t("fullSpecification")}
+                {heading(`${layout.name} — ${t("fullSpecification")}`)}
               </h3>
               <SpecSheet specs={layout.fullSpecs} accent={model.range} />
 
@@ -278,7 +282,7 @@ export default async function ModelPage({ params }: Props) {
                 id={i === 0 ? "equipment" : undefined}
                 className="mb-8 mt-16 scroll-mt-24 text-caption font-semibold uppercase tracking-[0.16em] text-brand"
               >
-                {t("equipment")}
+                {heading(`${layout.name} — ${t("equipment")}`)}
               </h3>
               <EquipmentList
                 standard={layout.standardFeatures}
@@ -297,7 +301,7 @@ export default async function ModelPage({ params }: Props) {
           <section id="features" aria-label="Features" className={`scroll-mt-24 ${nextBand()}`}>
             <div className="mx-auto max-w-7xl px-6">
               <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
-                {t("features")}
+                {heading(t("features"))}
               </h2>
               <FeatureList features={features} accent={model.range} />
             </div>
@@ -308,7 +312,7 @@ export default async function ModelPage({ params }: Props) {
           <section id="full-specification" aria-label="Full specification" className={`scroll-mt-24 ${nextBand()}`}>
             <div className="mx-auto max-w-7xl px-6">
               <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
-                {t("fullSpecification")}
+                {heading(t("fullSpecification"))}
               </h2>
               <SpecSheet specs={model.fullSpecs} accent={model.range} />
             </div>
@@ -320,7 +324,7 @@ export default async function ModelPage({ params }: Props) {
           <section id="equipment" aria-label="Equipment" className={`scroll-mt-24 ${nextBand()}`}>
             <div className="mx-auto max-w-7xl px-6">
               <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
-                {t("equipment")}
+                {heading(t("equipment"))}
               </h2>
               <EquipmentList
                 standard={standardFeatures}
@@ -341,7 +345,7 @@ export default async function ModelPage({ params }: Props) {
         <section id="gallery" aria-label="Gallery" className={`scroll-mt-24 ${nextBand()}`}>
           <div className="mx-auto max-w-7xl px-6">
             <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
-              {t("gallery")}
+              {heading(t("gallery"))}
             </h2>
             <Gallery images={galleryImages} allImages={allPhotos} alt={model.name} />
           </div>
