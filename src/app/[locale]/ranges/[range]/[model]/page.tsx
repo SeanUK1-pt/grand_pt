@@ -7,6 +7,7 @@ import SpecStrip from "@/components/SpecStrip";
 import SpecSheet from "@/components/SpecSheet";
 import FeatureList from "@/components/FeatureList";
 import EquipmentList from "@/components/EquipmentList";
+import Gallery from "@/components/Gallery";
 import LayoutTiles from "@/components/LayoutTiles";
 import ModelCard from "@/components/ModelCard";
 import { getRangeBySlug } from "@/data/ranges";
@@ -92,6 +93,12 @@ export default async function ModelPage({ params }: Props) {
       enquireHref: `/ranges/${rangeSlug}/enquire/?bm=${model.slug}&layout=${encodeURIComponent(l.name)}`,
     }));
 
+  // Both branches above alternate surface/surface-muted per section; whichever
+  // one renders, "More from the range" needs to continue that alternation
+  // rather than assume a fixed background.
+  const lastSectionWasMuted =
+    hasLayouts && layoutDetails.length > 0 ? layoutDetails.length % 2 === 0 : true;
+
   const enquireHref = `/ranges/${rangeSlug}/enquire/?bm=${model.slug}`;
   const priceFormatted =
     model.priceFrom !== undefined
@@ -166,6 +173,19 @@ export default async function ModelPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* ── Gallery — extra photos beyond the hero, spot-checked same as
+            `image` (see the gallery field's comment in models.ts) ── */}
+      {model.gallery && model.gallery.length > 0 && (
+        <section aria-label="Gallery" className="bg-surface py-20">
+          <div className="mx-auto max-w-7xl px-6">
+            <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
+              {t("gallery")}
+            </h2>
+            <Gallery images={model.gallery} alt={model.name} />
+          </div>
+        </section>
+      )}
 
       {/* ── Layouts — only rendered when the model has multiple deck layouts
             (currently Silver Line); LayoutTiles itself also no-ops on an
@@ -254,7 +274,7 @@ export default async function ModelPage({ params }: Props) {
         <>
           {/* ── Full specification — comprehensive detail, distinct from the
                 quick-glance SpecStrip above ── */}
-          <section aria-label="Full specification" className="bg-surface py-20">
+          <section aria-label="Full specification" className="bg-surface-muted py-20">
             <div className="mx-auto max-w-7xl px-6">
               <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
                 {t("fullSpecification")}
@@ -266,7 +286,7 @@ export default async function ModelPage({ params }: Props) {
           {/* ── Equipment — literal standard/optional checklists from the
                 manufacturer spec sheet, distinct from the curated Features
                 below ── */}
-          <section aria-label="Equipment" className="bg-surface-muted py-20">
+          <section aria-label="Equipment" className="bg-surface py-20">
             <div className="mx-auto max-w-7xl px-6">
               <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
                 {t("equipment")}
@@ -282,7 +302,7 @@ export default async function ModelPage({ params }: Props) {
           </section>
 
           {/* ── Features — equipment/layout highlights, not specs ── */}
-          <section aria-label="Features" className="bg-surface py-20">
+          <section aria-label="Features" className="bg-surface-muted py-20">
             <div className="mx-auto max-w-7xl px-6">
               <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
                 {t("features")}
@@ -297,7 +317,7 @@ export default async function ModelPage({ params }: Props) {
       {relatedModels.length > 0 && (
         <section
           aria-label={`More from ${range.name}`}
-          className="bg-surface-muted py-20"
+          className={lastSectionWasMuted ? "bg-surface py-20" : "bg-surface-muted py-20"}
         >
           <div className="mx-auto max-w-7xl px-6">
             <h2 className="mb-10 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
