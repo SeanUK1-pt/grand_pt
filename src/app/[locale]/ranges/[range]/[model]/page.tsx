@@ -128,6 +128,29 @@ export default async function ModelPage({ params }: Props) {
 
   return (
     <PhotoLightboxProvider>
+      {/* ── Quick-jump nav — sits between the fixed site nav and the hero,
+            so it's visible before scrolling rather than buried below the
+            intro. pt-20 clears the fixed Nav (~64-72px); plain in-page
+            anchors, no scroll tracking. ── */}
+      {quickLinks.length > 0 && (
+        <nav aria-label="Page sections" className="bg-ink pb-3 pt-20">
+          <div className="mx-auto max-w-7xl px-6">
+            <ul className="flex flex-wrap gap-x-6 gap-y-2">
+              {quickLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="text-body-sm font-medium text-ink-text-muted transition-colors hover:text-ink-text"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </nav>
+      )}
+
       {/* ── Hero image — click to open the lightbox. Aspect-ratio driven
             height (not min-h) so the box never collapses even though the
             Image is `fill` and contributes no intrinsic height itself. ── */}
@@ -173,24 +196,6 @@ export default async function ModelPage({ params }: Props) {
               {t("enquireAboutModel", { name: model.name })}
             </Link>
           </div>
-
-          {/* Quick-jump nav — plain in-page anchors, no scroll tracking */}
-          {quickLinks.length > 0 && (
-            <nav aria-label="Page sections" className="mt-10 border-t border-ink-line pt-6">
-              <ul className="flex flex-wrap gap-x-6 gap-y-2">
-                {quickLinks.map((link) => (
-                  <li key={link.href}>
-                    <a
-                      href={link.href}
-                      className="text-body-sm font-medium text-ink-text-muted transition-colors hover:text-ink-text"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          )}
         </div>
       </section>
 

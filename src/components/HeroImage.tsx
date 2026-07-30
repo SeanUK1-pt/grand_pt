@@ -16,7 +16,7 @@ export default function HeroImage({ images, alt }: Props) {
       type="button"
       onClick={() => openAt(images, 0, alt)}
       aria-label={`View photos of ${alt}`}
-      className="relative aspect-[16/9] w-full cursor-zoom-in bg-ink md:aspect-[21/9]"
+      className="relative flex aspect-[16/9] w-full cursor-zoom-in bg-ink md:aspect-[21/9]"
     >
       <Image
         src={images[0]}
