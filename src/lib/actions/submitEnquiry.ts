@@ -1,5 +1,7 @@
 "use server";
 
+import { mailRow, mailParagraph, sendMail } from "@/lib/mailer";
+
 export type EnquiryActionState = {
   status: "idle" | "success" | "error";
   message?: string;
@@ -12,6 +14,12 @@ export type EnquiryContext = {
   decodedExtras: { partNumber: string; name: string }[];
   decodeSucceeded: boolean;
   builderLinkRaw: string | null;
+};
+
+const rangeLabel: Record<EnquiryContext["range"], string> = {
+  golden: "Golden Line",
+  silver: "Silver Line",
+  drive: "Drive Line",
 };
 
 // Bound via .bind(null, context) in EnquireForm before being passed to
@@ -31,38 +39,50 @@ export async function submitEnquiryAction(
     return { status: "error", message: "Please fill in your name and email before sending." };
   }
 
-  const payload = {
-    range: context.range,
-    modelName: context.modelName,
-    layoutName: context.layoutName,
-    // Names only — the sales team doesn't need raw part numbers.
-    extras: context.decodedExtras.map((e) => e.name),
-    // False means the builderLink was absent/malformed, so `extras` above may
-    // be an incomplete best-effort decode rather than the full configuration.
-    decodeSucceeded: context.decodeSucceeded,
-    // Logged for support/debugging only — never shown to the customer.
-    builderLinkRaw: context.builderLinkRaw,
-    customer: { name, email, phone, notes },
-    timestamp: new Date().toISOString(),
-  };
+  // Names only — the sales team doesn't need raw part numbers.
+  const extraNames = context.decodedExtras.map((e) => e.name);
+  const modelHeading = context.layoutName
+    ? `${context.modelName} — ${context.layoutName}`
+    : context.modelName;
 
-  console.log("[EnquireForm submission]", payload);
+  const html = `
+    <h2>New Grand Boats Portugal Enquiry</h2>
+    ${mailRow("Model", `${modelHeading} (${rangeLabel[context.range]})`)}
+    ${mailRow("Name", name)}
+    ${mailRow("Email", email)}
+    ${mailRow("Phone", phone || "Not provided")}
+    ${
+      extraNames.length > 0
+        ? mailRow("Configured extras", extraNames.join(", "))
+        : ""
+    }
+    ${
+      !context.decodeSucceeded && context.builderLinkRaw
+        ? mailRow("Note", "Builder link present but could not be fully decoded — extras above may be incomplete.")
+        : ""
+    }
+    <hr/>
+    <p><strong>Notes:</strong></p>
+    ${notes ? mailParagraph(notes) : "<p><em>None provided</em></p>"}
+    <hr/>
+    <p style="color:#888;font-size:12px;">Submitted ${new Date().toISOString()}${
+      context.builderLinkRaw ? ` · builderLink: ${context.builderLinkRaw}` : ""
+    }</p>
+  `;
 
-  // TODO: wire up email transport (Resend/SendGrid/nodemailer/etc). Payload
-  // shape to send is exactly the `payload` object above:
-  // {
-  //   range: "golden" | "silver" | "drive",
-  //   modelName: string,
-  //   layoutName?: string,
-  //   extras: string[],              // names only, not part numbers
-  //   decodeSucceeded: boolean,      // false = builderLink absent/malformed;
-  //                                  // extras[] may be an incomplete partial decode
-  //   builderLinkRaw: string | null, // support/debugging only, not customer-facing
-  //   customer: { name: string, email: string, phone: string, notes: string },
-  //   timestamp: string,             // ISO 8601
-  // }
-  // No price/total appears anywhere in this payload — EnquireForm never
-  // collects or displays pricing, by design.
+  try {
+    await sendMail({
+      subject: `New Enquiry: ${modelHeading}`,
+      html,
+      replyTo: { name, email },
+    });
+  } catch (err) {
+    console.error("[EnquireForm] email send failed:", err);
+    return {
+      status: "error",
+      message: "Something went wrong sending your enquiry. Please try again or contact us directly.",
+    };
+  }
 
   return { status: "success" };
 }

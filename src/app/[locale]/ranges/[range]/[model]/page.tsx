@@ -14,7 +14,7 @@ import ModelCard from "@/components/ModelCard";
 import { getRangeBySlug } from "@/data/ranges";
 import { models, getModelBySlug, getModelsByRange } from "@/data/models";
 import { resolveText } from "@/data/localized-text";
-import { translatePriceLabel } from "@/data/spec-labels";
+import { translatePriceLabel, translatePriceFootnote, MIN_PACKAGE_PRICE_LABEL, HULL_ONLY_PRICE_LABEL } from "@/data/spec-labels";
 import type { Range } from "@/data/ranges";
 import Image from "next/image";
 
@@ -132,14 +132,20 @@ export default async function ModelPage({ params }: Props) {
 
   return (
     <PhotoLightboxProvider>
-      {/* ── Quick-jump nav — sits between the fixed site nav and the hero,
-            so it's visible before scrolling rather than buried below the
-            intro. pt-20 clears the fixed Nav (~64-72px); plain in-page
-            anchors, no scroll tracking. ── */}
+      {/* ── Quick-jump nav — sits right below the fixed site nav (top-16 =
+            its exact 64px height) and stays there via position:sticky, so
+            it's reachable all the way down the page, not just at the top. ── */}
       {quickLinks.length > 0 && (
-        <nav aria-label="Page sections" className="bg-ink pb-3 pt-20">
-          <div className="mx-auto max-w-7xl px-6">
-            <ul className="flex flex-wrap gap-x-6 gap-y-2">
+        <nav
+          aria-label="Page sections"
+          className="sticky top-16 z-40 border-b border-ink-line bg-ink py-3"
+        >
+          <div className="mx-auto max-w-7xl overflow-x-auto px-6">
+            {/* Single row, horizontally scrollable rather than wrapping —
+                keeps the sticky bar's height constant so scroll-mt offsets
+                on the target sections stay accurate regardless of viewport
+                width or how many links are present. */}
+            <ul className="flex w-max flex-nowrap gap-x-6 whitespace-nowrap">
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <a
@@ -190,6 +196,11 @@ export default async function ModelPage({ params }: Props) {
               )}
             </div>
           )}
+          {showPrice && (model.priceLabel === MIN_PACKAGE_PRICE_LABEL || model.priceLabel === HULL_ONLY_PRICE_LABEL) && (
+            <p className="mt-2 max-w-md text-caption text-ink-text-muted/70">
+              {translatePriceFootnote(locale, model.priceLabel)}
+            </p>
+          )}
 
           {/* Primary CTA */}
           <div className={showPrice ? "mt-8" : "mt-10"}>
@@ -207,7 +218,7 @@ export default async function ModelPage({ params }: Props) {
             (currently Silver Line); LayoutTiles itself also no-ops on an
             empty array, this guard just avoids invoking it needlessly ── */}
       {model.layouts && model.layouts.length > 0 && (
-        <section id="layouts" aria-label="Layouts" className={`scroll-mt-24 ${nextBand()}`}>
+        <section id="layouts" aria-label="Layouts" className={`scroll-mt-32 ${nextBand()}`}>
           <div className="mx-auto max-w-7xl px-6">
             <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
               {heading(t("chooseALayout"))}
@@ -218,6 +229,11 @@ export default async function ModelPage({ params }: Props) {
               modelSlug={model.slug}
               rangeSlug={rangeSlug}
             />
+            {model.layouts.some((l) => l.priceLabel === MIN_PACKAGE_PRICE_LABEL) && (
+              <p className="mt-6 max-w-md text-caption text-text-subtle">
+                {translatePriceFootnote(locale)}
+              </p>
+            )}
           </div>
         </section>
       )}
@@ -232,7 +248,7 @@ export default async function ModelPage({ params }: Props) {
             key={layout.name}
             id={i === 0 ? "features" : undefined}
             aria-label={`${layout.name} details`}
-            className={`scroll-mt-24 ${nextBand()}`}
+            className={`scroll-mt-32 ${nextBand()}`}
           >
             <div className="mx-auto max-w-7xl px-6">
               <div className="mb-10 flex flex-col gap-8 lg:flex-row lg:items-center">
@@ -272,7 +288,7 @@ export default async function ModelPage({ params }: Props) {
 
               <h3
                 id={i === 0 ? "full-specification" : undefined}
-                className="mb-8 mt-16 scroll-mt-24 text-caption font-semibold uppercase tracking-[0.16em] text-brand"
+                className="mb-8 mt-16 scroll-mt-32 text-caption font-semibold uppercase tracking-[0.16em] text-brand"
               >
                 {heading(`${layout.name} — ${t("fullSpecification")}`)}
               </h3>
@@ -280,7 +296,7 @@ export default async function ModelPage({ params }: Props) {
 
               <h3
                 id={i === 0 ? "equipment" : undefined}
-                className="mb-8 mt-16 scroll-mt-24 text-caption font-semibold uppercase tracking-[0.16em] text-brand"
+                className="mb-8 mt-16 scroll-mt-32 text-caption font-semibold uppercase tracking-[0.16em] text-brand"
               >
                 {heading(`${layout.name} — ${t("equipment")}`)}
               </h3>
@@ -298,7 +314,7 @@ export default async function ModelPage({ params }: Props) {
         <>
           {/* ── Features — characteristics/highlights, leads before the raw
                 spec sheet ── */}
-          <section id="features" aria-label="Features" className={`scroll-mt-24 ${nextBand()}`}>
+          <section id="features" aria-label="Features" className={`scroll-mt-32 ${nextBand()}`}>
             <div className="mx-auto max-w-7xl px-6">
               <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
                 {heading(t("features"))}
@@ -309,7 +325,7 @@ export default async function ModelPage({ params }: Props) {
 
           {/* ── Full specification — comprehensive detail, distinct from the
                 quick-glance SpecStrip above ── */}
-          <section id="full-specification" aria-label="Full specification" className={`scroll-mt-24 ${nextBand()}`}>
+          <section id="full-specification" aria-label="Full specification" className={`scroll-mt-32 ${nextBand()}`}>
             <div className="mx-auto max-w-7xl px-6">
               <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
                 {heading(t("fullSpecification"))}
@@ -321,7 +337,7 @@ export default async function ModelPage({ params }: Props) {
           {/* ── Equipment — literal standard/optional checklists from the
                 manufacturer spec sheet, distinct from the curated Features
                 above ── */}
-          <section id="equipment" aria-label="Equipment" className={`scroll-mt-24 ${nextBand()}`}>
+          <section id="equipment" aria-label="Equipment" className={`scroll-mt-32 ${nextBand()}`}>
             <div className="mx-auto max-w-7xl px-6">
               <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
                 {heading(t("equipment"))}
@@ -342,7 +358,7 @@ export default async function ModelPage({ params }: Props) {
             `image` (see the gallery field's comment in models.ts). Last of
             the content sections, right before "More from the range". ── */}
       {hasGallery && (
-        <section id="gallery" aria-label="Gallery" className={`scroll-mt-24 ${nextBand()}`}>
+        <section id="gallery" aria-label="Gallery" className={`scroll-mt-32 ${nextBand()}`}>
           <div className="mx-auto max-w-7xl px-6">
             <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
               {heading(t("gallery"))}

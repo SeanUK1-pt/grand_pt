@@ -1,5 +1,7 @@
 "use server";
 
+import { mailRow, mailParagraph, sendMail } from "@/lib/mailer";
+
 export type ContactActionState = {
   status: "idle" | "success" | "error";
   message?: string;
@@ -18,17 +20,33 @@ export async function submitContactAction(
     return { status: "error", message: "Please fill in your name and email before sending." };
   }
 
-  const payload = {
-    customer: { name, email, phone, message },
-    timestamp: new Date().toISOString(),
-  };
+  // General, brand-level enquiry — no range/model/extras context, unlike
+  // the model-specific EnquireForm.
+  const html = `
+    <h2>New Grand Boats Portugal Contact Message</h2>
+    ${mailRow("Name", name)}
+    ${mailRow("Email", email)}
+    ${mailRow("Phone", phone || "Not provided")}
+    <hr/>
+    <p><strong>Message:</strong></p>
+    ${mailParagraph(message)}
+    <hr/>
+    <p style="color:#888;font-size:12px;">Submitted ${new Date().toISOString()}</p>
+  `;
 
-  console.log("[ContactForm submission]", payload);
-
-  // TODO: wire up email transport (Resend/SendGrid/nodemailer/etc). Payload
-  // shape to send is exactly the `payload` object above. Unlike the
-  // model-specific EnquireForm, there's no range/model/extras context here —
-  // this is a general, brand-level enquiry.
+  try {
+    await sendMail({
+      subject: `New Contact Message from ${name}`,
+      html,
+      replyTo: { name, email },
+    });
+  } catch (err) {
+    console.error("[ContactForm] email send failed:", err);
+    return {
+      status: "error",
+      message: "Something went wrong sending your message. Please try again or contact us directly.",
+    };
+  }
 
   return { status: "success" };
 }

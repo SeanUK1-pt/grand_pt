@@ -1,6 +1,7 @@
 import type { FeaturedModel } from "./featured-models";
 import type { Range } from "./ranges";
 import type { LocalizedText } from "./localized-text";
+import { MIN_PACKAGE_PRICE_LABEL, HULL_ONLY_PRICE_LABEL } from "./spec-labels";
 
 export type ModelSpec = { value: string; label: string };
 
@@ -458,8 +459,8 @@ export const models: Model[] = [
     image: "/images/boats/g420/detail-19.jpg",
     gallery: ["/images/boats/g420/detail-9.jpg", "/images/boats/g420/detail-14.jpg", "/images/boats/g420/detail-22.jpg", "/images/boats/g420/detail-25.jpg"],
     href: "/ranges/golden-line/g420/",
-    priceFrom: 18500,
-    priceLabel: "Guide price from, VAT included",
+    priceFrom: 18471,
+    priceLabel: MIN_PACKAGE_PRICE_LABEL,
     specs: [
       { value: "4.20m", label: "LOA" },
       { value: "1.98m", label: "Beam" },
@@ -554,8 +555,8 @@ export const models: Model[] = [
     image: "/images/boats/g500/detail-9.jpg",
     gallery: ["/images/boats/g500/detail-6.jpg", "/images/boats/g500/detail-11.jpg", "/images/boats/g500/detail-13.jpg"],
     href: "/ranges/golden-line/g500/",
-    priceFrom: 32000,
-    priceLabel: "Guide price from, VAT included",
+    priceFrom: 28159,
+    priceLabel: MIN_PACKAGE_PRICE_LABEL,
     specs: [
       { value: "4.95m", label: "LOA" },
       { value: "2.30m", label: "Beam" },
@@ -654,8 +655,8 @@ export const models: Model[] = [
     image: "/images/boats/g580/detail-11.jpg",
     gallery: ["/images/boats/g580/detail-7.jpg", "/images/boats/g580/detail-13.jpg", "/images/boats/g580/detail-16.jpg"],
     href: "/ranges/golden-line/g580/",
-    priceFrom: 48000,
-    priceLabel: "Guide price from, VAT included",
+    priceFrom: 35474,
+    priceLabel: MIN_PACKAGE_PRICE_LABEL,
     specs: [
       { value: "5.85m", label: "LOA" },
       { value: "2.45m", label: "Beam" },
@@ -757,8 +758,8 @@ export const models: Model[] = [
     image: "/images/boats/g680/detail-18.jpg",
     gallery: ["/images/boats/g680/detail-14.jpg", "/images/boats/g680/detail-19.jpg", "/images/boats/g680/detail-22.jpg"],
     href: "/ranges/golden-line/g680/",
-    priceFrom: 79000,
-    priceLabel: "Guide price from, VAT included",
+    priceFrom: 57435,
+    priceLabel: MIN_PACKAGE_PRICE_LABEL,
     specs: [
       { value: "6.80m", label: "LOA" },
       { value: "2.64m", label: "Beam" },
@@ -862,8 +863,8 @@ export const models: Model[] = [
     image: "/images/boats/g750/detail-11.jpg",
     gallery: ["/images/boats/g750/detail-7.jpg", "/images/boats/g750/detail-15.jpg", "/images/boats/g750/detail-19.jpg"],
     href: "/ranges/golden-line/g750/",
-    priceFrom: 105000,
-    priceLabel: "Guide price from, VAT included",
+    priceFrom: 68924,
+    priceLabel: MIN_PACKAGE_PRICE_LABEL,
     specs: [
       { value: "7.30m", label: "LOA" },
       { value: "2.85m", label: "Beam" },
@@ -968,8 +969,8 @@ export const models: Model[] = [
     image: "/images/boats/g850/detail-20.jpg",
     gallery: ["/images/boats/g850/detail-12.jpg", "/images/boats/g850/detail-24.jpg"],
     href: "/ranges/golden-line/g850/",
-    priceFrom: 165000,
-    priceLabel: "Guide price from, VAT included",
+    priceFrom: 115995,
+    priceLabel: MIN_PACKAGE_PRICE_LABEL,
     specs: [
       { value: "8.50m", label: "LOA" },
       { value: "2.95m", label: "Beam" },
@@ -1074,8 +1075,8 @@ export const models: Model[] = [
     image: "/images/boats/g980/detail-9.jpg",
     gallery: ["/images/boats/g980/detail-16.jpg"],
     href: "/ranges/golden-line/g980/",
-    priceFrom: 245000,
-    priceLabel: "Guide price from, VAT included",
+    priceFrom: 105851,
+    priceLabel: MIN_PACKAGE_PRICE_LABEL,
     specs: [
       { value: "10.00m", label: "LOA" },
       { value: "3.40m", label: "Beam" },
@@ -1181,8 +1182,8 @@ export const models: Model[] = [
     image: "/images/boats/s275/detail-12.jpg",
     gallery: ["/images/boats/s275/detail-8.jpg", "/images/boats/s275/detail-10.jpg"],
     href: "/ranges/silver-line/s275/",
-    priceFrom: 4200,
-    priceLabel: "Guide price from, VAT included",
+    priceFrom: 2372,
+    priceLabel: HULL_ONLY_PRICE_LABEL,
     specs: [
       { value: "2.75m", label: "LOA" },
       { value: "1.55m", label: "Beam" },
@@ -1258,8 +1259,8 @@ export const models: Model[] = [
     image: "/images/boats/s300/detail-15.jpg",
     gallery: ["/images/boats/s300/detail-9.jpg", "/images/boats/s300/detail-12.jpg"],
     href: "/ranges/silver-line/s300/",
-    priceFrom: 5400,
-    priceLabel: "Guide price from, VAT included",
+    priceFrom: 7494,
+    priceLabel: MIN_PACKAGE_PRICE_LABEL,
     specs: [
       { value: "3.00m", label: "LOA" },
       { value: "1.67m", label: "Beam" },
@@ -1344,8 +1345,8 @@ export const models: Model[] = [
     image: "/images/boats/s330/detail-13.jpg",
     gallery: ["/images/boats/s330/detail-8.jpg", "/images/boats/s330/detail-11.jpg"],
     href: "/ranges/silver-line/s330/",
-    priceFrom: 6900,
-    priceLabel: "Guide price from, VAT included",
+    priceFrom: 7702,
+    priceLabel: MIN_PACKAGE_PRICE_LABEL,
     specs: [
       { value: "3.30m", label: "LOA" },
       { value: "1.69m", label: "Beam" },
@@ -1430,8 +1431,8 @@ export const models: Model[] = [
     image: "/images/boats/s370n/detail-11.jpg",
     gallery: ["/images/boats/s370n/detail-9.jpg"],
     href: "/ranges/silver-line/s370n/",
-    priceFrom: 8900,
-    priceLabel: "Guide price from, VAT included",
+    priceFrom: 9757,
+    priceLabel: MIN_PACKAGE_PRICE_LABEL,
     specs: [
       { value: "3.70m", label: "LOA" },
       { value: "1.85m", label: "Beam" },
@@ -1519,8 +1520,8 @@ export const models: Model[] = [
     image: "/images/boats/s420n/detail-14.jpg",
     gallery: ["/images/boats/s420n/detail-10.jpg", "/images/boats/s420n/detail-16.jpg"],
     href: "/ranges/silver-line/s420n/",
-    priceFrom: 11500,
-    priceLabel: "Guide price from, VAT included",
+    priceFrom: 11939,
+    priceLabel: MIN_PACKAGE_PRICE_LABEL,
     specs: [
       { value: "4.20m", label: "LOA" },
       { value: "1.95m", label: "Beam" },
@@ -1609,8 +1610,8 @@ export const models: Model[] = [
     image: "/images/boats/s470n/detail-12.jpg",
     gallery: ["/images/boats/s470n/detail-9.jpg", "/images/boats/s470n/detail-16.jpg"],
     href: "/ranges/silver-line/s470n/",
-    priceFrom: 15900,
-    priceLabel: "Guide price from, VAT included",
+    priceFrom: 14501,
+    priceLabel: MIN_PACKAGE_PRICE_LABEL,
     specs: [
       { value: "4.70m", label: "LOA" },
       { value: "2.05m", label: "Beam" },
@@ -1804,8 +1805,8 @@ export const models: Model[] = [
           pt: "Direto e capaz — bancos desportivos, direção hidráulica, construído para o desempenho antes do conforto.",
         },
         image: "/images/boats/d600-active/detail-13.jpg",
-        priceFrom: 42000,
-        priceLabel: "Guide price from, VAT included",
+        priceFrom: 38540,
+        priceLabel: MIN_PACKAGE_PRICE_LABEL,
         specs: [
           { label: "Dry weight", value: "596 kg / 1314 lbs" },
           { label: "Package weight", value: "706 kg / 1556 lbs" },
@@ -2007,8 +2008,8 @@ export const models: Model[] = [
           pt: "O lado descontraído do D600 — solários, água doce e um acabamento que não sacrifica o desempenho por baixo.",
         },
         image: "/images/boats/d600-lux/detail-11.jpg",
-        priceFrom: 52000,
-        priceLabel: "Guide price from, VAT included",
+        priceFrom: 38933,
+        priceLabel: MIN_PACKAGE_PRICE_LABEL,
         specs: [
           { label: "Dry weight", value: "597 kg / 1316 lbs" },
           { label: "Package weight", value: "707 kg / 1559 lbs" },
