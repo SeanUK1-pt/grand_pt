@@ -34,11 +34,18 @@ export default async function ContactPage({ params }: Props) {
         <div className="mt-10 text-body-sm leading-relaxed text-text-muted">
           <p className="font-semibold text-text-strong">{t("address.company")}</p>
           <p>{t("address.location")}</p>
+          <p>{t("address.hours")}</p>
           <p className="mt-2">
-            {t("address.phoneLabel")}: {t("address.phone")}
+            {t("address.phoneLabel")}:{" "}
+            <a href={`tel:${t("address.phone").replace(/\s+/g, "")}`} className="text-brand hover:underline">
+              {t("address.phone")}
+            </a>
           </p>
           <p>
-            {t("address.emailLabel")}: {t("address.email")}
+            {t("address.emailLabel")}:{" "}
+            <a href={`mailto:${t("address.email")}`} className="text-brand hover:underline">
+              {t("address.email")}
+            </a>
           </p>
         </div>
       </div>

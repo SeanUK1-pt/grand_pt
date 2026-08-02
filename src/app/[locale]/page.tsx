@@ -21,8 +21,8 @@ const homeMeta = {
     pt: "Grand Boats Portugal — RIBs Golden, Silver e Drive Line",
   },
   description: {
-    en: "Authorised Grand Boats dealer for Portugal. Hand-laid RIBs from the Golden, Silver and Drive Line ranges, sold and serviced by Algarve Boat Group in Portimão.",
-    pt: "Representante autorizado da Grand Boats em Portugal. RIBs laminados à mão das gamas Golden, Silver e Drive Line, vendidos e assistidos pela Algarve Boat Group em Portimão.",
+    en: "Authorised Grand Boats dealer for Portugal. Hand-laid RIBs from the Golden, Silver and Drive Line ranges, sold and serviced by Algarve Boat Group in Lagos.",
+    pt: "Representante autorizado da Grand Boats em Portugal. RIBs laminados à mão das gamas Golden, Silver e Drive Line, vendidos e assistidos pela Algarve Boat Group em Lagos.",
   },
 };
 

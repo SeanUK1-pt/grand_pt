@@ -10,6 +10,7 @@ const companyLinks = navLinks.slice(3);
 
 export default async function Footer() {
   const t = await getTranslations("nav");
+  const tf = await getTranslations("footer");
 
   return (
     <footer className="bg-ink text-ink-text-muted">
@@ -18,13 +19,13 @@ export default async function Footer() {
           <div className="col-span-2 md:col-span-1">
             <p className="text-body font-semibold text-ink-text">Grand Boats Portugal</p>
             <p className="mt-2 text-body-sm leading-relaxed">
-              Premium recreational boats,
+              {tf("tagline")}
               <br />
-              built in Ukraine.
+              {tf("taglineLine2")}
             </p>
           </div>
           <div>
-            <p className="text-caption font-semibold uppercase tracking-[0.14em] text-ink-text">Ranges</p>
+            <p className="text-caption font-semibold uppercase tracking-[0.14em] text-ink-text">{tf("rangesHeading")}</p>
             <ul className="mt-3 space-y-2 text-body-sm">
               {rangeLinks.map(({ key, href }) => (
                 <li key={href}><Link href={href} className="hover:text-ink-text">{t(key)}</Link></li>
@@ -32,7 +33,7 @@ export default async function Footer() {
             </ul>
           </div>
           <div>
-            <p className="text-caption font-semibold uppercase tracking-[0.14em] text-ink-text">Company</p>
+            <p className="text-caption font-semibold uppercase tracking-[0.14em] text-ink-text">{tf("companyHeading")}</p>
             <ul className="mt-3 space-y-2 text-body-sm">
               {companyLinks.map(({ key, href }) => (
                 <li key={href}><Link href={href} className="hover:text-ink-text">{t(key)}</Link></li>
@@ -40,16 +41,16 @@ export default async function Footer() {
             </ul>
           </div>
           <div>
-            <p className="text-caption font-semibold uppercase tracking-[0.14em] text-ink-text">Dealer</p>
+            <p className="text-caption font-semibold uppercase tracking-[0.14em] text-ink-text">{tf("dealerHeading")}</p>
             <p className="mt-3 text-body-sm leading-relaxed">
               Algarve Boat Group
               <br />
-              Portimão, Portugal
+              {tf("dealerLocation")}
             </p>
           </div>
         </div>
         <div className="mt-10 border-t border-ink-line pt-6 text-caption">
-          © {new Date().getFullYear()} Grand Boats Portugal. Represented by Algarve Boat Group.
+          {tf("copyright", { year: new Date().getFullYear() })}
         </div>
       </div>
     </footer>

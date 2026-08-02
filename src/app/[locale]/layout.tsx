@@ -50,9 +50,13 @@ const organizationJsonLd = {
   url: SITE_URL,
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Portimão",
+    streetAddress: "Marina de Lagos, Loja 11",
+    addressLocality: "Lagos",
+    postalCode: "8600-780",
     addressCountry: "PT",
   },
+  telephone: "+351282045109",
+  email: "miguel@algarveboatgroup.com",
   areaServed: "PT",
 };
 

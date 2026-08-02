@@ -31,8 +31,8 @@ export const brandStory = {
         pt: "Vendido exclusivamente em Portugal pela Algarve Boat Group",
       } satisfies LocalizedText,
       body: {
-        en: "We carry stock of the most popular models at our Portimão base, and can order any model in the range. Our team knows these boats — we've rigged them, launched them, and used them on this coast.",
-        pt: "Temos em stock os modelos mais populares na nossa base em Portimão e podemos encomendar qualquer modelo da gama. A nossa equipa conhece estas embarcações — equipámo-las, lançámo-las à água e utilizámo-las nesta costa.",
+        en: "We carry stock of the most popular models at our Marina de Lagos base, and can order any model in the range. Our team knows these boats — we've rigged them, launched them, and used them on this coast.",
+        pt: "Temos em stock os modelos mais populares na nossa base na Marina de Lagos e podemos encomendar qualquer modelo da gama. A nossa equipa conhece estas embarcações — equipámo-las, lançámo-las à água e utilizámo-las nesta costa.",
       } satisfies LocalizedText,
     },
   ],

@@ -56,7 +56,7 @@
   },
   "contact": {
     "heading": "Contacte-nos",
-    "intro": "Estamos sediados em Portimão, Portugal, e representamos a Grand Boats em todo o país. Seja para esclarecer uma dúvida sobre um modelo específico, marcar uma visita ou simplesmente falar sobre que tipo de barco se adapta às suas necessidades — entre em contacto.",
+    "intro": "Estamos sediados na Marina de Lagos, no Algarve, e representamos a Grand Boats em todo o país. Seja para esclarecer uma dúvida sobre um modelo específico, marcar uma visita ou simplesmente falar sobre que tipo de barco se adapta às suas necessidades — entre em contacto.",
     "fields": {
       "name": "Nome",
       "email": "Email",
@@ -74,11 +74,21 @@
     },
     "address": {
       "company": "Algarve Boat Group",
-      "location": "Portimão, Portugal",
+      "location": "Marina de Lagos, Loja 11, Lagos",
+      "hours": "Segunda a sexta, 9h–17h",
       "phoneLabel": "Telefone",
-      "phone": "A confirmar",
+      "phone": "+351 282 045 109",
       "emailLabel": "Email",
-      "email": "A confirmar"
+      "email": "miguel@algarveboatgroup.com"
     }
+  },
+  "footer": {
+    "tagline": "Barcos recreativos premium,",
+    "taglineLine2": "construídos na Ucrânia.",
+    "rangesHeading": "Gamas",
+    "companyHeading": "Empresa",
+    "dealerHeading": "Representante",
+    "dealerLocation": "Lagos, Portugal",
+    "copyright": "© {year} Grand Boats Portugal. Representado pela Algarve Boat Group."
   }
 }
