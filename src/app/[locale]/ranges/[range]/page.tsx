@@ -88,9 +88,14 @@ export async function generateMetadata({ params }: Props) {
   const { locale, range: rangeSlug } = await params;
   const range = getRangeBySlug(rangeSlug as Range["slug"]);
   if (!range) return {};
+  const title = `${range.name} — Grand Boats Portugal`;
+  const description = resolveText(range.tagline, locale);
+  const image = heroImage[range.slug];
   return {
-    title: `${range.name} — Grand Boats Portugal`,
-    description: resolveText(range.tagline, locale),
+    title,
+    description,
+    openGraph: { title, description, images: [{ url: image, width: 2160, height: 945 }] },
+    twitter: { images: [image] },
   };
 }
 

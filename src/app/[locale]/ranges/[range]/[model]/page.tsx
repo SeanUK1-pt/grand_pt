@@ -33,9 +33,13 @@ export async function generateMetadata({ params }: Props) {
   const { locale, range: rangeSlug, model: modelSlug } = await params;
   const model = getModelBySlug(modelSlug);
   if (!model || model.rangeSlug !== rangeSlug) return {};
+  const title = `${model.name} — Grand Boats Portugal`;
+  const description = resolveText(model.positioning, locale);
   return {
-    title: `${model.name} — Grand Boats Portugal`,
-    description: resolveText(model.positioning, locale),
+    title,
+    description,
+    openGraph: { title, description, images: [{ url: model.image, width: 2160, height: 945 }] },
+    twitter: { images: [model.image] },
   };
 }
 
@@ -130,8 +134,32 @@ export default async function ModelPage({ params }: Props) {
     hasGallery && { href: "#gallery", label: t("gallery") },
   ].filter((l): l is { href: string; label: string } => !!l);
 
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: `Grand ${model.name}`,
+    description: positioning,
+    image: allPhotos.map((src) => `https://grandboats.pt${src}`),
+    brand: { "@type": "Brand", name: "Grand" },
+    category: range.name,
+    url: `https://grandboats.pt/${locale}${model.href}`,
+    ...(model.priceFrom !== undefined && {
+      offers: {
+        "@type": "Offer",
+        price: model.priceFrom,
+        priceCurrency: "EUR",
+        availability: "https://schema.org/InStock",
+        url: `https://grandboats.pt/${locale}${model.href}`,
+      },
+    }),
+  };
+
   return (
     <PhotoLightboxProvider>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
       {/* ── Quick-jump nav — sits right below the fixed site nav (top-16 =
             its exact 64px height) and stays there via position:sticky, so
             it's reachable all the way down the page, not just at the top. ── */}

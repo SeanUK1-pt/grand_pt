@@ -18,10 +18,42 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL = "https://grandboats.pt";
+const DEFAULT_OG_IMAGE = "/images/boats/g750/detail-11.jpg";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Grand Boats Portugal",
   description:
     "Grand Boats Portugal — authorised dealer for the Golden Line, Silver Line and Drive Line ranges. Represented by Algarve Boat Group.",
+  openGraph: {
+    siteName: "Grand Boats Portugal",
+    type: "website",
+    images: [{ url: DEFAULT_OG_IMAGE, width: 2160, height: 945 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [DEFAULT_OG_IMAGE],
+  },
+};
+
+// Sitewide Organization/AutoDealer structured data — page-specific data
+// (Product per model, etc.) layers on top of this per-page, it doesn't
+// replace it.
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "AutomotiveBusiness",
+  name: "Algarve Boat Group",
+  alternateName: "Grand Boats Portugal",
+  description:
+    "Authorised Grand Boats dealer for Portugal — Golden Line, Silver Line and Drive Line RIBs.",
+  url: SITE_URL,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Portimão",
+    addressCountry: "PT",
+  },
+  areaServed: "PT",
 };
 
 export function generateStaticParams() {
@@ -49,6 +81,10 @@ export default async function RootLayout({ children, params }: Props) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <NextIntlClientProvider>
           <Nav />
           <main className="flex-1">{children}</main>

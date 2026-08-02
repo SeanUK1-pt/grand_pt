@@ -62,6 +62,12 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
+// Internal component showcase, not a real content page — keep it out of
+// search results (also disallowed in robots.ts as a second layer).
+export const metadata = {
+  robots: { index: false, follow: false },
+};
+
 export default async function DevPreview({ params }: Props) {
   const { locale } = await params;
 

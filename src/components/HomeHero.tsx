@@ -103,14 +103,23 @@ export default function HomeHero({ slides }: { slides: HomeHeroSlide[] }) {
               className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent"
             />
 
-            {/* Text overlay — lower third */}
+            {/* Text overlay — lower third. The active slide's line is the
+                page's one and only <h1> (matches server-rendered initial
+                state, so no hydration mismatch); inactive slides use <p> so
+                the DOM never has more than one h1 at a time. */}
             <div className="absolute inset-x-0 bottom-20 px-8 md:px-16 lg:px-24">
               <p className="text-caption font-semibold uppercase tracking-[0.18em] text-ink-text-muted">
                 {slide.modelName}
               </p>
-              <p className="mt-2 max-w-2xl text-headline font-semibold leading-tight text-balance text-ink-text sm:text-display">
-                {slide.moodLine}
-              </p>
+              {i === current ? (
+                <h1 className="mt-2 max-w-2xl text-headline font-semibold leading-tight text-balance text-ink-text sm:text-display">
+                  {slide.moodLine}
+                </h1>
+              ) : (
+                <p className="mt-2 max-w-2xl text-headline font-semibold leading-tight text-balance text-ink-text sm:text-display">
+                  {slide.moodLine}
+                </p>
+              )}
             </div>
           </Link>
         </div>
