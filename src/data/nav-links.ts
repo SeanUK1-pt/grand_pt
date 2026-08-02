@@ -1,4 +1,4 @@
-export type NavLinkKey = "goldenLine" | "silverLine" | "driveLine" | "ourStory" | "contact";
+export type NavLinkKey = "goldenLine" | "silverLine" | "driveLine" | "forSale" | "ourStory" | "contact";
 
 export type NavLink = { key: NavLinkKey; href: string };
 
@@ -12,6 +12,7 @@ export const navLinks: NavLink[] = [
   { key: "goldenLine", href: "/ranges/golden-line/" },
   { key: "silverLine", href: "/ranges/silver-line/" },
   { key: "driveLine", href: "/ranges/drive-line/" },
+  { key: "forSale", href: "/for-sale/" },
   { key: "ourStory", href: "/our-story/" },
   { key: "contact", href: "/contact/" },
 ];

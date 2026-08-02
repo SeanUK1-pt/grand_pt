@@ -8,7 +8,7 @@ const SITE_URL = "https://grandboats.pt";
 // Every static path in the site, locale-agnostic — each gets prefixed with
 // /en and /pt below. Keep this in sync with the real route tree by hand;
 // there's no single source of truth to derive it from automatically.
-const staticPaths = ["/", "/our-story/", "/contact/"];
+const staticPaths = ["/", "/our-story/", "/contact/", "/for-sale/"];
 const rangePaths = ranges.map((r) => `/ranges/${r.slug}/`);
 const modelPaths = models.map((m) => m.href);
 

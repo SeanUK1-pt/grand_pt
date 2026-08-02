@@ -28,8 +28,17 @@
     "goldenLine": "Golden Line",
     "silverLine": "Silver Line",
     "driveLine": "Drive Line",
+    "forSale": "Barcos à Venda",
     "ourStory": "A Nossa História",
     "contact": "Contacto"
+  },
+  "forSale": {
+    "heading": "Barcos Grand à venda",
+    "intro": "Unidades novas em stock e barcos Grand usados atualmente disponíveis, anunciados pela Algarve Boat Group. Cada anúncio abre em algarveboatsales.com, onde pode ver todos os detalhes e entrar em contacto.",
+    "empty": "Não há barcos Grand à venda neste momento — volte a visitar em breve, ou contacte-nos e avisamo-lo assim que chegar novo stock.",
+    "conditionNew": "Novo",
+    "conditionUsed": "Usado",
+    "viewListing": "Ver anúncio →"
   },
   "enquireForm": {
     "intro": {

@@ -28,8 +28,17 @@
     "goldenLine": "Golden Line",
     "silverLine": "Silver Line",
     "driveLine": "Drive Line",
+    "forSale": "Boats For Sale",
     "ourStory": "Our Story",
     "contact": "Contact"
+  },
+  "forSale": {
+    "heading": "Grand boats for sale",
+    "intro": "In-stock new units and used Grand boats currently available, listed with Algarve Boat Group. Each listing opens on algarveboatsales.com, where you can see full details and get in touch.",
+    "empty": "No Grand boats are listed for sale right now — check back soon, or get in touch and we'll let you know when new stock arrives.",
+    "conditionNew": "New",
+    "conditionUsed": "Used",
+    "viewListing": "View listing →"
   },
   "enquireForm": {
     "intro": {
