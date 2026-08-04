@@ -1073,7 +1073,12 @@ export const models: Model[] = [
       pt: "O maior Grand alguma vez construído. Autonomia oceânica, potência de dois motores e os icónicos tubos em Hypalon que aguentam o que o Atlântico lhes lançar.",
     },
     image: "/images/boats/g980/detail-9.jpg",
-    gallery: ["/images/boats/g980/detail-16.jpg"],
+    gallery: [
+      "/images/boats/g980/detail-16.jpg",
+      "/images/boats/g980/detail-2.png",
+      "/images/boats/g980/detail-10.jpg",
+      "/images/boats/g980/detail-11.jpg",
+    ],
     href: "/ranges/golden-line/g980/",
     priceFrom: 105851,
     priceLabel: MIN_PACKAGE_PRICE_LABEL,
