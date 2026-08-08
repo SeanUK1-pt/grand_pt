@@ -11,6 +11,7 @@ export default function NavMobile() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const t = useTranslations("nav");
+  const tc = useTranslations("common");
 
   useEffect(() => { setOpen(false); }, [pathname]);
 
@@ -23,7 +24,7 @@ export default function NavMobile() {
     <>
       {/* Hamburger button */}
       <button
-        aria-label={open ? "Close menu" : "Open menu"}
+        aria-label={open ? tc("closeMenu") : tc("openMenu")}
         aria-expanded={open}
         aria-controls="mobile-menu"
         onClick={() => setOpen((v) => !v)}
@@ -41,7 +42,7 @@ export default function NavMobile() {
           id="mobile-menu"
           className="absolute inset-x-0 top-full min-h-screen bg-ink px-6 py-8 md:hidden"
         >
-          <nav aria-label="Mobile navigation">
+          <nav aria-label={tc("mobileNav")}>
             <ul className="flex flex-col gap-1">
               {navLinks.map(({ key, href }) => (
                 <li key={href}>

@@ -134,7 +134,7 @@ export default async function RangePage({ params }: Props) {
       </section>
 
       {/* Model grid */}
-      <section aria-label={`${range.name} models`} className="bg-surface pb-24">
+      <section aria-label={t("modelsSection", { name: range.name })} className="bg-surface pb-24">
         <div className="mx-auto max-w-7xl px-6">
           <h2 className="mb-10 text-title font-semibold tracking-tight text-text-strong">
             {t("models")}

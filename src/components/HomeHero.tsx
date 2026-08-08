@@ -7,6 +7,20 @@ import type { HomeHeroSlide } from "@/data/home-hero-slides";
 
 const INTERVAL_MS = 8000;
 
+// moodLine is resolved to a plain string server-side (see page.tsx) since
+// this is a client component and can't call next-intl/server's resolveText.
+// Same goes for the per-slide aria-labels below — functions aren't
+// serializable across the server/client boundary, so page.tsx precomputes
+// the actual label strings and passes them as plain arrays instead.
+type ResolvedSlide = Omit<HomeHeroSlide, "moodLine"> & { moodLine: string };
+
+type Labels = {
+  carousel: string;
+  slideNav: string;
+  slideOf: string[];
+  goToSlide: string[];
+};
+
 type State = { current: number; paused: boolean };
 type Action =
   | { type: "next"; total: number }
@@ -27,7 +41,7 @@ function reducer(state: State, action: Action): State {
   }
 }
 
-export default function HomeHero({ slides }: { slides: HomeHeroSlide[] }) {
+export default function HomeHero({ slides, labels }: { slides: ResolvedSlide[]; labels: Labels }) {
   const [{ current, paused }, dispatch] = useReducer(reducer, {
     current: 0,
     paused: false,
@@ -67,7 +81,7 @@ export default function HomeHero({ slides }: { slides: HomeHeroSlide[] }) {
   return (
     <section
       aria-roledescription="carousel"
-      aria-label="Featured models"
+      aria-label={labels.carousel}
       className="relative h-screen w-full overflow-hidden"
       onMouseEnter={() => dispatch({ type: "pause" })}
       onMouseLeave={() => dispatch({ type: "resume" })}
@@ -76,7 +90,7 @@ export default function HomeHero({ slides }: { slides: HomeHeroSlide[] }) {
         <div
           key={slide.href}
           aria-roledescription="slide"
-          aria-label={`${i + 1} of ${slides.length}: ${slide.modelName}`}
+          aria-label={labels.slideOf[i]}
           aria-hidden={i !== current}
           className={`absolute inset-0 transition-opacity duration-1000 ${
             i === current ? "opacity-100" : "opacity-0 pointer-events-none"
@@ -128,7 +142,7 @@ export default function HomeHero({ slides }: { slides: HomeHeroSlide[] }) {
       {/* Dot controls */}
       <div
         role="tablist"
-        aria-label="Slides"
+        aria-label={labels.slideNav}
         className="absolute bottom-8 left-1/2 flex -translate-x-1/2 items-center gap-2"
       >
         {slides.map((slide, i) => (
@@ -136,7 +150,7 @@ export default function HomeHero({ slides }: { slides: HomeHeroSlide[] }) {
             key={slide.href}
             role="tab"
             aria-selected={i === current}
-            aria-label={`Go to slide ${i + 1}: ${slide.modelName}`}
+            aria-label={labels.goToSlide[i]}
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();

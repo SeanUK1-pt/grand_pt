@@ -1,4 +1,4 @@
-import { setRequestLocale } from "next-intl/server";
+import { setRequestLocale, getTranslations } from "next-intl/server";
 import HomeHero from "@/components/HomeHero";
 import RangeTiles from "@/components/RangeTiles";
 import YamahaPartner from "@/components/YamahaPartner";
@@ -37,10 +37,25 @@ export async function generateMetadata({ params }: Props) {
 export default async function Home({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations("homeHero");
+
+  const resolvedSlides = homeHeroSlides.map((slide) => ({
+    ...slide,
+    moodLine: resolveText(slide.moodLine, locale),
+  }));
+
+  const heroLabels = {
+    carousel: t("carousel"),
+    slideNav: t("slideNav"),
+    slideOf: homeHeroSlides.map((slide, i) =>
+      t("slideOf", { index: i + 1, total: homeHeroSlides.length, name: slide.modelName })
+    ),
+    goToSlide: homeHeroSlides.map((slide, i) => t("goToSlide", { index: i + 1, name: slide.modelName })),
+  };
 
   return (
     <>
-      <HomeHero slides={homeHeroSlides} />
+      <HomeHero slides={resolvedSlides} labels={heroLabels} />
       <RangeTiles />
       <BrandStrip />
       <YamahaPartner />

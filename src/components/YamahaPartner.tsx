@@ -1,14 +1,15 @@
 import Image from "next/image";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { yamahaPartner } from "@/data/yamaha-partner";
 import { resolveText } from "@/data/localized-text";
 
 export default async function YamahaPartner() {
   const locale = await getLocale();
+  const tc = await getTranslations("common");
 
   return (
-    <section aria-label="Our engine partner" className="bg-ink">
+    <section aria-label={tc("enginePartnerSection")} className="bg-ink">
       <div className="grid sm:grid-cols-2">
         <div className="relative h-64 sm:h-auto">
           <Image

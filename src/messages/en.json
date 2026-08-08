@@ -4,6 +4,7 @@
     "d600Tagline": "One hull, three layouts.",
     "d950Tagline": "Commercial-grade. Built to work.",
     "models": "Models",
+    "modelsSection": "{name} models",
     "flagship": "Flagship",
     "viewModel": "View model →"
   },
@@ -12,6 +13,9 @@
   },
   "modelPage": {
     "enquireAboutModel": "Enquire about the {name}",
+    "pageSections": "Page sections",
+    "layoutsSection": "Layouts",
+    "layoutDetails": "{name} details",
     "chooseALayout": "Choose a layout",
     "gallery": "Gallery",
     "fullSpecification": "Full specification",
@@ -23,6 +27,25 @@
     "closingQuestion": "Have a question? Talk to us about the {name}.",
     "closingBody": "The team at Algarve Boat Group can walk you through specifications, availability, and configuration options.",
     "getInTouch": "Get in touch →"
+  },
+  "common": {
+    "mainNav": "Main navigation",
+    "mobileNav": "Mobile navigation",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language",
+    "close": "Close",
+    "previousPhoto": "Previous photo",
+    "nextPhoto": "Next photo",
+    "aboutSection": "About Grand Boats",
+    "enginePartnerSection": "Our engine partner",
+    "viewPhotosOf": "View photos of {name}"
+  },
+  "homeHero": {
+    "carousel": "Featured models",
+    "slideNav": "Slides",
+    "slideOf": "{index} of {total}: {name}",
+    "goToSlide": "Go to slide {index}: {name}"
   },
   "nav": {
     "goldenLine": "Golden Line",

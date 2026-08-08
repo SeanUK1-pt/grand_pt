@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 
 type LightboxState = { images: string[]; index: number; alt: string };
@@ -19,6 +20,7 @@ export function useLightbox() {
 
 export default function PhotoLightboxProvider({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<LightboxState | null>(null);
+  const tc = useTranslations("common");
 
   const openAt = useCallback((images: string[], index: number, alt: string) => {
     setState({ images, index, alt });
@@ -62,7 +64,7 @@ export default function PhotoLightboxProvider({ children }: { children: React.Re
           <button
             type="button"
             onClick={close}
-            aria-label="Close"
+            aria-label={tc("close")}
             className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-2xl leading-none text-white transition-colors hover:bg-white/20"
           >
             &times;
@@ -81,7 +83,7 @@ export default function PhotoLightboxProvider({ children }: { children: React.Re
                 e.stopPropagation();
                 prev();
               }}
-              aria-label="Previous photo"
+              aria-label={tc("previousPhoto")}
               className="absolute left-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-2xl text-white transition-colors hover:bg-white/20 sm:left-4"
             >
               &#8249;
@@ -109,7 +111,7 @@ export default function PhotoLightboxProvider({ children }: { children: React.Re
                 e.stopPropagation();
                 next();
               }}
-              aria-label="Next photo"
+              aria-label={tc("nextPhoto")}
               className="absolute right-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-2xl text-white transition-colors hover:bg-white/20 sm:right-4"
             >
               &#8250;

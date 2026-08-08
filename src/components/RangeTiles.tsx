@@ -90,7 +90,7 @@ async function RangeTile({ range, priority }: { range: Range; priority: boolean 
           (rendered after, in normal flow) still capture their own clicks. */}
       <Link
         href={`/ranges/${range.slug}/`}
-        aria-label={`Explore ${range.name}`}
+        aria-label={locale === "pt" ? `Explorar ${range.name}` : `Explore ${range.name}`}
         className="absolute inset-0 z-0"
       />
 
@@ -118,7 +118,8 @@ async function RangeTile({ range, priority }: { range: Range; priority: boolean 
                 className="relative z-20 inline-block rounded-none bg-black/60 px-1.5 py-0.5 text-caption text-white transition-colors hover:bg-black/80 pointer-events-auto"
               >
                 {chip.name}
-                {chip.priceFrom !== undefined && ` · From ${formatPrice(chip.priceFrom)}`}
+                {chip.priceFrom !== undefined &&
+                  ` · ${locale === "pt" ? "Desde" : "From"} ${formatPrice(chip.priceFrom)}`}
               </Link>
             </li>
           ))}
@@ -128,9 +129,10 @@ async function RangeTile({ range, priority }: { range: Range; priority: boolean 
   );
 }
 
-export default function RangeTiles() {
+export default async function RangeTiles() {
+  const locale = await getLocale();
   return (
-    <section aria-label="Our ranges" className="w-full bg-surface-line">
+    <section aria-label={locale === "pt" ? "As nossas gamas" : "Our ranges"} className="w-full bg-surface-line">
       <div className="flex flex-col gap-[2px] md:grid md:h-[600px] md:grid-cols-[2fr_1.3fr_1.3fr] md:gap-[2px]">
         {ranges.map((range, i) => (
           <RangeTile key={range.slug} range={range} priority={i === 0} />

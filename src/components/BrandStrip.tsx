@@ -1,4 +1,4 @@
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { ranges } from "@/data/ranges";
 import { models } from "@/data/models";
@@ -7,6 +7,7 @@ import { resolveText } from "@/data/localized-text";
 
 export default async function BrandStrip() {
   const locale = await getLocale();
+  const tc = await getTranslations("common");
 
   const stats = [
     { label: resolveText(brandStory.founded.label, locale), value: resolveText(brandStory.founded.value, locale) },
@@ -16,7 +17,7 @@ export default async function BrandStrip() {
   ];
 
   return (
-    <section aria-label="About Grand Boats" className="bg-surface-muted py-12">
+    <section aria-label={tc("aboutSection")} className="bg-surface-muted py-12">
       <div className="mx-auto max-w-5xl px-6">
         <p className="text-caption font-semibold uppercase tracking-[0.16em] text-brand">
           {resolveText(brandStory.eyebrow, locale)}

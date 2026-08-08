@@ -1,6 +1,8 @@
+import type { LocalizedText } from "./localized-text";
+
 export type HomeHeroSlide = {
   modelName: string;
-  moodLine: string;
+  moodLine: LocalizedText;
   image: string;
   range: "golden" | "silver" | "drive";
   href: string;
@@ -25,21 +27,21 @@ export type HomeHeroSlide = {
 export const homeHeroSlides: HomeHeroSlide[] = [
   {
     modelName: "G750",
-    moodLine: "Open water, every weekend.",
+    moodLine: { en: "Open water, every weekend.", pt: "Mar aberto, todos os fins de semana." },
     image: "/images/boats/g750/detail-11.jpg",
     range: "golden",
     href: "/ranges/golden-line/g750/",
   },
   {
     modelName: "G850",
-    moodLine: "Further than the horizon.",
+    moodLine: { en: "Further than the horizon.", pt: "Mais longe do que o horizonte." },
     image: "/images/boats/g850/detail-20.jpg",
     range: "golden",
     href: "/ranges/golden-line/g850/",
   },
   {
     modelName: "G980",
-    moodLine: "The largest Grand ever built.",
+    moodLine: { en: "The largest Grand ever built.", pt: "O maior Grand alguma vez construído." },
     image: "/images/boats/g980/detail-9.jpg",
     range: "golden",
     href: "/ranges/golden-line/g980/",

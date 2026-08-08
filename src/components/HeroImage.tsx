@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { useLightbox } from "./PhotoLightbox";
 
 type Props = {
@@ -10,12 +11,13 @@ type Props = {
 
 export default function HeroImage({ images, alt }: Props) {
   const { openAt } = useLightbox();
+  const tc = useTranslations("common");
 
   return (
     <button
       type="button"
       onClick={() => openAt(images, 0, alt)}
-      aria-label={`View photos of ${alt}`}
+      aria-label={tc("viewPhotosOf", { name: alt })}
       className="relative flex aspect-[16/9] w-full cursor-zoom-in bg-ink md:aspect-[21/9]"
     >
       <Image

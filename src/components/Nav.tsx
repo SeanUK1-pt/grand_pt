@@ -7,6 +7,7 @@ import { navLinks } from "@/data/nav-links";
 
 export default async function Nav() {
   const t = await getTranslations("nav");
+  const tc = await getTranslations("common");
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-ink/95 backdrop-blur-sm">
@@ -24,7 +25,7 @@ export default async function Nav() {
 
         {/* Desktop links */}
         <div className="hidden items-center gap-6 md:flex">
-          <nav aria-label="Main navigation">
+          <nav aria-label={tc("mainNav")}>
             <ul className="flex items-center gap-6">
               {navLinks.map(({ key, href }) => (
                 <li key={href}>

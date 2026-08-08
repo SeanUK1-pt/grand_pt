@@ -165,7 +165,7 @@ export default async function ModelPage({ params }: Props) {
             it's reachable all the way down the page, not just at the top. ── */}
       {quickLinks.length > 0 && (
         <nav
-          aria-label="Page sections"
+          aria-label={t("pageSections")}
           className="sticky top-16 z-40 border-b border-ink-line bg-ink py-3"
         >
           <div className="mx-auto max-w-7xl overflow-x-auto px-6">
@@ -246,7 +246,7 @@ export default async function ModelPage({ params }: Props) {
             (currently Silver Line); LayoutTiles itself also no-ops on an
             empty array, this guard just avoids invoking it needlessly ── */}
       {model.layouts && model.layouts.length > 0 && (
-        <section id="layouts" aria-label="Layouts" className={`scroll-mt-32 ${nextBand()}`}>
+        <section id="layouts" aria-label={t("layoutsSection")} className={`scroll-mt-32 ${nextBand()}`}>
           <div className="mx-auto max-w-7xl px-6">
             <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
               {heading(t("chooseALayout"))}
@@ -275,7 +275,7 @@ export default async function ModelPage({ params }: Props) {
           <section
             key={layout.name}
             id={i === 0 ? "features" : undefined}
-            aria-label={`${layout.name} details`}
+            aria-label={t("layoutDetails", { name: layout.name })}
             className={`scroll-mt-32 ${nextBand()}`}
           >
             <div className="mx-auto max-w-7xl px-6">
@@ -342,7 +342,7 @@ export default async function ModelPage({ params }: Props) {
         <>
           {/* ── Features — characteristics/highlights, leads before the raw
                 spec sheet ── */}
-          <section id="features" aria-label="Features" className={`scroll-mt-32 ${nextBand()}`}>
+          <section id="features" aria-label={t("features")} className={`scroll-mt-32 ${nextBand()}`}>
             <div className="mx-auto max-w-7xl px-6">
               <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
                 {heading(t("features"))}
@@ -353,7 +353,7 @@ export default async function ModelPage({ params }: Props) {
 
           {/* ── Full specification — comprehensive detail, distinct from the
                 quick-glance SpecStrip above ── */}
-          <section id="full-specification" aria-label="Full specification" className={`scroll-mt-32 ${nextBand()}`}>
+          <section id="full-specification" aria-label={t("fullSpecification")} className={`scroll-mt-32 ${nextBand()}`}>
             <div className="mx-auto max-w-7xl px-6">
               <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
                 {heading(t("fullSpecification"))}
@@ -365,7 +365,7 @@ export default async function ModelPage({ params }: Props) {
           {/* ── Equipment — literal standard/optional checklists from the
                 manufacturer spec sheet, distinct from the curated Features
                 above ── */}
-          <section id="equipment" aria-label="Equipment" className={`scroll-mt-32 ${nextBand()}`}>
+          <section id="equipment" aria-label={t("equipment")} className={`scroll-mt-32 ${nextBand()}`}>
             <div className="mx-auto max-w-7xl px-6">
               <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
                 {heading(t("equipment"))}
@@ -386,7 +386,7 @@ export default async function ModelPage({ params }: Props) {
             `image` (see the gallery field's comment in models.ts). Last of
             the content sections, right before "More from the range". ── */}
       {hasGallery && (
-        <section id="gallery" aria-label="Gallery" className={`scroll-mt-32 ${nextBand()}`}>
+        <section id="gallery" aria-label={t("gallery")} className={`scroll-mt-32 ${nextBand()}`}>
           <div className="mx-auto max-w-7xl px-6">
             <h2 className="mb-12 text-caption font-semibold uppercase tracking-[0.16em] text-brand">
               {heading(t("gallery"))}
@@ -399,7 +399,7 @@ export default async function ModelPage({ params }: Props) {
       {/* ── More from the range ── */}
       {relatedModels.length > 0 && (
         <section
-          aria-label={`More from ${range.name}`}
+          aria-label={t("moreFromRange", { range: range.name })}
           className={nextBand()}
         >
           <div className="mx-auto max-w-7xl px-6">

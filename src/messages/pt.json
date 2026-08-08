@@ -4,6 +4,7 @@
     "d600Tagline": "Um casco, três configurações.",
     "d950Tagline": "Nível comercial. Feito para trabalhar.",
     "models": "Modelos",
+    "modelsSection": "Modelos {name}",
     "flagship": "Modelo principal",
     "viewModel": "Ver modelo →"
   },
@@ -12,6 +13,9 @@
   },
   "modelPage": {
     "enquireAboutModel": "Saber mais sobre o {name}",
+    "pageSections": "Secções da página",
+    "layoutsSection": "Configurações",
+    "layoutDetails": "Detalhes — {name}",
     "chooseALayout": "Escolha uma configuração",
     "gallery": "Galeria",
     "fullSpecification": "Ficha técnica completa",
@@ -23,6 +27,25 @@
     "closingQuestion": "Tem alguma questão? Fale connosco sobre o {name}.",
     "closingBody": "A equipa da Algarve Boat Group pode esclarecer especificações, disponibilidade e opções de configuração.",
     "getInTouch": "Entre em contacto →"
+  },
+  "common": {
+    "mainNav": "Navegação principal",
+    "mobileNav": "Navegação móvel",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu",
+    "language": "Idioma",
+    "close": "Fechar",
+    "previousPhoto": "Fotografia anterior",
+    "nextPhoto": "Fotografia seguinte",
+    "aboutSection": "Sobre a Grand Boats",
+    "enginePartnerSection": "O nosso parceiro de motores",
+    "viewPhotosOf": "Ver fotografias de {name}"
+  },
+  "homeHero": {
+    "carousel": "Modelos em destaque",
+    "slideNav": "Slides",
+    "slideOf": "{index} de {total}: {name}",
+    "goToSlide": "Ir para o slide {index}: {name}"
   },
   "nav": {
     "goldenLine": "Golden Line",
