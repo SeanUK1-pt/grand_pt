@@ -16,7 +16,7 @@ export default async function Nav() {
           <Image
             src="/images/logo/grand-boats-logo.svg"
             alt="Grand Boats"
-            width={392}
+            width={483}
             height={74}
             priority
             className="h-8 w-auto"
