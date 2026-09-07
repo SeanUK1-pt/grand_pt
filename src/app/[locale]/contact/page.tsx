@@ -1,5 +1,6 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import ContactForm from "@/components/ContactForm";
+import { buildAlternates, buildOpenGraph } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -8,9 +9,13 @@ type Props = {
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "contact" });
+  const title = locale === "pt" ? `${t("heading")} — Representante de RHIBs em Portugal` : `${t("heading")} — RHIB Dealer in Portugal`;
+  const description = t("intro");
   return {
-    title: `${t("heading")} — Grand Boats Portugal`,
-    description: t("intro"),
+    title,
+    description,
+    alternates: buildAlternates("/contact/", locale),
+    ...buildOpenGraph(title, description),
   };
 }
 

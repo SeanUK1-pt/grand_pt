@@ -29,6 +29,7 @@
     "getInTouch": "Get in touch →"
   },
   "common": {
+    "home": "Home",
     "mainNav": "Main navigation",
     "mobileNav": "Mobile navigation",
     "openMenu": "Open menu",
@@ -52,8 +53,15 @@
     "silverLine": "Silver Line",
     "driveLine": "Drive Line",
     "forSale": "Boats For Sale",
+    "faq": "FAQ",
     "ourStory": "Our Story",
     "contact": "Contact"
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "intro": "Everything you need to know about buying and running a RHIB in Portugal — whichever brand you end up choosing.",
+    "stillHaveQuestions": "Still have questions?",
+    "getInTouch": "Get in touch →"
   },
   "forSale": {
     "heading": "Grand boats for sale",

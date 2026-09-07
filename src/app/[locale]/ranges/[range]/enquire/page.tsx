@@ -22,7 +22,11 @@ export async function generateMetadata({ params }: Props) {
   const range = getRangeBySlug(rangeSlug as Range["slug"]);
   if (!range) return {};
   return {
-    title: `Enquire — ${range.name} — Grand Boats Portugal`,
+    title: `Enquire — ${range.name}`,
+    // Transactional, query-param-driven page with no content of its own —
+    // already disallowed in robots.ts, this is the belt-and-suspenders
+    // page-level directive (same pattern as /dev-preview).
+    robots: { index: false, follow: false },
   };
 }
 

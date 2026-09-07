@@ -2,6 +2,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import BoatForSaleCard from "@/components/BoatForSaleCard";
 import { getGrandBoatsForSale } from "@/lib/boats-for-sale";
 import { routing } from "@/i18n/routing";
+import { buildAlternates, buildOpenGraph } from "@/lib/seo";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -14,9 +15,13 @@ type Props = {
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "forSale" });
+  const title = locale === "pt" ? `${t("heading")} — RHIBs Novos e Usados` : `${t("heading")} — New & Used RHIBs`;
+  const description = t("intro");
   return {
-    title: `${t("heading")} — Grand Boats Portugal`,
-    description: t("intro"),
+    title,
+    description,
+    alternates: buildAlternates("/for-sale/", locale),
+    ...buildOpenGraph(title, description),
   };
 }
 

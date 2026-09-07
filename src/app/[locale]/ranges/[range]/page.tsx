@@ -9,6 +9,7 @@ import { Link } from "@/i18n/navigation";
 import { ranges, getRangeBySlug } from "@/data/ranges";
 import { getModelsByRange, getModelBySlug } from "@/data/models";
 import { resolveText } from "@/data/localized-text";
+import { buildAlternates, buildOpenGraph, SITE_URL } from "@/lib/seo";
 import type { Model } from "@/data/models";
 import type { Range } from "@/data/ranges";
 
@@ -88,14 +89,18 @@ export async function generateMetadata({ params }: Props) {
   const { locale, range: rangeSlug } = await params;
   const range = getRangeBySlug(rangeSlug as Range["slug"]);
   if (!range) return {};
-  const title = `${range.name} — Grand Boats Portugal`;
-  const description = resolveText(range.tagline, locale);
-  const image = heroImage[range.slug];
+  const tagline = resolveText(range.tagline, locale);
+  const title =
+    locale === "pt" ? `RHIBs ${range.name} — Barcos RIB em Portugal` : `${range.name} RHIBs — RIB Boats in Portugal`;
+  const description =
+    locale === "pt"
+      ? `${tagline} RHIBs ${range.name} da Grand (barcos insufláveis rígidos), entregues em todo o país pela Algarve Boat Group.`
+      : `${tagline} Grand ${range.name} RHIBs (rigid inflatable boats), delivered anywhere in Portugal by Algarve Boat Group.`;
   return {
     title,
     description,
-    openGraph: { title, description, images: [{ url: image, width: 2160, height: 945 }] },
-    twitter: { images: [image] },
+    alternates: buildAlternates(`/ranges/${range.slug}/`, locale),
+    ...buildOpenGraph(title, description, heroImage[range.slug]),
   };
 }
 
@@ -103,6 +108,7 @@ export default async function RangePage({ params }: Props) {
   const { locale, range: rangeSlug } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "rangePage" });
+  const tc = await getTranslations("common");
 
   const range = getRangeBySlug(rangeSlug as Range["slug"]);
 
@@ -110,8 +116,21 @@ export default async function RangePage({ params }: Props) {
 
   const allModels = getModelsByRange(range.slug);
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: tc("home"), item: `${SITE_URL}/${locale}` },
+      { "@type": "ListItem", position: 2, name: range.name, item: `${SITE_URL}/${locale}/ranges/${range.slug}/` },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <RangeHero
         accent={range.accent}
         name={range.name}

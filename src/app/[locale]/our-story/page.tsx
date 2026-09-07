@@ -1,6 +1,7 @@
 import { setRequestLocale } from "next-intl/server";
 import { ourStory } from "@/data/our-story";
 import { resolveText } from "@/data/localized-text";
+import { buildAlternates, buildOpenGraph } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -8,9 +9,13 @@ type Props = {
 
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
+  const title = resolveText(ourStory.heading, locale);
+  const description = resolveText(ourStory.lead, locale);
   return {
-    title: `${resolveText(ourStory.heading, locale)} — Grand Boats Portugal`,
-    description: resolveText(ourStory.lead, locale),
+    title,
+    description,
+    alternates: buildAlternates("/our-story/", locale),
+    ...buildOpenGraph(title, description),
   };
 }
 

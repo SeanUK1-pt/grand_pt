@@ -15,6 +15,7 @@ import { getRangeBySlug } from "@/data/ranges";
 import { models, getModelBySlug, getModelsByRange } from "@/data/models";
 import { resolveText } from "@/data/localized-text";
 import { translatePriceLabel, translatePriceFootnote, MIN_PACKAGE_PRICE_LABEL, HULL_ONLY_PRICE_LABEL } from "@/data/spec-labels";
+import { buildAlternates, buildOpenGraph, SITE_URL } from "@/lib/seo";
 import type { Range } from "@/data/ranges";
 import Image from "next/image";
 
@@ -33,13 +34,22 @@ export async function generateMetadata({ params }: Props) {
   const { locale, range: rangeSlug, model: modelSlug } = await params;
   const model = getModelBySlug(modelSlug);
   if (!model || model.rangeSlug !== rangeSlug) return {};
-  const title = `${model.name} — Grand Boats Portugal`;
-  const description = resolveText(model.positioning, locale);
+  const range = getRangeBySlug(rangeSlug as Range["slug"]);
+  const loa = model.specs.find((s) => s.label === "LOA")?.value ?? "";
+  const positioning = resolveText(model.positioning, locale);
+
+  const title =
+    locale === "pt" ? `${model.name} RHIB — Barco RIB de ${loa}` : `${model.name} RHIB — ${loa} RIB Boat`;
+  const description =
+    locale === "pt"
+      ? `${positioning} O Grand ${model.name} é um RHIB de ${loa} (barco insuflável rígido) da ${range?.name ?? ""}, entregue em todo o país.`
+      : `${positioning} The Grand ${model.name} is a ${loa} RHIB (rigid inflatable boat) from the ${range?.name ?? ""}, delivered anywhere in Portugal.`;
+
   return {
     title,
     description,
-    openGraph: { title, description, images: [{ url: model.image, width: 2160, height: 945 }] },
-    twitter: { images: [model.image] },
+    alternates: buildAlternates(model.href, locale),
+    ...buildOpenGraph(title, description, model.image),
   };
 }
 
@@ -48,6 +58,7 @@ export default async function ModelPage({ params }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "modelPage" });
   const tLayout = await getTranslations({ locale, namespace: "layoutTiles" });
+  const tc = await getTranslations("common");
 
   // Validate both slugs and that the model belongs to the stated range
   const range = getRangeBySlug(rangeSlug as Range["slug"]);
@@ -139,19 +150,32 @@ export default async function ModelPage({ params }: Props) {
     "@type": "Product",
     name: `Grand ${model.name}`,
     description: positioning,
-    image: allPhotos.map((src) => `https://grandboats.pt${src}`),
+    image: allPhotos.map((src) => `${SITE_URL}${src}`),
     brand: { "@type": "Brand", name: "Grand" },
     category: range.name,
-    url: `https://grandboats.pt/${locale}${model.href}`,
+    // "keywords" is a valid free-text Product field — this is where the
+    // brand-agnostic RHIB/RIB search terms get attached to every model.
+    keywords: "RHIB, RIB, rigid inflatable boat, barco insuflável rígido, embarcação semirrígida",
+    url: `${SITE_URL}/${locale}${model.href}`,
     ...(model.priceFrom !== undefined && {
       offers: {
         "@type": "Offer",
         price: model.priceFrom,
         priceCurrency: "EUR",
         availability: "https://schema.org/InStock",
-        url: `https://grandboats.pt/${locale}${model.href}`,
+        url: `${SITE_URL}/${locale}${model.href}`,
       },
     }),
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: tc("home"), item: `${SITE_URL}/${locale}` },
+      { "@type": "ListItem", position: 2, name: range.name, item: `${SITE_URL}/${locale}/ranges/${range.slug}/` },
+      { "@type": "ListItem", position: 3, name: model.name, item: `${SITE_URL}/${locale}${model.href}` },
+    ],
   };
 
   return (
@@ -159,6 +183,10 @@ export default async function ModelPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       {/* ── Quick-jump nav — sits right below the fixed site nav (top-16 =
             its exact 64px height) and stays there via position:sticky, so

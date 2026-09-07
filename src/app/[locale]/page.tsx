@@ -6,6 +6,7 @@ import BrandStrip from "@/components/BrandStrip";
 import { homeHeroSlides } from "@/data/home-hero-slides";
 import { routing } from "@/i18n/routing";
 import { resolveText } from "@/data/localized-text";
+import { buildAlternates, buildOpenGraph } from "@/lib/seo";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -17,20 +18,24 @@ type Props = {
 
 const homeMeta = {
   title: {
-    en: "Grand Boats Portugal — Golden, Silver & Drive Line RIBs",
-    pt: "Grand Boats Portugal — RIBs Golden, Silver e Drive Line",
+    en: "Grand Boats Portugal — RHIBs & RIB Boats, Delivered Nationwide",
+    pt: "Grand Boats Portugal — RHIBs e Barcos Insufláveis Rígidos",
   },
   description: {
-    en: "Authorised Grand Boats dealer for Portugal. Hand-laid RIBs from the Golden, Silver and Drive Line ranges, sold and serviced by Algarve Boat Group in Lagos.",
-    pt: "Representante autorizado da Grand Boats em Portugal. RIBs laminados à mão das gamas Golden, Silver e Drive Line, vendidos e assistidos pela Algarve Boat Group em Lagos.",
+    en: "RHIBs and rigid inflatable boats (RIBs) from Grand's Golden, Silver and Drive Line ranges. Hand-laid hulls, delivered anywhere in Portugal by Algarve Boat Group, based in the Algarve.",
+    pt: "RHIBs e barcos insufláveis rígidos (RIBs) das gamas Golden, Silver e Drive Line da Grand. Cascos laminados à mão, entregues em todo o país pela Algarve Boat Group, sediada no Algarve.",
   },
 };
 
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
+  const title = resolveText(homeMeta.title, locale);
+  const description = resolveText(homeMeta.description, locale);
   return {
-    title: resolveText(homeMeta.title, locale),
-    description: resolveText(homeMeta.description, locale),
+    title: { absolute: title },
+    description,
+    alternates: buildAlternates("/", locale),
+    ...buildOpenGraph(title, description),
   };
 }
 

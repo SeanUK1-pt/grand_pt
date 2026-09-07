@@ -29,6 +29,7 @@
     "getInTouch": "Entre em contacto →"
   },
   "common": {
+    "home": "Início",
     "mainNav": "Navegação principal",
     "mobileNav": "Navegação móvel",
     "openMenu": "Abrir menu",
@@ -52,8 +53,15 @@
     "silverLine": "Silver Line",
     "driveLine": "Drive Line",
     "forSale": "Barcos à Venda",
+    "faq": "FAQ",
     "ourStory": "A Nossa História",
     "contact": "Contacto"
+  },
+  "faq": {
+    "heading": "Perguntas Frequentes",
+    "intro": "Tudo o que precisa de saber sobre comprar e utilizar um RHIB em Portugal — seja qual for a marca que acabar por escolher.",
+    "stillHaveQuestions": "Ainda tem dúvidas?",
+    "getInTouch": "Entre em contacto →"
   },
   "forSale": {
     "heading": "Barcos Grand à venda",
