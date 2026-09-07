@@ -785,7 +785,7 @@ export const models: Model[] = [
         { label: "Package weight", value: "860 kg / 1896 lbs" },
         { label: "Max load", value: "1150 kg / 2535 lbs" },
         { label: "Max persons", value: "12" },
-        { label: "CE category", value: "С" },
+        { label: "CE category", value: "C" },
       ] },
       { category: "Construction", items: [
         { label: "Tube chambers", value: "5" },
@@ -964,7 +964,7 @@ export const models: Model[] = [
     rangeSlug: "golden-line",
     positioning: {
       en: "Eight and a half metres, up to 400HP, twin engines optional. For when the destination is further away than the horizon.",
-      pt: "Oito metros e meio, até 400CV, dois motores opcional. Para quando o destino está mais longe do que o horizonte.",
+      pt: "Oito metros e meio, até 400CV, dois motores opcionais. Para quando o destino está mais longe do que o horizonte.",
     },
     image: "/images/boats/g850/detail-20.jpg",
     gallery: ["/images/boats/g850/detail-12.jpg", "/images/boats/g850/detail-24.jpg"],
@@ -989,14 +989,14 @@ export const models: Model[] = [
         { label: "Recommended power", value: "300 HP / 220.6 kW" },
         { label: "Max power", value: "1x400 or 2x200 HP / 1x294 or 2x147.1 kW" },
         { label: "Engine weight max", value: "500 kg / 1102 lbs" },
-        { label: "Engine shaft length", value: "30\" (utra long)" },
+        { label: "Engine shaft length", value: "30\" (ultra long)" },
         { label: "Midsection/aft deadrise", value: "30° / 25°" },
       ] },
       { category: "Capacity", items: [
         { label: "Package weight", value: "1680 kg / 3704 lbs" },
         { label: "Max load", value: "1972 kg / 4348 lbs" },
         { label: "Max persons", value: "12 / 16" },
-        { label: "CE category", value: "B / С" },
+        { label: "CE category", value: "B / C" },
       ] },
       { category: "Construction", items: [
         { label: "Tube chambers", value: "5" },
@@ -1100,14 +1100,14 @@ export const models: Model[] = [
         { label: "Recommended power", value: "2x300 HP / 2x220,6 kW" },
         { label: "Max power", value: "1x700 or 2x350 HP / 1x522 or 2x261 kW" },
         { label: "Engine weight max", value: "700 kg / 1543 lbs" },
-        { label: "Engine shaft length", value: "1x30\" (utra long) / 2x25\" (extra long)" },
+        { label: "Engine shaft length", value: "1x30\" (ultra long) / 2x25\" (extra long)" },
         { label: "Midsection/aft deadrise", value: "30° / 22°" },
       ] },
       { category: "Capacity", items: [
         { label: "Package weight", value: "2410 kg / 5313 lbs" },
         { label: "Max load", value: "2000 kg / 4409 lbs" },
         { label: "Max persons", value: "12 / 18" },
-        { label: "CE category", value: "B / С" },
+        { label: "CE category", value: "B / C" },
       ] },
       { category: "Construction", items: [
         { label: "Tube chambers", value: "7" },
@@ -1165,7 +1165,7 @@ export const models: Model[] = [
         },
       },
       {
-        title: { en: "Hypalon tubes at flagship scale", pt: "Tubos em Hypalon à escala da embarcação insignia" },
+        title: { en: "Hypalon tubes at flagship scale", pt: "Tubos em Hypalon à escala do modelo topo de gama" },
         description: {
           en: "At this length, tube diameter, chamber count, and material specification matter as much as the hull. The G980's tubes are engineered for stability at anchor and safety at sea — the same Hypalon construction as the rest of the Golden Line, scaled to match the hull.",
           pt: "A este comprimento, o diâmetro dos tubos, o número de câmaras e a especificação do material são tão importantes como o casco. Os tubos do G980 são concebidos para estabilidade em ancoragem e segurança no mar — a mesma construção em Hypalon do resto da Golden Line, escalada para corresponder ao casco.",
@@ -1431,7 +1431,7 @@ export const models: Model[] = [
     rangeSlug: "silver-line",
     positioning: {
       en: "A workhorse tender with enough polish to sit alongside premium vessels without apology.",
-      pt: "Um tender de trabalho com acabamento suficiente para estar ao lado de embarcações premium sem necessitar de se desculpar.",
+      pt: "Um tender de trabalho com acabamento suficiente para estar ao lado de embarcações premium sem pedir desculpa.",
     },
     image: "/images/boats/s370n/detail-11.jpg",
     gallery: ["/images/boats/s370n/detail-9.jpg"],
@@ -1550,7 +1550,7 @@ export const models: Model[] = [
       ] },
       { category: "Capacity", items: [
         { label: "Package weight", value: "178-209 kg / 392-460 lbs" },
-        { label: "Max load", value: "650 / 1430" },
+        { label: "Max load", value: "650 kg / 1430 lbs" },
         { label: "Max persons", value: "8" },
         { label: "CE category", value: "C" },
       ] },
@@ -2142,7 +2142,7 @@ export const models: Model[] = [
         { label: "Recommended power", value: "1x500 or 2x250 HP / 1x372.8 or 2x186.4 kW" },
         { label: "Max power", value: "1x700 or 2x350 HP / 1x514.7 or 2x257.4 kW" },
         { label: "Engine weight max", value: "700 kg / 1543 lbs" },
-        { label: "Engine shaft length", value: "1х30’’ (ultra long) or 2x25’’ (extra long)" },
+        { label: "Engine shaft length", value: "1x30’’ (ultra long) or 2x25’’ (extra long)" },
         { label: "Midsection/aft deadrise", value: "30° / 22°" },
       ] },
       { category: "Capacity", items: [

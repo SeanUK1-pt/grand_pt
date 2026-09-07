@@ -27,7 +27,7 @@ export const ourStory: {
     },
     {
       en: "If you're weighing up a Grand model, we'd rather talk it through properly than sell you the wrong boat — get in touch and we'll help you find the right one.",
-      pt: "Se está a ponderar um modelo Grand, preferimos conversar convenientemente do que vender-lhe o barco errado — contacte-nos e ajudamo-lo a encontrar o modelo certo.",
+      pt: "Se está a ponderar um modelo Grand, preferimos conversar como deve ser do que vender-lhe o barco errado — contacte-nos e ajudamo-lo a encontrar o modelo certo.",
     },
   ],
 };

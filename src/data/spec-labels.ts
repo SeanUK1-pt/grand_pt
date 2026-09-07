@@ -38,7 +38,6 @@ export function translateSpecLabel(label: string, locale: string): string {
 // as labels: substitute the connector words, leave the numbers alone.
 // Longest phrases first so e.g. "extra long" doesn't get double-matched by "long".
 const valueReplacements: [RegExp, string][] = [
-  [/\butra long\b/gi, "ultra longo"],
   [/\bultra long\b/gi, "ultra longo"],
   [/\bextra long\b/gi, "extra longo"],
   [/\bshort\b/gi, "curto"],

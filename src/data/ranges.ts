@@ -18,7 +18,7 @@ export const ranges: Range[] = [
     name: "Golden Line",
     tagline: {
       en: "Premium liveaboard flagship — the top of the range.",
-      pt: "A embarcação insignia premium — o topo da gama.",
+      pt: "A embarcação insígnia premium — o topo da gama.",
     },
     voiceLine: {
       en: "Built to be lived aboard.",
