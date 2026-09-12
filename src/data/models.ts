@@ -752,8 +752,8 @@ export const models: Model[] = [
     range: "golden",
     rangeSlug: "golden-line",
     positioning: {
-      en: "The sweet spot. Cabin comfort, centre console simplicity, and enough hull to handle whatever the Atlantic sends.",
-      pt: "O equilíbrio perfeito. Conforto de cabine, simplicidade de consola central e casco suficiente para o que o Atlântico trouxer.",
+      en: "The sweet spot of the range — one of the roomiest decks in its class, centre console simplicity, and enough hull to handle whatever the Atlantic sends.",
+      pt: "O equilíbrio perfeito da gama — um dos convés mais espaçosos da sua categoria, simplicidade de consola central e casco suficiente para o que o Atlântico trouxer.",
     },
     image: "/images/boats/g680/detail-18.jpg",
     gallery: ["/images/boats/g680/detail-14.jpg", "/images/boats/g680/detail-19.jpg", "/images/boats/g680/detail-22.jpg"],
@@ -827,12 +827,20 @@ export const models: Model[] = [
       { en: "Black powder coated stainless steel upgrade", pt: "Upgrade de aço inoxidável com revestimento em pó preto" },
       { en: "Overpressure valves", pt: "Válvulas de sobrepressão" },
     ],
+    // Feature copy below draws on Grand's own G680-vs-BRIG-Eagle-6.7/Highfield-
+    // Sport-660 comparison guide (shared via Grand News, 2026) — real measured
+    // advantages (deck-area percentages, central-console balance, integrated
+    // wet bar, aft fuel filler location, etc.), deliberately written without
+    // naming the competitors: this copy is public/indexed website content,
+    // not the sales-conversation PDF the comparison was built for, so the
+    // claims are kept to defensible "in its class" framing rather than named
+    // A-vs-B comparisons.
     features: [
       {
-        title: { en: "Centre console helm", pt: "Leme em consola central" },
+        title: { en: "Centre console helm, better balanced", pt: "Leme em consola central, mais equilibrado" },
         description: {
-          en: "A well-positioned, ergonomic helm station with clear sightlines in all conditions. Instrumentation, chart plotter, and VHF all sit within natural reach without cluttering the deck space behind it.",
-          pt: "Uma estação de pilotagem bem posicionada e ergonómica, com linhas de visão claras em todas as condições. Instrumentação, plotter e VHF ficam ao alcance natural sem sobrecarregar o espaço de convés a ré.",
+          en: "A well-positioned, ergonomic helm station with clear sightlines in all conditions — centred rather than offset to one side, which keeps the boat's weight evenly distributed for a drier, more balanced ride. Instrumentation, chart plotter, and VHF all sit within natural reach without cluttering the deck space behind it.",
+          pt: "Uma estação de pilotagem bem posicionada e ergonómica, com linhas de visão claras em todas as condições — centrada em vez de deslocada para um dos lados, o que mantém o peso do barco bem distribuído para uma navegação mais seca e equilibrada. Instrumentação, plotter e VHF ficam ao alcance natural sem sobrecarregar o espaço de convés a ré.",
         },
       },
       {
@@ -843,10 +851,10 @@ export const models: Model[] = [
         },
       },
       {
-        title: { en: "Convertible bow seating", pt: "Banco de proa convertível" },
+        title: { en: "One of the roomiest decks in its class", pt: "Um dos convés mais espaçosos da sua categoria" },
         description: {
-          en: "The forward section converts between a social seating area and a full sunbed, depending on how the day is going. Stowage beneath keeps the deck uncluttered when underway.",
-          pt: "A secção de proa converte-se entre uma área de estar social e uma espreguiçadeira completa, conforme o momento. O arrumo por baixo mantém o convés desimpedido durante a navegação.",
+          en: "Clear passages on both sides of the central console give the G680 genuinely usable space at the bow, in the cockpit, and aft — noticeably more room to move, sit, and stretch out than most RIBs this size. The convertible bow section adds a full sunbed when the engine's off, with a separate anchor locker so ground tackle never eats into the seating area, and an aft lounge that comfortably seats up to five around the table.",
+          pt: "As passagens livres dos dois lados da consola central dão ao G680 espaço genuinamente utilizável à proa, no cockpit e à popa — visivelmente mais espaço para andar, sentar e esticar as pernas do que a maioria dos RIBs deste tamanho. A secção de proa convertível acrescenta uma espreguiçadeira completa quando o motor está desligado, com um paiol de âncora separado para que o equipamento de fundeio nunca ocupe a área de assentos, e uma zona de estar à popa que acomoda confortavelmente até cinco pessoas à volta da mesa.",
         },
       },
     ],
