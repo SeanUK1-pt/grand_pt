@@ -14,10 +14,10 @@ export default async function Nav() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link href="/" className="shrink-0">
           <Image
-            src="/images/logo/grand-boats-logo.svg"
+            src="/images/logo/grand-logo-white.png"
             alt="Grand Boats"
-            width={483}
-            height={74}
+            width={2836}
+            height={359}
             priority
             className="h-8 w-auto"
           />

@@ -61,7 +61,7 @@ const organizationJsonLd = {
     "embarcações semirrígidas",
   ],
   url: SITE_URL,
-  logo: `${SITE_URL}/images/logo/grand-boats-logo.svg`,
+  logo: `${SITE_URL}/images/logo/grand-logo.png`,
   image: `${SITE_URL}${DEFAULT_OG_IMAGE}`,
   address: {
     "@type": "PostalAddress",

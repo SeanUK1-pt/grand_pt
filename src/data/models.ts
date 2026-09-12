@@ -857,8 +857,8 @@ export const models: Model[] = [
     range: "golden",
     rangeSlug: "golden-line",
     positioning: {
-      en: "The serious cruiser of the range — big enough for overnights, fast enough to make them count.",
-      pt: "O cruzeiro a sério da gama — grande o suficiente para pernoitas, rápido o suficiente para que valham a pena.",
+      en: "The serious cruiser of the range — built for long days offshore, fast enough to make them count.",
+      pt: "O cruzeiro a sério da gama — construído para dias longos em mar aberto, rápido o suficiente para que valham a pena.",
     },
     image: "/images/boats/g750/detail-11.jpg",
     gallery: ["/images/boats/g750/detail-7.jpg", "/images/boats/g750/detail-15.jpg", "/images/boats/g750/detail-19.jpg"],
@@ -942,17 +942,17 @@ export const models: Model[] = [
         },
       },
       {
-        title: { en: "Extended cockpit with full amenities", pt: "Cockpit amplo com comodidades completas" },
+        title: { en: "Sociable cockpit, built in", pt: "Cockpit social, de série" },
         description: {
-          en: "Freshwater system, fridge, and head compartment as standard. A boat this size earns its keep as an extended-use vessel, not just a day tripper, and the specification reflects that.",
-          pt: "Sistema de água doce, frigorífico e casa de banho de série. Uma embarcação desta dimensão justifica-se como barco de utilização prolongada, não apenas para passeios de dia, e a especificação reflete isso.",
+          en: "A U-shaped rear sofa and a functional wet bar come standard, with freshwater, a fridge and a head compartment available as options for owners who want to push further into a full day out.",
+          pt: "Um sofá traseiro em U e um bar funcional vêm de série, com água doce, frigorífico e casa de banho disponíveis como opção para quem quer alargar ainda mais o dia no mar.",
         },
       },
       {
-        title: { en: "Twin-engine option", pt: "Opção de dois motores" },
+        title: { en: "Single engine, real range", pt: "Motor único, autonomia a sério" },
         description: {
-          en: "The G750 transom supports twin outboard installation for passages where redundancy matters. Two engines also give the precise low-speed handling that larger RIBs benefit from in marina environments.",
-          pt: "A popa do G750 suporta a instalação de dois motores fora de borda para travessias onde a redundância é importante. Dois motores proporcionam também a manobra precisa a baixa velocidade de que os RIBs maiores beneficiam em marinas.",
+          en: "A single outboard up to 300HP and a 260-litre fuel tank give the G750 genuine range for long days offshore, without the added weight and complexity of running two engines.",
+          pt: "Um único motor fora de borda até 300CV e um depósito de 260 litros dão ao G750 uma autonomia a sério para dias longos em mar aberto, sem o peso e a complexidade acrescidos de dois motores.",
         },
       },
     ],
@@ -1048,10 +1048,10 @@ export const models: Model[] = [
         },
       },
       {
-        title: { en: "Offshore specification standard equipment", pt: "Equipamento de série para navegação oceânica" },
+        title: { en: "Extended-stay options available", pt: "Opções para estadias prolongadas" },
         description: {
-          en: "Freshwater system, head compartment, fridge-freezer, and navigation electronics are part of the standard specification — not an options list to negotiate. The G850 is set up for extended time on the water from delivery.",
-          pt: "Sistema de água doce, casa de banho, frigorífico-congelador e eletrónica de navegação fazem parte do equipamento de série — não de uma lista de opções a negociar. O G850 está preparado para longos períodos no mar desde a entrega.",
+          en: "A 300-litre fuel tank and a functional wet bar come standard, and the G850 can be specified with freshwater, a fridge-freezer and a head compartment for owners who want to stay out longer.",
+          pt: "Um depósito de 300 litros e um bar funcional vêm de série, e o G850 pode ser especificado com água doce, frigorífico-congelador e casa de banho para quem quer ficar mais tempo no mar.",
         },
       },
       {
@@ -1160,8 +1160,8 @@ export const models: Model[] = [
       {
         title: { en: "Full liveaboard specification", pt: "Especificação completa para viver a bordo" },
         description: {
-          en: "Head, freshwater, fridge-freezer, and navigation electronics as standard. The G980 is equipped to stay out rather than come back — a genuine overnight-capable platform rather than a day boat with ambitions.",
-          pt: "Casa de banho, água doce, frigorífico-congelador e eletrónica de navegação de série. O G980 está equipado para ficar no mar em vez de regressar — uma plataforma genuinamente capaz de pernoitar, não apenas um barco de dia com ambições.",
+          en: "A sleeping cabin comes standard, with freshwater, a fridge-freezer, a head compartment and even a gas kitchenette available as options for owners who want to properly live aboard. The G980 is built to stay out rather than come back.",
+          pt: "Uma cabine de dormir vem de série, com água doce, frigorífico-congelador, casa de banho e até kitchenette a gás disponíveis como opção para quem quer viver a bordo como deve ser. O G980 está construído para ficar no mar em vez de regressar.",
         },
       },
       {

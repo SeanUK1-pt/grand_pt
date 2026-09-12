@@ -1,6 +1,7 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import HomeHero from "@/components/HomeHero";
 import RangeTiles from "@/components/RangeTiles";
+import ConfiguratorPromo from "@/components/ConfiguratorPromo";
 import YamahaPartner from "@/components/YamahaPartner";
 import BrandStrip from "@/components/BrandStrip";
 import { homeHeroSlides } from "@/data/home-hero-slides";
@@ -62,6 +63,7 @@ export default async function Home({ params }: Props) {
     <>
       <HomeHero slides={resolvedSlides} labels={heroLabels} />
       <RangeTiles />
+      <ConfiguratorPromo />
       <BrandStrip />
       <YamahaPartner />
     </>
