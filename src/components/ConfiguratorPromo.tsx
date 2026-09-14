@@ -7,16 +7,16 @@ export default async function ConfiguratorPromo() {
   const locale = await getLocale();
 
   return (
-    <section aria-label={resolveText(configuratorPromo.heading, locale)} className="bg-surface-muted">
+    <section aria-label={resolveText(configuratorPromo.heading, locale)} className="bg-brand">
       <div className="grid sm:grid-cols-2">
         <div className="order-2 flex flex-col justify-center gap-4 px-6 py-12 sm:order-1 sm:px-12 sm:py-16">
-          <p className="text-caption font-semibold uppercase tracking-[0.18em] text-brand">
+          <p className="text-caption font-semibold uppercase tracking-[0.18em] text-white/70">
             {resolveText(configuratorPromo.eyebrow, locale)}
           </p>
-          <h2 className="text-headline font-semibold tracking-tight text-balance text-text-strong">
+          <h2 className="text-headline font-semibold tracking-tight text-balance text-white">
             {resolveText(configuratorPromo.heading, locale)}
           </h2>
-          <p className="text-body leading-relaxed text-text-muted text-pretty">
+          <p className="text-body leading-relaxed text-white/80 text-pretty">
             {resolveText(configuratorPromo.body, locale)}
           </p>
 
@@ -24,7 +24,7 @@ export default async function ConfiguratorPromo() {
             href={CONFIGURATOR_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 inline-flex w-fit items-center gap-1 text-body-sm font-medium text-brand underline-offset-4 hover:underline"
+            className="mt-2 inline-flex w-fit items-center rounded-md bg-pop px-6 py-3 text-body-sm font-semibold text-pop-contrast transition-opacity hover:opacity-90"
           >
             {resolveText(configuratorPromo.cta, locale)}
           </a>
