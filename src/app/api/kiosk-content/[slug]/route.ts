@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { models } from "@/data/models";
+import { translateSpecLabel, translateSpecValue } from "@/data/spec-labels";
 import { contentVersion } from "@/lib/content-version";
 
 /**
@@ -26,7 +27,14 @@ export async function GET(_req: Request, { params }: { params: Promise<{ slug: s
     image: model.image,
     gallery: model.gallery ?? [],
     positioning: model.positioning,
-    specs: model.specs,
+    // Spec labels/values are plain English strings in models.ts; the site
+    // translates them via the closed vocabulary in spec-labels.ts, so ship
+    // the Portuguese alongside instead of making the kiosk keep its own copy.
+    specs: model.specs.map((s) => ({
+      ...s,
+      labelPt: translateSpecLabel(s.label, "pt"),
+      valuePt: translateSpecValue(s.value, "pt"),
+    })),
     fullSpecs: model.fullSpecs,
     standardFeatures: model.standardFeatures,
     optionalEquipment: model.optionalEquipment,
