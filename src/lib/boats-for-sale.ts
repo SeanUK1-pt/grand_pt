@@ -42,7 +42,11 @@ type RawBoat = {
   main_image: { url: string } | null;
 };
 
-function toBoatForSale(raw: RawBoat): BoatForSale {
+function toBoatForSale(raw: RawBoat, locale: string): BoatForSale {
+  // algarveboatsales.com treats English as the default, unprefixed locale
+  // and Portuguese as `/pt/...` — mirror that here so listing links land
+  // on the same language the visitor is already reading.
+  const localePrefix = locale === "pt" ? "/pt" : "";
   return {
     slug: raw.slug,
     title: raw.title,
@@ -59,18 +63,18 @@ function toBoatForSale(raw: RawBoat): BoatForSale {
     engineHp: raw.engine_hp,
     modelName: raw.model?.name ?? null,
     image: raw.main_image ? `${ABS_SITE_URL}${raw.main_image.url}` : null,
-    listingUrl: `${ABS_SITE_URL}/boats/${raw.slug}`,
+    listingUrl: `${ABS_SITE_URL}${localePrefix}/boats/${raw.slug}`,
   };
 }
 
-export async function getGrandBoatsForSale(): Promise<BoatForSale[]> {
+export async function getGrandBoatsForSale(locale: string): Promise<BoatForSale[]> {
   const url = `${ABS_SITE_URL}/api/boats?where[make.slug][equals]=grand&depth=1&limit=50&sort=-createdAt`;
 
   try {
     const res = await fetch(url, { next: { revalidate: 1800 } });
     if (!res.ok) return [];
     const data: { docs: RawBoat[] } = await res.json();
-    return data.docs.map(toBoatForSale);
+    return data.docs.map((raw) => toBoatForSale(raw, locale));
   } catch {
     return [];
   }

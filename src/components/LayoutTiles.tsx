@@ -2,7 +2,7 @@ import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { resolveText } from "@/data/localized-text";
-import { translateSpecLabel, translatePriceLabel } from "@/data/spec-labels";
+import { translateSpecLabel, translateSpecValue, translatePriceLabel } from "@/data/spec-labels";
 import type { ModelLayout } from "@/data/models";
 import type { RangeAccent } from "@/data/ranges";
 
@@ -66,7 +66,7 @@ export default async function LayoutTiles({ layouts, accent, modelSlug, rangeSlu
                   {layout.specs.map(({ label, value }) => (
                     <div key={label} className="flex items-baseline justify-between gap-4">
                       <dt className="text-caption text-text-subtle">{translateSpecLabel(label, locale)}</dt>
-                      <dd className="text-caption font-medium text-text-strong">{value}</dd>
+                      <dd className="text-caption font-medium text-text-strong">{translateSpecValue(value, locale)}</dd>
                     </div>
                   ))}
                 </dl>

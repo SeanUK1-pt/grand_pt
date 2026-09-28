@@ -30,7 +30,7 @@ export default async function ForSalePage({ params }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations("forSale");
 
-  const boats = await getGrandBoatsForSale();
+  const boats = await getGrandBoatsForSale(locale);
 
   return (
     <section className="bg-surface pb-24 pt-32">

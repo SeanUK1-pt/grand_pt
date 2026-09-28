@@ -152,7 +152,7 @@ export const models: Model[] = [
         title: { en: "Compact tender specification", pt: "Especificação de tender compacto" },
         description: {
           en: "Removable seating, clean deck, tow points, and the fittings you actually need. Nothing superfluous for a boat that spends its life getting people to and from a larger vessel.",
-          pt: "Bancos amovíveis, convés limpo, pontos de reboque e os acessórios de que realmente necessita. Nada supérfluo para uma embarcação que passa a vida a transportar pessoas de e para um barco maior.",
+          pt: "Bancos amovíveis, convés minimalista, pontos de reboque e os acessórios de que realmente necessita. Nada supérfluo para uma embarcação que passa a vida a transportar pessoas de e para um barco maior.",
         },
       },
       {
@@ -240,14 +240,14 @@ export const models: Model[] = [
         title: { en: "More power, same lightweight build", pt: "Mais potência, a mesma construção leve" },
         description: {
           en: "40HP rather than the standard G340's 30HP, without adding weight worth mentioning. The extra headroom shows on a loaded tender run.",
-          pt: "40HP em vez dos 30HP do G340 standard, sem acrescentar peso que se note. A potência extra nota-se numa viagem de tender carregada.",
+          pt: "40CV em vez dos 30CV do G340 standard, sem acrescentar peso que se note. A potência extra nota-se numa viagem de tender carregada.",
         },
       },
       {
         title: { en: "Updated console", pt: "Consola atualizada" },
         description: {
           en: "A cleaner dash with room for up to a 7-inch screen, plus the windshield and storage the standard G340 does without.",
-          pt: "Um painel mais limpo com espaço para um ecrã até 7 polegadas, além do para-brisas e arrumação que o G340 standard dispensa.",
+          pt: "Um painel mais minimalista com espaço para um ecrã até 7 polegadas, além do para-brisas e arrumação que o G340 standard dispensa.",
         },
       },
       {
@@ -337,7 +337,7 @@ export const models: Model[] = [
         },
       },
       {
-        title: { en: "Clean console layout", pt: "Layout de consola limpo" },
+        title: { en: "Clean console layout", pt: "Layout de consola minimalista" },
         description: {
           en: "A simple, uncluttered helm with everything in the right place. No unnecessary complexity for a boat that needs to be ready at a moment's notice and operated by whoever is aboard.",
           pt: "Um leme simples e desimpedido, com tudo no lugar certo. Sem complexidade desnecessária para uma embarcação que precisa de estar pronta a qualquer momento e ser operada por quem estiver a bordo.",
@@ -359,7 +359,7 @@ export const models: Model[] = [
     rangeSlug: "golden-line",
     positioning: {
       en: "A refreshed G380 — the same lightweight build the range is known for, with 50HP rather than 40, a modern console, and the finish to match the rest of the range.",
-      pt: "Um G380 renovado — a mesma construção leve pela qual a gama é conhecida, com 50HP em vez de 40, uma consola moderna e o acabamento à altura do resto da gama.",
+      pt: "Um G380 renovado — a mesma construção leve pela qual a gama é conhecida, com 50CV em vez de 40, uma consola moderna e o acabamento à altura do resto da gama.",
     },
     image: "/images/boats/g380n/detail-17.jpg",
     gallery: ["/images/boats/g380n/detail-19.jpg", "/images/boats/g380n/detail-22.jpg", "/images/boats/g380n/detail-28.jpg"],
@@ -428,14 +428,14 @@ export const models: Model[] = [
         title: { en: "More power for the same footprint", pt: "Mais potência, no mesmo tamanho" },
         description: {
           en: "50HP against the standard G380's 40 — enough extra to notice fully loaded, without changing the boat's size or weight class.",
-          pt: "50HP contra os 40 do G380 standard — o suficiente para se notar com a embarcação carregada, sem alterar o tamanho ou a classe de peso.",
+          pt: "50CV contra os 40 do G380 standard — o suficiente para se notar com a embarcação carregada, sem alterar o tamanho ou a classe de peso.",
         },
       },
       {
         title: { en: "Modern console, proper dashboard", pt: "Consola moderna, painel a sério" },
         description: {
           en: "Room for up to a 7-inch screen, a real windshield, and a steering position that feels considered rather than improvised.",
-          pt: "Espaço para um ecrã até 7 polegadas, para-brisas verdadeiro e uma posição de condução que parece pensada, não improvisada.",
+          pt: "Espaço para um ecrã até 7 polegadas, para-brisas e uma posição de condução que parece pensada, não improvisada.",
         },
       },
       {
@@ -454,7 +454,7 @@ export const models: Model[] = [
     rangeSlug: "golden-line",
     positioning: {
       en: "A proper little cruiser — well-finished, well-thought-out, and surprisingly capable for its footprint.",
-      pt: "Um verdadeiro pequeno cruzeiro — bem acabado, bem pensado e surpreendentemente capaz para o seu tamanho.",
+      pt: "Uma verdadeira pequena embarcação — bem acabado, bem pensado e surpreendentemente capaz para o seu tamanho.",
     },
     image: "/images/boats/g420/detail-19.jpg",
     gallery: ["/images/boats/g420/detail-9.jpg", "/images/boats/g420/detail-14.jpg", "/images/boats/g420/detail-22.jpg", "/images/boats/g420/detail-25.jpg"],
@@ -531,7 +531,7 @@ export const models: Model[] = [
         title: { en: "Versatile deck layout", pt: "Layout de convés versátil" },
         description: {
           en: "A clean, uncluttered cockpit with removable seating works equally well as a yacht tender or a standalone day boat. Stowage is thoughtful for the size — nothing wasted, nothing missing.",
-          pt: "Um cockpit limpo e desimpedido, com bancos amovíveis, funciona igualmente bem como tender de iate ou como embarcação de dia independente. O arrumo é bem pensado para o tamanho — nada desperdiçado, nada em falta.",
+          pt: "Um cockpit minimalista e desimpedido, com bancos amovíveis, funciona igualmente bem como tender de iate ou como embarcação de dia independente. O arrumo é bem pensado para o tamanho — nada desperdiçado, nada em falta.",
         },
       },
       {
@@ -635,10 +635,10 @@ export const models: Model[] = [
         },
       },
       {
-        title: { en: "Bow seating and sunbed", pt: "Banco de proa e espreguiçadeira" },
+        title: { en: "Bow seating and sunbed", pt: "Banco de proa e solário" },
         description: {
           en: "A convertible forward section that works as social seating at anchor and a sunbed when the engine is off. The G500 is equipped for the whole day, not just the journey.",
-          pt: "Uma secção de proa convertível que funciona como área de estar social em ancoragem e como espreguiçadeira quando o motor está desligado. O G500 está equipado para o dia inteiro, não apenas para a viagem.",
+          pt: "Uma secção de proa convertível que funciona como área de estar social em ancoragem e como solário quando o motor está desligado. O G500 está equipado para o dia inteiro, não apenas para a viagem.",
         },
       },
     ],
@@ -650,7 +650,7 @@ export const models: Model[] = [
     rangeSlug: "golden-line",
     positioning: {
       en: "The bridge between the compact tenders and the full cruisers. More boat than it looks, without the commitment of the bigger hulls.",
-      pt: "A ponte entre os tenders compactos e os cruzeiros completos. Mais barco do que parece, sem o compromisso dos cascos maiores.",
+      pt: "A ponte entre os tenders compactos e as embarcações completas. Mais barco do que parece, sem o compromisso dos cascos maiores.",
     },
     image: "/images/boats/g580/detail-11.jpg",
     gallery: ["/images/boats/g580/detail-7.jpg", "/images/boats/g580/detail-13.jpg", "/images/boats/g580/detail-16.jpg"],
@@ -727,7 +727,7 @@ export const models: Model[] = [
         title: { en: "Full centre console with extended instrumentation", pt: "Consola central completa com instrumentação alargada" },
         description: {
           en: "The G580 helm is specced for serious use — chart plotter, VHF, and engine instrumentation all properly integrated, not afterthoughts. The starting point for longer passages.",
-          pt: "O leme do G580 está especificado para uso a sério — plotter, VHF e instrumentação do motor devidamente integrados, não pensamentos tardios. O ponto de partida para travessias mais longas.",
+          pt: "O leme do G580 está especificado para uso a sério — plotter, VHF e instrumentação do motor devidamente integrados. O ponto de partida para travessias mais longas.",
         },
       },
       {
@@ -738,10 +738,10 @@ export const models: Model[] = [
         },
       },
       {
-        title: { en: "Social seating fore and aft", pt: "Área social a vante e a ré" },
+        title: { en: "Social seating fore and aft", pt: "Área social à vante e à ré" },
         description: {
           en: "Bow sunbed, aft bench, and a deck layout that works for a group rather than just a skipper and crew. The G580 is where the Golden Line starts feeling like a day out rather than a transfer.",
-          pt: "Espreguiçadeira de proa, banco de popa e um layout de convés que funciona para um grupo, não apenas para o patrão e tripulação. No G580 é onde a Golden Line começa a sentir-se como um dia de lazer em vez de uma simples transferência.",
+          pt: "Solário de proa, banco de popa e um layout de convés que funciona para um grupo, não apenas para o capitão e tripulação. No G580 é onde a Golden Line começa a sentir-se como um dia de lazer em vez de uma simples transferência.",
         },
       },
     ],
@@ -847,14 +847,14 @@ export const models: Model[] = [
         title: { en: "Deep-V twin-step hull", pt: "Casco deep-V com duplo step hidrodinâmico" },
         description: {
           en: "The G680's hull runs a 21° deadrise with twin hydrodynamic steps that reduce wetted surface at speed, cutting fuel consumption and softening the ride in chop. Built to handle open-water passages, not just sheltered anchorages.",
-          pt: "O casco do G680 tem uma quilha de 21° com dois steps hidrodinâmicos que reduzem a superfície molhada em velocidade, diminuindo o consumo de combustível e suavizando a navegação em ondulação. Concebido para travessias em mar aberto, não apenas para ancoradouros abrigados.",
+          pt: "O casco do G680 tem uma quilha de 21° com dois steps hidrodinâmicos que reduzem a superfície molhada em velocidade, diminuindo o consumo de combustível e suavizando a navegação em ondulação. Concebido para travessias em mar aberto, não apenas para baías abrigadas.",
         },
       },
       {
         title: { en: "One of the roomiest decks in its class", pt: "Um dos convés mais espaçosos da sua categoria" },
         description: {
           en: "Clear passages on both sides of the central console give the G680 genuinely usable space at the bow, in the cockpit, and aft — noticeably more room to move, sit, and stretch out than most RIBs this size. The convertible bow section adds a full sunbed when the engine's off, with a separate anchor locker so ground tackle never eats into the seating area, and an aft lounge that comfortably seats up to five around the table.",
-          pt: "As passagens livres dos dois lados da consola central dão ao G680 espaço genuinamente utilizável à proa, no cockpit e à popa — visivelmente mais espaço para andar, sentar e esticar as pernas do que a maioria dos RIBs deste tamanho. A secção de proa convertível acrescenta uma espreguiçadeira completa quando o motor está desligado, com um paiol de âncora separado para que o equipamento de fundeio nunca ocupe a área de assentos, e uma zona de estar à popa que acomoda confortavelmente até cinco pessoas à volta da mesa.",
+          pt: "As passagens livres dos dois lados da consola central dão ao G680 espaço genuinamente utilizável à proa, no cockpit e à popa — visivelmente mais espaço para andar, sentar e esticar as pernas do que a maioria dos RIBs deste tamanho. A secção de proa convertível acrescenta um solário completo quando o motor está desligado, com um paiol de âncora separado para que o equipamento de fundeio nunca ocupe a área de assentos, e uma zona de estar à popa que acomoda confortavelmente até cinco pessoas à volta da mesa.",
         },
       },
     ],
@@ -866,7 +866,7 @@ export const models: Model[] = [
     rangeSlug: "golden-line",
     positioning: {
       en: "The serious cruiser of the range — built for long days offshore, fast enough to make them count.",
-      pt: "O cruzeiro a sério da gama — construído para dias longos em mar aberto, rápido o suficiente para que valham a pena.",
+      pt: "A embarcação a sério da gama — construído para dias longos em mar aberto, rápido o suficiente para que valham a pena.",
     },
     image: "/images/boats/g750/detail-11.jpg",
     gallery: ["/images/boats/g750/detail-7.jpg", "/images/boats/g750/detail-15.jpg", "/images/boats/g750/detail-19.jpg"],
@@ -1334,11 +1334,11 @@ export const models: Model[] = [
         title: { en: "Compact tender with proper carrying capacity", pt: "Tender compacto com capacidade de carga real" },
         description: {
           en: "The S300 steps up from the S275 with noticeably more passenger and load capacity, while remaining small enough to handle without crew. A practical step up for yachts that need to move more people.",
-          pt: "O S300 supera o S275 com uma capacidade notavelmente maior de passageiros e carga, mantendo-se pequeno o suficiente para manusear sem tripulação. Um passo prático para iates que precisam de transportar mais pessoas.",
+          pt: "O S300 supera o S275 com uma capacidade notavelmente maior de passageiros e carga, mantendo-se pequeno o suficiente para manusear. Um passo prático para iates que precisam de transportar mais pessoas.",
         },
       },
       {
-        title: { en: "Clean deck, clear layout", pt: "Convés limpo, layout claro" },
+        title: { en: "Clean deck, clear layout", pt: "Convés minimalista, layout claro" },
         description: {
           en: "Uncluttered working space that makes loading and unloading straightforward in any anchorage. No features that get in the way of the boat's actual job.",
           pt: "Espaço de trabalho desimpedido que torna o embarque e desembarque simples em qualquer ancoragem. Sem características que interfiram com a função real da embarcação.",
@@ -1420,7 +1420,7 @@ export const models: Model[] = [
         title: { en: "Workhorse tender specification", pt: "Especificação de tender de trabalho" },
         description: {
           en: "The S330 is sized for yachts that need a tender that can genuinely carry guests, luggage, and provisions in one trip. Stable enough to load from a swim platform without drama.",
-          pt: "O S330 está dimensionado para iates que precisam de um tender capaz de transportar genuinamente convidados, bagagem e provisões numa só viagem. Estável o suficiente para carregar a partir de uma plataforma de banho sem complicações.",
+          pt: "O S330 está dimensionado para iates que precisam de um tender capaz de transportar convidados, bagagem e provisões numa só viagem. Estável o suficiente para carregar a partir de uma plataforma de banho sem complicações.",
         },
       },
       {

@@ -23,7 +23,7 @@ export const ourStory: {
     },
     {
       en: "We're based at Marina de Lagos, in the heart of the Algarve, and we work with owners across Portugal — from first tenders for a weekend boat to flagship cruisers bought to be lived aboard. Every model that comes through us is one we'd choose for our own family, in our own harbour.",
-      pt: "Estamos sediados na Marina de Lagos, no coração do Algarve, e trabalhamos com proprietários em todo o país — desde o primeiro tender para um barco de fim de semana até cruzeiros topo de gama comprados para se viver a bordo. Cada modelo que passa por nós é um que escolheríamos para a nossa própria família, no nosso próprio porto.",
+      pt: "Estamos sediados na Marina de Lagos, no coração do Algarve, e trabalhamos com proprietários em todo o país — desde o primeiro tender para um barco de fim de semana até embarcações topo de gama compradas para se viver a bordo. Cada modelo que passa por nós é um que escolheríamos para a nossa própria família, no nosso próprio porto.",
     },
     {
       en: "If you're weighing up a Grand model, we'd rather talk it through properly than sell you the wrong boat — get in touch and we'll help you find the right one.",

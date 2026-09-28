@@ -43,6 +43,7 @@ const valueReplacements: [RegExp, string][] = [
   [/\bshort\b/gi, "curto"],
   [/\blong\b/gi, "longo"],
   [/\bor\b/gi, "ou"],
+  [/\bhp\b/gi, "CV"],
 ];
 
 export function translateSpecValue(value: string, locale: string): string {

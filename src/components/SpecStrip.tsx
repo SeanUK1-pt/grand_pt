@@ -1,5 +1,5 @@
 import { getLocale } from "next-intl/server";
-import { translateSpecLabel } from "@/data/spec-labels";
+import { translateSpecLabel, translateSpecValue } from "@/data/spec-labels";
 
 type ModelSpec = { value: string; label: string };
 
@@ -32,7 +32,7 @@ export default async function SpecStrip({ specs, surface = "light" }: Props) {
               isDark ? "text-ink-text" : "text-text-strong"
             }`}
           >
-            {value}
+            {translateSpecValue(value, locale)}
           </span>
         </div>
       ))}

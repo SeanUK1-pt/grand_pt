@@ -35,8 +35,8 @@ export const faq: FaqEntry[] = [
       pt: "Preciso de carta para conduzir um RHIB em Portugal?",
     },
     answer: {
-      en: "It depends on the boat's engine power and length under Portuguese maritime law — some smaller, lower-powered RHIBs can be operated without a licence, while most larger models require a Carta de Navegador de Recreio. The rules vary by configuration, so it's worth checking before you settle on a size. Get in touch and we'll walk you through what applies to the model you're considering.",
-      pt: "Depende da potência do motor e do comprimento da embarcação, segundo a lei marítima portuguesa — alguns RHIBs mais pequenos e com menos potência podem ser conduzidos sem carta, enquanto a maioria dos modelos maiores exige uma Carta de Navegador de Recreio. As regras variam consoante a configuração, por isso vale a pena confirmar antes de decidir o tamanho. Contacte-nos e explicamos o que se aplica ao modelo que está a considerar.",
+      en: "Yes, in almost every case. Under Portuguese law, a Carta de Navegador de Recreio is required to operate a motorised recreational boat. The only exemption is for vessels under 5 metres with an engine under 4.5 kW (6 hp), used in daylight inside a harbour entrance — a limit that virtually every Grand RHIB, fitted with its recommended engine, exceeds. Which category of licence you need depends on the boat's length, engine power and how far offshore you plan to go. Get in touch and we'll explain what applies to the model you're considering.",
+      pt: "Sim, em quase todos os casos. Segundo a lei portuguesa, é necessária uma Carta de Navegador de Recreio para conduzir uma embarcação de recreio a motor. A única exceção são as embarcações com menos de 5 metros e motor com menos de 4,5 kW (6 CV), utilizadas de dia dentro da barra do porto — um limite que praticamente todos os RHIBs Grand, com o motor recomendado, ultrapassam. A categoria de carta necessária depende do comprimento da embarcação, da potência do motor e da distância a que pretende navegar da costa. Contacte-nos e explicamos o que se aplica ao modelo que está a considerar.",
     },
   },
   {
@@ -46,7 +46,7 @@ export const faq: FaqEntry[] = [
     },
     answer: {
       en: "Prices vary hugely by size and specification — a compact Silver Line tender starts under €10,000, while a flagship Golden Line cruiser with twin engines runs well into six figures. See our Golden Line, Silver Line and Drive Line ranges for real starting prices on every model, or get in touch and we'll help you find the right boat for your budget.",
-      pt: "Os preços variam muito consoante o tamanho e a especificação — um tender compacto da Silver Line começa por menos de 10.000 €, enquanto um cruzeiro topo de gama da Golden Line com dois motores ultrapassa facilmente os seis dígitos. Consulte as nossas gamas Golden Line, Silver Line e Drive Line para ver os preços reais de cada modelo, ou contacte-nos e ajudamos a encontrar o barco certo para o seu orçamento.",
+      pt: "Os preços variam muito consoante o tamanho e a especificação — um tender compacto da Silver Line começa por menos de 10.000 €, enquanto uma embarcação topo de gama da Golden Line com dois motores ultrapassa facilmente os seis dígitos. Consulte as nossas gamas Golden Line, Silver Line e Drive Line para ver os preços reais de cada modelo, ou contacte-nos e ajudamos a encontrar o barco certo para o seu orçamento.",
     },
   },
   {
@@ -86,7 +86,7 @@ export const faq: FaqEntry[] = [
     },
     answer: {
       en: "It depends on how you'll use it. Under 4 metres suits a yacht tender or a first boat for calm water; 4–6 metres is the sweet spot for a genuine day boat that still tows easily; above 7 metres starts to behave like a real cruiser, with overnight capability on the larger Golden Line hulls. Tell us how you plan to use it and we'll point you at the right range.",
-      pt: "Depende de como o vai usar. Menos de 4 metros é adequado para um tender de iate ou um primeiro barco em águas calmas; entre 4 e 6 metros é o ponto ideal para uma embarcação de dia a sério que ainda é fácil de rebocar; acima de 7 metros já se comporta como um verdadeiro cruzeiro, com capacidade para pernoitar nos cascos maiores da Golden Line. Diga-nos como pretende utilizá-lo e indicamos a gama certa.",
+      pt: "Depende de como o vai usar. Menos de 4 metros é adequado para um tender de iate ou um primeiro barco em águas calmas; entre 4 e 6 metros é o ponto ideal para uma embarcação de dia a sério que ainda é fácil de rebocar; acima de 7 metros já se comporta como uma verdadeira embarcação, com capacidade para pernoitar nos cascos maiores da Golden Line. Diga-nos como pretende utilizá-lo e indicamos a gama certa.",
     },
   },
 ];
