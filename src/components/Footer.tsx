@@ -49,8 +49,37 @@ export default async function Footer() {
             </p>
           </div>
         </div>
-        <div className="mt-10 border-t border-ink-line pt-6 text-caption">
-          {tf("copyright", { year: new Date().getFullYear() })}
+        <div className="mt-10 flex flex-col gap-3 border-t border-ink-line pt-6 text-caption sm:flex-row sm:items-center sm:justify-between">
+          <p>{tf("copyright", { year: new Date().getFullYear() })}</p>
+          <p>
+            {tf("groupHeading")}{" "}
+            <a
+              href="https://algarveboatsales.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-ink-text"
+            >
+              Algarve Boat Sales
+            </a>
+            {" · "}
+            <a
+              href="https://www.algarveboatrental.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-ink-text"
+            >
+              Algarve Boat Rental
+            </a>
+            {" · "}
+            <a
+              href="https://yamarin.pt"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-ink-text"
+            >
+              Yamarin Portugal
+            </a>
+          </p>
         </div>
       </div>
     </footer>
