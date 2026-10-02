@@ -1080,8 +1080,9 @@ export const models: Model[] = [
       en: "The largest Grand ever built. Offshore range, twin-engine power, and the signature hypalon tubes that handle whatever the Atlantic throws at it.",
       pt: "O maior Grand alguma vez construído. Autonomia oceânica, potência de dois motores e os icónicos tubos em Hypalon que aguentam o que o Atlântico lhes lançar.",
     },
-    image: "/images/boats/g980/detail-9.jpg",
+    image: "/images/boats/g980/detail-beach-landing.jpg",
     gallery: [
+      "/images/boats/g980/detail-9.jpg",
       "/images/boats/g980/detail-16.jpg",
       "/images/boats/g980/detail-2.png",
       "/images/boats/g980/detail-10.jpg",
