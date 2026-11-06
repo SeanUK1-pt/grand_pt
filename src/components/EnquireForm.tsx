@@ -63,6 +63,7 @@ export default function EnquireForm({
   modelName,
   layoutName,
   decodedExtras,
+  locale,
   decodeSucceeded = false,
   builderLinkRaw = null,
 }: EnquireFormProps) {
@@ -75,6 +76,7 @@ export default function EnquireForm({
     decodedExtras,
     decodeSucceeded,
     builderLinkRaw,
+    locale,
   });
   const [state, formAction] = useActionState(boundAction, initialState);
 

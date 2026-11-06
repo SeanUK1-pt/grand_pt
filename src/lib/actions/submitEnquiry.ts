@@ -1,6 +1,8 @@
 "use server";
 
+import { headers } from "next/headers";
 import { mailRow, mailParagraph, sendMail } from "@/lib/mailer";
+import { forwardEnquiryToAbg } from "@/lib/abgLeads";
 
 export type EnquiryActionState = {
   status: "idle" | "success" | "error";
@@ -14,6 +16,7 @@ export type EnquiryContext = {
   decodedExtras: { partNumber: string; name: string }[];
   decodeSucceeded: boolean;
   builderLinkRaw: string | null;
+  locale: string;
 };
 
 const rangeLabel: Record<EnquiryContext["range"], string> = {
@@ -83,6 +86,25 @@ export async function submitEnquiryAction(
       message: "Something went wrong sending your enquiry. Please try again or contact us directly.",
     };
   }
+
+  // Only delivered enquiries are forwarded. Fire-and-forget: the helper never
+  // throws, and the long-lived pm2 Node process lets it finish after we reply.
+  let referer: string | null = null;
+  try {
+    referer = (await headers()).get("referer");
+  } catch {}
+  void forwardEnquiryToAbg({
+    name,
+    email,
+    phone,
+    notes,
+    interest: `${modelHeading} (${rangeLabel[context.range]})`,
+    extraNames,
+    decodeSucceeded: context.decodeSucceeded,
+    builderLinkRaw: context.builderLinkRaw,
+    locale: context.locale,
+    sourceUrl: referer && /^https?:\/\//.test(referer) ? referer : null,
+  });
 
   return { status: "success" };
 }
