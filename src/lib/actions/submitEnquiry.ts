@@ -3,6 +3,7 @@
 import { headers } from "next/headers";
 import { mailRow, mailParagraph, sendMail } from "@/lib/mailer";
 import { forwardEnquiryToAbg } from "@/lib/abgLeads";
+import { screenSubmission } from "@/lib/spamScreen";
 
 export type EnquiryActionState = {
   status: "idle" | "success" | "error";
@@ -40,6 +41,17 @@ export async function submitEnquiryAction(
 
   if (!name || !email) {
     return { status: "error", message: "Please fill in your name and email before sending." };
+  }
+
+  // Spam: bots get a fake success (nothing emailed or forwarded); only the
+  // rate limit tells the sender "no", since a real person could trip it.
+  const screen = await screenSubmission(formData, { name, email, phone, message: notes }, "enquiry");
+  if (screen === "drop") return { status: "success" };
+  if (screen === "rate-limited") {
+    return {
+      status: "error",
+      message: "Too many enquiries from your connection. Please try again later or contact us directly.",
+    };
   }
 
   // Names only — the sales team doesn't need raw part numbers.

@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { useTranslations } from "next-intl";
+import SpamTraps from "@/components/SpamTraps";
 import {
   submitContactAction,
   type ContactActionState,
@@ -55,6 +56,7 @@ export default function ContactForm() {
             <input
               id="name"
               name="name"
+              maxLength={200}
               type="text"
               required
               className="mt-1.5 w-full rounded-sm border border-surface-line bg-surface px-3 py-2 text-body-sm text-text-strong outline-none focus:border-brand"
@@ -68,6 +70,7 @@ export default function ContactForm() {
             <input
               id="email"
               name="email"
+              maxLength={254}
               type="email"
               required
               className="mt-1.5 w-full rounded-sm border border-surface-line bg-surface px-3 py-2 text-body-sm text-text-strong outline-none focus:border-brand"
@@ -81,6 +84,7 @@ export default function ContactForm() {
             <input
               id="phone"
               name="phone"
+              maxLength={50}
               type="tel"
               className="mt-1.5 w-full rounded-sm border border-surface-line bg-surface px-3 py-2 text-body-sm text-text-strong outline-none focus:border-brand"
             />
@@ -93,10 +97,13 @@ export default function ContactForm() {
             <textarea
               id="message"
               name="message"
+              maxLength={4000}
               rows={5}
               className="mt-1.5 w-full rounded-sm border border-surface-line bg-surface px-3 py-2 text-body-sm text-text-strong outline-none focus:border-brand"
             />
           </div>
+
+          <SpamTraps />
 
           {state.status === "error" && (
             <p role="alert" className="text-body-sm text-drive">

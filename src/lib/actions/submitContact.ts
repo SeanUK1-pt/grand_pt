@@ -1,6 +1,7 @@
 "use server";
 
 import { mailRow, mailParagraph, sendMail } from "@/lib/mailer";
+import { screenSubmission } from "@/lib/spamScreen";
 
 export type ContactActionState = {
   status: "idle" | "success" | "error";
@@ -18,6 +19,17 @@ export async function submitContactAction(
 
   if (!name || !email) {
     return { status: "error", message: "Please fill in your name and email before sending." };
+  }
+
+  // Spam: bots get a fake success (nothing emailed); only the rate limit tells
+  // the sender "no", since a real person could trip it.
+  const screen = await screenSubmission(formData, { name, email, phone, message }, "contact message");
+  if (screen === "drop") return { status: "success" };
+  if (screen === "rate-limited") {
+    return {
+      status: "error",
+      message: "Too many messages from your connection. Please try again later or contact us directly.",
+    };
   }
 
   // General, brand-level enquiry — no range/model/extras context, unlike

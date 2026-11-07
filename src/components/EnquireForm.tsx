@@ -8,6 +8,7 @@ import {
   submitEnquiryAction,
   type EnquiryActionState,
 } from "@/lib/actions/submitEnquiry";
+import SpamTraps from "@/components/SpamTraps";
 
 type EnquireFormProps = {
   range: RangeAccent;
@@ -132,6 +133,7 @@ export default function EnquireForm({
             <input
               id="name"
               name="name"
+              maxLength={200}
               type="text"
               required
               className="mt-1.5 w-full rounded-sm border border-surface-line bg-surface px-3 py-2 text-body-sm text-text-strong outline-none focus:border-brand"
@@ -145,6 +147,7 @@ export default function EnquireForm({
             <input
               id="email"
               name="email"
+              maxLength={254}
               type="email"
               required
               className="mt-1.5 w-full rounded-sm border border-surface-line bg-surface px-3 py-2 text-body-sm text-text-strong outline-none focus:border-brand"
@@ -158,6 +161,7 @@ export default function EnquireForm({
             <input
               id="phone"
               name="phone"
+              maxLength={50}
               type="tel"
               className="mt-1.5 w-full rounded-sm border border-surface-line bg-surface px-3 py-2 text-body-sm text-text-strong outline-none focus:border-brand"
             />
@@ -170,10 +174,13 @@ export default function EnquireForm({
             <textarea
               id="notes"
               name="notes"
+              maxLength={4000}
               rows={4}
               className="mt-1.5 w-full rounded-sm border border-surface-line bg-surface px-3 py-2 text-body-sm text-text-strong outline-none focus:border-brand"
             />
           </div>
+
+          <SpamTraps />
 
           {state.status === "error" && (
             <p role="alert" className="text-body-sm text-drive">
