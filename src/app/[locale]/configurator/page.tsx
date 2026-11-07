@@ -5,7 +5,6 @@ import RangeBadge from "@/components/RangeBadge";
 import { resolveText } from "@/data/localized-text";
 import { getModelBySlug, type Model } from "@/data/models";
 import { RANGE_ORDER, variants, variantsForModel } from "@/lib/configurator/variants";
-import { buildAlternates, buildOpenGraph } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -14,9 +13,8 @@ const rangeLabel: Record<Model["range"], string> = { golden: "Golden Line", silv
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "configurator" });
-  const title = t("metaIndexTitle");
-  const description = t("indexIntro");
-  return { title, description, alternates: buildAlternates("/configurator/", locale), ...buildOpenGraph(title, description) };
+  // Unlisted page: reachable by direct link only and kept out of search results.
+  return { title: t("metaIndexTitle"), robots: { index: false, follow: false } };
 }
 
 export default async function ConfiguratorIndexPage({ params }: Props) {

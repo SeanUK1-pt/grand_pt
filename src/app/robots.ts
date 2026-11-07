@@ -9,8 +9,7 @@ export default function robots(): MetadataRoute.Robots {
       // /dev-preview is also noindex'd at the page level — belt and
       // suspenders so crawlers never even fetch it. /enquire is a
       // transactional, query-param-driven page with no content of its own.
-      // /3d/ holds the hidden engine pages behind the configurator (also noindex).
-      disallow: ["/dev-preview", "/*/enquire", "/3d/"],
+      disallow: ["/dev-preview", "/*/enquire"],
     },
     sitemap: `${SITE_URL}/sitemap.xml`,
   };

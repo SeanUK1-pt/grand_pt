@@ -11,8 +11,18 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/3d/:path*",
-        headers: [{ key: "Cache-Control", value: "public, max-age=3600, stale-while-revalidate=86400" }],
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=3600, stale-while-revalidate=86400" },
+          { key: "X-Robots-Tag", value: "noindex, nofollow" },
+        ],
       },
+      // The configurator is unlisted for now. A header (rather than a
+      // robots.txt entry, which would advertise the path) keeps it out of search.
+      {
+        source: "/:locale/configurator/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+      { source: "/:locale/configurator", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] },
     ];
   },
   images: {

@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { getLocale } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
-import { configuratorPromo } from "@/data/configurator";
+import { configuratorPromo, CONFIGURATOR_URL } from "@/data/configurator";
 import { resolveText } from "@/data/localized-text";
 
 export default async function ConfiguratorPromo() {
@@ -21,12 +20,14 @@ export default async function ConfiguratorPromo() {
             {resolveText(configuratorPromo.body, locale)}
           </p>
 
-          <Link
-            href="/configurator/"
+          <a
+            href={CONFIGURATOR_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-2 inline-flex w-fit items-center rounded-md bg-pop px-6 py-3 text-body-sm font-semibold text-pop-contrast transition-opacity hover:opacity-90"
           >
             {resolveText(configuratorPromo.cta, locale)}
-          </Link>
+          </a>
         </div>
 
         <div className="relative order-1 h-64 sm:order-2 sm:h-auto">

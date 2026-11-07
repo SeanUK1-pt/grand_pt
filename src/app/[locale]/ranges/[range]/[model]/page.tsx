@@ -16,7 +16,6 @@ import { models, getModelBySlug, getModelsByRange } from "@/data/models";
 import { resolveText } from "@/data/localized-text";
 import { translatePriceLabel, translatePriceFootnote, MIN_PACKAGE_PRICE_LABEL, HULL_ONLY_PRICE_LABEL } from "@/data/spec-labels";
 import { buildAlternates, buildOpenGraph, SITE_URL } from "@/lib/seo";
-import { variantsForModel } from "@/lib/configurator/variants";
 import type { Range } from "@/data/ranges";
 import Image from "next/image";
 
@@ -60,15 +59,11 @@ export default async function ModelPage({ params }: Props) {
   const t = await getTranslations({ locale, namespace: "modelPage" });
   const tLayout = await getTranslations({ locale, namespace: "layoutTiles" });
   const tc = await getTranslations("common");
-  const tCfg = await getTranslations("configurator");
 
   // Validate both slugs and that the model belongs to the stated range
   const range = getRangeBySlug(rangeSlug as Range["slug"]);
   const model = getModelBySlug(modelSlug);
   if (!range || !model || model.rangeSlug !== rangeSlug) notFound();
-
-  // Grand 3D scene for this model, if any (first = the base version).
-  const configuratorVariant = variantsForModel(model.slug)[0];
 
   const relatedModels = getModelsByRange(range.slug).filter(
     (m) => m.slug !== model.slug
@@ -271,14 +266,6 @@ export default async function ModelPage({ params }: Props) {
             >
               {t("enquireAboutModel", { name: model.name })}
             </Link>
-            {configuratorVariant && (
-              <Link
-                href={`/configurator/${configuratorVariant.key}/`}
-                className="ml-3 inline-flex items-center rounded-md border border-ink-text/40 px-6 py-3 text-body-sm font-semibold text-ink-text transition-colors hover:bg-ink-text/10"
-              >
-                {tCfg("configure")}
-              </Link>
-            )}
           </div>
         </div>
       </section>

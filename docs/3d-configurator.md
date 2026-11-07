@@ -66,4 +66,4 @@ if the synced data is missing.
   it at our local snapshot instead, so the engine's own "send info" form is unused.
 - The 3D canvas can't be read back as an image (the engine clears it between
   frames), so there's no screenshot-in-enquiry feature yet.
-- `/3d/` is `noindex` and disallowed in `robots.txt`.
+- **Unlisted:** nothing links to the configurator, it is not in the sitemap or `robots.txt`, and the pages and `/3d/` files send `noindex` (meta tag + `X-Robots-Tag`, see `next.config.ts`). To launch it: add links (home promo, model pages, nav), add paths to `src/app/sitemap.ts`, and remove the noindex from the two pages and `next.config.ts`.

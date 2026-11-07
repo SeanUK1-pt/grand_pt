@@ -9,7 +9,6 @@ import { getModelBySlug } from "@/data/models";
 import { parseCatalog, type Catalog } from "@/lib/configurator/catalog";
 import { sanitizeConfigSearch } from "@/lib/configurator/search";
 import { getVariant, variants } from "@/lib/configurator/variants";
-import { buildAlternates, buildOpenGraph } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ locale: string; variant: string }>;
@@ -26,14 +25,9 @@ export async function generateMetadata({ params }: Props) {
   if (!variant) return {};
   const t = await getTranslations({ locale, namespace: "configurator" });
   const title = t("metaTitle", { model: variant.title });
-  const description = t("intro", { model: variant.title });
-  const model = getModelBySlug(variant.modelSlug);
-  return {
-    title,
-    description,
-    alternates: buildAlternates(`/configurator/${variant.key}/`, locale),
-    ...buildOpenGraph(title, description, model?.image),
-  };
+  // Unlisted page: reachable by direct link only (no navigation links, not in
+  // the sitemap) and kept out of search results.
+  return { title, robots: { index: false, follow: false } };
 }
 
 // The boat feed is synced to disk by scripts/sync-3d.mjs and is the same data
