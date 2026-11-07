@@ -2,8 +2,10 @@
 
 import { useSyncExternalStore } from "react";
 import { HONEYPOT_FIELD, RENDERED_AT_FIELD } from "@/lib/spamGuard";
+import TurnstileWidget from "@/components/TurnstileWidget";
 
-// Invisible spam traps for a form (see lib/spamGuard.ts). Drop inside any
+// Invisible spam traps for a form (see lib/spamGuard.ts), plus the Cloudflare
+// Turnstile widget. Drop inside any
 // <form> whose server action calls screenSubmission().
 
 // Client load time for the fill-time check, via useSyncExternalStore so the
@@ -36,6 +38,7 @@ export default function SpamTraps() {
         />
       </div>
       <input type="hidden" name={RENDERED_AT_FIELD} value={renderedAt} readOnly />
+      <TurnstileWidget />
     </>
   );
 }

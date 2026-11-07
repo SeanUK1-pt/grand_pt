@@ -47,6 +47,12 @@ export async function submitEnquiryAction(
   // rate limit tells the sender "no", since a real person could trip it.
   const screen = await screenSubmission(formData, { name, email, phone, message: notes }, "enquiry");
   if (screen === "drop") return { status: "success" };
+  if (screen === "captcha-failed") {
+    return {
+      status: "error",
+      message: "Verification failed. Please refresh the page and try again, or contact us directly.",
+    };
+  }
   if (screen === "rate-limited") {
     return {
       status: "error",

@@ -106,6 +106,28 @@ describe("submitEnquiryAction spam protection", () => {
     expect(sendMail).toHaveBeenCalledTimes(8);
   });
 
+  it("rejects a failed Turnstile honestly, sends nothing, and lets a retry through", async () => {
+    process.env.TURNSTILE_SECRET_KEY = "test-secret";
+    let success = false;
+    vi.stubGlobal("fetch", async () => ({ ok: true, json: async () => ({ success }) }));
+    try {
+      const fd = () => form({ "cf-turnstile-response": "tok" });
+      expect((await submit(fd())).status).toBe("error");
+      expect(sendMail).not.toHaveBeenCalled();
+
+      // Same enquiry again with a valid token: must not be dropped as a duplicate.
+      success = true;
+      expect(await submit(fd())).toEqual({ status: "success" });
+      expect(sendMail).toHaveBeenCalledTimes(1);
+
+      // A missing token fails once a secret is configured.
+      expect((await submit(form({ email: "x@example.com" }))).status).toBe("error");
+    } finally {
+      delete process.env.TURNSTILE_SECRET_KEY;
+      vi.unstubAllGlobals();
+    }
+  });
+
   it("still reports validation and mail-send errors honestly", async () => {
     expect((await submit(form({ name: "" }))).status).toBe("error");
     sendMail.mockRejectedValueOnce(new Error("smtp down"));

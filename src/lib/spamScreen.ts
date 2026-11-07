@@ -1,4 +1,5 @@
 import { headers } from "next/headers";
+import { TURNSTILE_RESPONSE_FIELD, verifyTurnstile } from "@/lib/turnstile";
 import {
   HONEYPOT_FIELD,
   RENDERED_AT_FIELD,
@@ -14,6 +15,9 @@ export type ScreenResult =
   | "drop"
   // Real-looking but over the per-IP limit: tell the sender.
   | "rate-limited"
+  // Turnstile rejected (or never sent) its token: tell the sender, since a
+  // real visitor with a blocked widget can hit this.
+  | "captcha-failed"
   | "ok";
 
 // Server-side half of the spam guard, shared by the enquiry and contact
@@ -42,6 +46,16 @@ export async function screenSubmission(
   if (!verdict.ok) {
     console.warn(`[spamGuard] ${label} dropped (${verdict.reason})`);
     return "drop";
+  }
+  // After the cheap local checks, before the duplicate check: a failed
+  // Turnstile must not be recorded as "seen", or the retry would be dropped.
+  const turnstile = await verifyTurnstile(
+    formData.get(TURNSTILE_RESPONSE_FIELD)?.toString() ?? "",
+    clientIp
+  );
+  if (turnstile === "failed") {
+    console.warn(`[spamGuard] ${label} failed Turnstile`);
+    return "captcha-failed";
   }
   if (isDuplicateSubmission(fields.email, fields.message, now)) {
     console.warn(`[spamGuard] duplicate ${label} ignored`);
