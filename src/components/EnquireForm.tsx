@@ -9,12 +9,15 @@ import {
   type EnquiryActionState,
 } from "@/lib/actions/submitEnquiry";
 import SpamTraps from "@/components/SpamTraps";
+import { translateColourChoice, translateConfigurator } from "@/data/configurator-i18n";
 
 type EnquireFormProps = {
   range: RangeAccent;
   modelName: string;
   layoutName?: string;
   decodedExtras: { partNumber: string; name: string }[];
+  /** Colour choices from the 3D configurator, in Grand's English wording. */
+  colours?: string[];
   // Accepted for interface completeness / future locale-aware formatting
   // (e.g. the confirmation timestamp). useTranslations() below already
   // resolves strings from the ambient NextIntlClientProvider set up in the
@@ -64,6 +67,7 @@ export default function EnquireForm({
   modelName,
   layoutName,
   decodedExtras,
+  colours = [],
   locale,
   decodeSucceeded = false,
   builderLinkRaw = null,
@@ -75,6 +79,7 @@ export default function EnquireForm({
     modelName,
     layoutName,
     decodedExtras,
+    colours,
     decodeSucceeded,
     builderLinkRaw,
     locale,
@@ -106,19 +111,25 @@ export default function EnquireForm({
           {t(`intro.${range}`, { modelName })}
         </p>
 
-        {decodedExtras.length > 0 && (
+        {(decodedExtras.length > 0 || colours.length > 0) && (
           <div className="mt-6 border-t border-surface-line pt-6">
             <p className="text-caption font-semibold uppercase tracking-[0.12em] text-text-subtle">
               {t("extrasHeading")}
             </p>
             <ul className="mt-3 flex flex-col gap-1.5">
+              {colours.map((choice) => (
+                <li key={choice} className="flex items-baseline gap-2 text-body-sm text-text-strong">
+                  <span aria-hidden className={`h-1 w-1 rounded-full ${accentBar[range]}`} />
+                  {translateColourChoice(choice, locale)}
+                </li>
+              ))}
               {decodedExtras.map((extra) => (
                 <li
                   key={extra.partNumber}
                   className="flex items-baseline gap-2 text-body-sm text-text-strong"
                 >
                   <span aria-hidden className={`h-1 w-1 rounded-full ${accentBar[range]}`} />
-                  {extra.name}
+                  {translateConfigurator(extra.name, locale)}
                 </li>
               ))}
             </ul>

@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Synced copy of Grand's 3D configurator (large; regenerate with `npm run sync:3d`)
+/public/3d/

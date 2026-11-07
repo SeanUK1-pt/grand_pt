@@ -1,0 +1,35 @@
+/*
+ * Hides Grand's own configurator interface. The page is kept alive as a
+ * hidden "engine" — its buttons still exist and are clicked from our own
+ * interface (src/components/configurator) — and only the 3D view is shown.
+ * display:none keeps the elements in the DOM, which is all the 3D scene needs
+ * (it reads and clicks the buttons by id/class).
+ */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+body > *:not(#page-wrapper) {
+  display: none !important;
+}
+
+#page-wrapper > *:not(.model_component) {
+  display: none !important;
+}
+
+#page-wrapper {
+  position: fixed;
+  inset: 0;
+}
+
+.model_component {
+  position: fixed !important;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  border: 0 !important;
+}

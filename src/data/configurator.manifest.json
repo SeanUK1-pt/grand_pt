@@ -1,0 +1,358 @@
+{
+  "generatedBy": "scripts/sync-3d.mjs",
+  "shared": {
+    "main.js": "b774b9410edd3c91bbfb8512a28c91c3bd42a7ee170754b254256842d1a29cbc",
+    "css/normalize.css": "0d336a97efd52a4ef44ef3270e71eac24ba405d4450016f9d3e943256e9e58c8",
+    "css/webflow.css": "b2dfaf5cd1b774b3358e45375f126b55571cc71e713f6f9da535ca9d8286c580",
+    "css/verge3d-boat-ui.webflow.css": "6c8bb6cf4790588d847644b163b4e0f6a1e073e1d68e09090a8df88ad3a23470",
+    "css/main.css": "cd197394489eec8e868c970381e137eca993ac43f16c1c630694394eb0e30d84",
+    "engine-page": "e51820eedd3acb627b8dbac496b97b1a9ad6143a5617589974a5adf7d4251cd7"
+  },
+  "scenes": {
+    "g980": {
+      "index.html": "e51820eedd3acb627b8dbac496b97b1a9ad6143a5617589974a5adf7d4251cd7",
+      "grand-boats-configurator.gltf": "6bb8055348b0285b6b0fe2b91d74f7ceb2965d8faefc2041e4dd48c0211004d1",
+      "visual_logic.js": "b292b246df586bfcbc7139be2f7549d6cdfc2c9bbc200969189adb6be4955899"
+    },
+    "g850": {
+      "index.html": "e51820eedd3acb627b8dbac496b97b1a9ad6143a5617589974a5adf7d4251cd7",
+      "grand-boats-configurator.gltf": "5b2f6e5e18d4af730e908e1de38b7b29df07f693a5bf6f7867695d439aac4231",
+      "visual_logic.js": "b292b246df586bfcbc7139be2f7549d6cdfc2c9bbc200969189adb6be4955899"
+    },
+    "g750": {
+      "index.html": "e51820eedd3acb627b8dbac496b97b1a9ad6143a5617589974a5adf7d4251cd7",
+      "grand-boats-configurator.gltf": "74ae2c944bf0cea19ff7c7de20422b59dcde220eb21181bd8d7186e670240444",
+      "visual_logic.js": "b292b246df586bfcbc7139be2f7549d6cdfc2c9bbc200969189adb6be4955899"
+    },
+    "g680": {
+      "index.html": "e51820eedd3acb627b8dbac496b97b1a9ad6143a5617589974a5adf7d4251cd7",
+      "grand-boats-configurator.gltf": "09d3c816cc0b4010af1e1dae55336c5a5840d910a39719d1cf4ddee430ba6d5a",
+      "visual_logic.js": "b292b246df586bfcbc7139be2f7549d6cdfc2c9bbc200969189adb6be4955899"
+    },
+    "g580": {
+      "index.html": "e51820eedd3acb627b8dbac496b97b1a9ad6143a5617589974a5adf7d4251cd7",
+      "grand-boats-configurator.gltf": "906739d4e0b07437f419e4fcc394c1f98c0800c4e3443eedccfcf8838bb9c220",
+      "visual_logic.js": "b292b246df586bfcbc7139be2f7549d6cdfc2c9bbc200969189adb6be4955899"
+    },
+    "g500": {
+      "index.html": "e51820eedd3acb627b8dbac496b97b1a9ad6143a5617589974a5adf7d4251cd7",
+      "grand-boats-configurator.gltf": "5dd73267ab9a1d8f8a713ba4192f26184de89595d4517795460fee2e75be56e9",
+      "visual_logic.js": "b292b246df586bfcbc7139be2f7549d6cdfc2c9bbc200969189adb6be4955899"
+    },
+    "g420": {
+      "index.html": "e51820eedd3acb627b8dbac496b97b1a9ad6143a5617589974a5adf7d4251cd7",
+      "grand-boats-configurator.gltf": "6bd9e42706fa9fe7fd5616aab7dcc8fb1da2466f8526e588cdb5f08bd6f27d0a",
+      "visual_logic.js": "b292b246df586bfcbc7139be2f7549d6cdfc2c9bbc200969189adb6be4955899"
+    },
+    "g380": {
+      "index.html": "e51820eedd3acb627b8dbac496b97b1a9ad6143a5617589974a5adf7d4251cd7",
+      "grand-boats-configurator.gltf": "03b55ff40eb074c613eb00f435c2b296b718d2b623e68ef33179939d16ff6724",
+      "visual_logic.js": "b292b246df586bfcbc7139be2f7549d6cdfc2c9bbc200969189adb6be4955899"
+    },
+    "g340": {
+      "index.html": "e51820eedd3acb627b8dbac496b97b1a9ad6143a5617589974a5adf7d4251cd7",
+      "grand-boats-configurator.gltf": "0955de5d3a8db989f245de1c121575b465b7cc041939c47bfc0e1f62294e40f8",
+      "visual_logic.js": "b292b246df586bfcbc7139be2f7549d6cdfc2c9bbc200969189adb6be4955899"
+    },
+    "d950": {
+      "index.html": "e51820eedd3acb627b8dbac496b97b1a9ad6143a5617589974a5adf7d4251cd7",
+      "grand-boats-configurator.gltf": "3718918d6783e9e145ab4aff14f35aa9b5394eafe67ae0b9d8b30d057274604b",
+      "visual_logic.js": "b292b246df586bfcbc7139be2f7549d6cdfc2c9bbc200969189adb6be4955899"
+    },
+    "d600d": {
+      "index.html": "e51820eedd3acb627b8dbac496b97b1a9ad6143a5617589974a5adf7d4251cd7",
+      "grand-boats-configurator.gltf": "f740576676e3a71270794773aaa558a1ede5b303cff29e2d0518d406b32a3432",
+      "visual_logic.js": "b292b246df586bfcbc7139be2f7549d6cdfc2c9bbc200969189adb6be4955899"
+    },
+    "d600a": {
+      "index.html": "e51820eedd3acb627b8dbac496b97b1a9ad6143a5617589974a5adf7d4251cd7",
+      "grand-boats-configurator.gltf": "bd7b4c151d2360f825b54bfdcf26bff962b239ab3cd091497bb704e9a766363d",
+      "visual_logic.js": "b292b246df586bfcbc7139be2f7549d6cdfc2c9bbc200969189adb6be4955899"
+    },
+    "d600l": {
+      "index.html": "e51820eedd3acb627b8dbac496b97b1a9ad6143a5617589974a5adf7d4251cd7",
+      "grand-boats-configurator.gltf": "2737c61ec8055f7cef70e976c6ea54a4dcdada0f6c9660838f98764d5445fdc6",
+      "visual_logic.js": "b292b246df586bfcbc7139be2f7549d6cdfc2c9bbc200969189adb6be4955899"
+    },
+    "s470": {
+      "index.html": "e51820eedd3acb627b8dbac496b97b1a9ad6143a5617589974a5adf7d4251cd7",
+      "grand-boats-configurator.gltf": "3253cfc9daa26ca899c45b4286cdd00c8ebff82773fd57c15823838bee4f4b98",
+      "visual_logic.js": "dc242d01f8082501b4038b224de6872f67da011327b5d434b770038d43aa6308"
+    },
+    "s420": {
+      "index.html": "e51820eedd3acb627b8dbac496b97b1a9ad6143a5617589974a5adf7d4251cd7",
+      "grand-boats-configurator.gltf": "0800e93ab2627eaca6fe8f66eab63d39f4457fe724cbdecf318531e6405f03ca",
+      "visual_logic.js": "dc242d01f8082501b4038b224de6872f67da011327b5d434b770038d43aa6308"
+    },
+    "s370": {
+      "index.html": "e51820eedd3acb627b8dbac496b97b1a9ad6143a5617589974a5adf7d4251cd7",
+      "grand-boats-configurator.gltf": "2e0cc295ab4721193a5ab1903292b3e01c3781a64b90a37920d1686aac4c5bf0",
+      "visual_logic.js": "dc242d01f8082501b4038b224de6872f67da011327b5d434b770038d43aa6308"
+    },
+    "s330": {
+      "index.html": "e51820eedd3acb627b8dbac496b97b1a9ad6143a5617589974a5adf7d4251cd7",
+      "grand-boats-configurator.gltf": "d8d3a5e2e0c17aeec0081f70556ffbc25c08504976f0d079bc969c6a4abe6244",
+      "visual_logic.js": "dc242d01f8082501b4038b224de6872f67da011327b5d434b770038d43aa6308"
+    },
+    "s300": {
+      "index.html": "e51820eedd3acb627b8dbac496b97b1a9ad6143a5617589974a5adf7d4251cd7",
+      "grand-boats-configurator.gltf": "46168dbb7ade4a2fca19fe250ad3284daa4794bd89c97e34c945c4027d76253a",
+      "visual_logic.js": "dc242d01f8082501b4038b224de6872f67da011327b5d434b770038d43aa6308"
+    },
+    "s275": {
+      "index.html": "e51820eedd3acb627b8dbac496b97b1a9ad6143a5617589974a5adf7d4251cd7",
+      "grand-boats-configurator.gltf": "4cdd2dc8f746faa80c9ae6632c2ee992a9234f36adf83dcc0b5683327a73ebda",
+      "visual_logic.js": "dc242d01f8082501b4038b224de6872f67da011327b5d434b770038d43aa6308"
+    }
+  },
+  "variants": [
+    {
+      "key": "d600a",
+      "dir": "d600a",
+      "id": "692f824095093c05e146c578",
+      "title": "D600 Active",
+      "range": "drive-line",
+      "optionCount": 20
+    },
+    {
+      "key": "d600d",
+      "dir": "d600d",
+      "id": "692f83c738c033044b3cf8a1",
+      "title": "D600 Drive",
+      "range": "drive-line",
+      "optionCount": 15
+    },
+    {
+      "key": "d600l",
+      "dir": "d600l",
+      "id": "692f7ae5312dbdc3d5992472",
+      "title": "D600 LUX",
+      "range": "drive-line",
+      "optionCount": 21
+    },
+    {
+      "key": "d950-adventure",
+      "dir": "d950",
+      "id": "6a0a39072b637c4230a6c0e5",
+      "title": "D950 Adventure",
+      "range": "drive-line",
+      "optionCount": 11
+    },
+    {
+      "key": "d950-dive",
+      "dir": "d950",
+      "id": "6a217699b1eafbf51e529a7e",
+      "title": "D950 Dive",
+      "range": "drive-line",
+      "optionCount": 10
+    },
+    {
+      "key": "d950-explorer",
+      "dir": "d950",
+      "id": "6a2176dd9d30fcf767bdec9c",
+      "title": "D950 Explorer",
+      "range": "drive-line",
+      "optionCount": 9
+    },
+    {
+      "key": "g340",
+      "dir": "g340",
+      "id": "6926daefad3e3f50b738f514",
+      "title": "G340N",
+      "range": "golden-line",
+      "optionCount": 13
+    },
+    {
+      "key": "g380",
+      "dir": "g380",
+      "id": "6926d8ee039f6aac4aef4fe3",
+      "title": "G380N",
+      "range": "golden-line",
+      "optionCount": 13
+    },
+    {
+      "key": "g420",
+      "dir": "g420",
+      "id": "6926d80cd0e5d935ea709bb5",
+      "title": "G420",
+      "range": "golden-line",
+      "optionCount": 13
+    },
+    {
+      "key": "g500",
+      "dir": "g500",
+      "id": "6926d17ccf27d75e5775452f",
+      "title": "G500",
+      "range": "golden-line",
+      "optionCount": 15
+    },
+    {
+      "key": "g580",
+      "dir": "g580",
+      "id": "69083cf706bc77ef64596651",
+      "title": "G580",
+      "range": "golden-line",
+      "optionCount": 21
+    },
+    {
+      "key": "g680",
+      "dir": "g680",
+      "id": "685569e2da50c670bb2fc01d",
+      "title": "G680",
+      "range": "golden-line",
+      "optionCount": 26
+    },
+    {
+      "key": "g750",
+      "dir": "g750",
+      "id": "6926ba8f77663275de0da3cb",
+      "title": "G750",
+      "range": "golden-line",
+      "optionCount": 27
+    },
+    {
+      "key": "g850",
+      "dir": "g850",
+      "id": "6908418d6cf7d42dbda35437",
+      "title": "G850",
+      "range": "golden-line",
+      "optionCount": 24
+    },
+    {
+      "key": "g980",
+      "dir": "g980",
+      "id": "6a09fb9e89da834339310eb2",
+      "title": "G980",
+      "range": "golden-line",
+      "optionCount": 18
+    },
+    {
+      "key": "s275",
+      "dir": "s275",
+      "id": "6a5281cf67fbd6739426a4c6",
+      "title": "S275",
+      "range": "silver-line",
+      "optionCount": 6
+    },
+    {
+      "key": "s300",
+      "dir": "s300",
+      "id": "6a52816bdad8a3ee748a2d8f",
+      "title": "S300",
+      "range": "silver-line",
+      "optionCount": 7
+    },
+    {
+      "key": "s300l",
+      "dir": "s300",
+      "id": "6a5280bca95852447e9e2575",
+      "title": "S300L",
+      "range": "silver-line",
+      "optionCount": 11
+    },
+    {
+      "key": "s300s",
+      "dir": "s300",
+      "id": "6a528103e88e630d8fd970b6",
+      "title": "S300S",
+      "range": "silver-line",
+      "optionCount": 9
+    },
+    {
+      "key": "s330",
+      "dir": "s330",
+      "id": "6a527f9d49f8b04e5319734e",
+      "title": "S330",
+      "range": "silver-line",
+      "optionCount": 7
+    },
+    {
+      "key": "s330l",
+      "dir": "s330",
+      "id": "6a527e6be9259d37249044a8",
+      "title": "S330L",
+      "range": "silver-line",
+      "optionCount": 11
+    },
+    {
+      "key": "s330s",
+      "dir": "s330",
+      "id": "6a527f34f9f185eedabe928c",
+      "title": "S330S",
+      "range": "silver-line",
+      "optionCount": 9
+    },
+    {
+      "key": "s370n",
+      "dir": "s370",
+      "id": "6a51735d73fffa5a60ede1bf",
+      "title": "S370N",
+      "range": "silver-line",
+      "optionCount": 8
+    },
+    {
+      "key": "s370nl",
+      "dir": "s370",
+      "id": "6a51725973fffa5a60eda8d1",
+      "title": "S370NL",
+      "range": "silver-line",
+      "optionCount": 14
+    },
+    {
+      "key": "s370ns",
+      "dir": "s370",
+      "id": "6a51728c9e61d11d3c488127",
+      "title": "S370NS",
+      "range": "silver-line",
+      "optionCount": 12
+    },
+    {
+      "key": "s420n",
+      "dir": "s420",
+      "id": "6a516d5fead63d0e7a961033",
+      "title": "S420N",
+      "range": "silver-line",
+      "optionCount": 9
+    },
+    {
+      "key": "s420nl",
+      "dir": "s420",
+      "id": "6a5169af4028d3b295b6b1ad",
+      "title": "S420NL",
+      "range": "silver-line",
+      "optionCount": 14
+    },
+    {
+      "key": "s420ns-2",
+      "dir": "s420",
+      "id": "6a516c2fab320d0c1047b42c",
+      "title": "S420NS",
+      "range": "silver-line",
+      "optionCount": 12
+    },
+    {
+      "key": "s470n",
+      "dir": "s470",
+      "id": "6a25c4768c5a4b90b485f0f1",
+      "title": "S470N",
+      "range": "silver-line",
+      "optionCount": 9
+    },
+    {
+      "key": "s470nl",
+      "dir": "s470",
+      "id": "6a2582d62c253b9e5e2b0c0d",
+      "title": "S470NL",
+      "range": "silver-line",
+      "optionCount": 14
+    },
+    {
+      "key": "s470ns",
+      "dir": "s470",
+      "id": "6a25c3c745841096e8a83efb",
+      "title": "S470NS",
+      "range": "silver-line",
+      "optionCount": 12
+    }
+  ]
+}

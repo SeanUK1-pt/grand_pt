@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
 import { ranges } from "@/data/ranges";
 import { models } from "@/data/models";
+import { variants } from "@/lib/configurator/variants";
 import { SITE_URL } from "@/lib/seo";
 
 // Every static path in the site, locale-agnostic — each gets prefixed with
@@ -17,11 +18,14 @@ const staticPaths: { path: string; priority: number; changeFrequency: MetadataRo
   { path: "/for-sale/", priority: 0.8, changeFrequency: "daily" },
   { path: "/our-story/", priority: 0.4, changeFrequency: "yearly" },
   { path: "/contact/", priority: 0.5, changeFrequency: "yearly" },
+  { path: "/configurator/", priority: 0.7, changeFrequency: "monthly" },
 ];
 const rangePaths = ranges.map((r) => ({ path: `/ranges/${r.slug}/`, priority: 0.9, changeFrequency: "weekly" as const }));
 const modelPaths = models.map((m) => ({ path: m.href, priority: 0.8, changeFrequency: "monthly" as const }));
 
-const allPaths = [...staticPaths, ...rangePaths, ...modelPaths];
+const configuratorPaths = variants.map((v) => ({ path: `/configurator/${v.key}/`, priority: 0.5, changeFrequency: "monthly" as const }));
+
+const allPaths = [...staticPaths, ...rangePaths, ...modelPaths, ...configuratorPaths];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return allPaths.flatMap(({ path, priority, changeFrequency }) =>

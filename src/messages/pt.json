@@ -131,5 +131,36 @@
     "dealerLocation": "Lagos, Portugal",
     "copyright": "© {year} Grand Boats Portugal. Representado pela Algarve Boat Group.",
     "groupHeading": "Também parte do Algarve Boat Group:"
+  },
+  "configurator": {
+    "eyebrow": "Configurador 3D",
+    "pageTitle": "Configure o seu {model}",
+    "intro": "Escolha as cores e o equipamento e veja o seu {model} atualizar-se em 3D. Quando estiver satisfeito, envie-nos a configuração e tratamos do resto.",
+    "indexTitle": "Configure o seu Grand em 3D",
+    "indexIntro": "Escolha um modelo e construa-o cor a cor e opção a opção, em tempo real.",
+    "configure": "Configurar em 3D",
+    "layouts": "Configurações",
+    "viewModel": "Sobre o {model}",
+    "loading": "A carregar o seu modelo 3D…",
+    "loadingHint": "O primeiro carregamento pode demorar um pouco com uma ligação lenta.",
+    "tabs": {
+      "colours": "Cores",
+      "options": "Equipamento"
+    },
+    "optionsHeading": "Equipamento opcional",
+    "colourGroupsLabel": "Zonas de cor",
+    "defaultView": "Vista predefinida",
+    "showFeatures": "Mostrar características",
+    "hideFeatures": "Ocultar características",
+    "summary": "{count, plural, =0 {Nenhum extra selecionado} one {# extra selecionado} other {# extras selecionados}}",
+    "enquire": "Pedir informações sobre esta configuração",
+    "copyLink": "Copiar ligação",
+    "linkCopied": "Ligação copiada",
+    "iframeTitle": "Vista 3D interativa do {model}",
+    "unavailableTitle": "O configurador 3D não está disponível neste momento",
+    "unavailableBody": "Tente novamente mais tarde ou abra o configurador da própria Grand num novo separador.",
+    "unavailableCta": "Abrir o configurador da Grand →",
+    "metaTitle": "Configurador 3D — {model}",
+    "metaIndexTitle": "Configurador 3D de Barcos — RIBs Grand"
   }
 }

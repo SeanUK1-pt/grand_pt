@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "vitest run"
+    "test": "vitest run",
+    "sync:3d": "node scripts/sync-3d.mjs",
+    "check:3d": "node scripts/sync-3d.mjs --check"
   },
   "dependencies": {
     "next": "16.2.9",

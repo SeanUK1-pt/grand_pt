@@ -38,6 +38,15 @@ describe("buildAbgLeadPayload", () => {
     expect(p.sourceUrl).toBe("https://grandboats.pt/pt/enquire/");
   });
 
+  it("lists configurator colour choices in the details", () => {
+    const p = buildAbgLeadPayload({
+      ...base,
+      extraNames: ["Bow railing"],
+      colours: ["Tube | Tube Color: Ice White", "Upholstery: Taupe"],
+    });
+    expect(p.details).toBe("Configured extras: Bow railing\nColours: Tube | Tube Color: Ice White; Upholstery: Taupe");
+  });
+
   it("adds the partial-decode note only when decoding failed", () => {
     const p = buildAbgLeadPayload({ ...base, decodeSucceeded: false, builderLinkRaw: "zzz" });
     expect(p.details).toContain("could not be fully decoded");

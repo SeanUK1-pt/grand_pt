@@ -15,6 +15,7 @@ export type EnquiryContext = {
   modelName: string;
   layoutName?: string;
   decodedExtras: { partNumber: string; name: string }[];
+  colours: string[];
   decodeSucceeded: boolean;
   builderLinkRaw: string | null;
   locale: string;
@@ -77,6 +78,7 @@ export async function submitEnquiryAction(
         ? mailRow("Configured extras", extraNames.join(", "))
         : ""
     }
+    ${context.colours.length > 0 ? mailRow("Chosen colours", context.colours.join("; ")) : ""}
     ${
       !context.decodeSucceeded && context.builderLinkRaw
         ? mailRow("Note", "Builder link present but could not be fully decoded — extras above may be incomplete.")
@@ -118,6 +120,7 @@ export async function submitEnquiryAction(
     notes,
     interest: `${modelHeading} (${rangeLabel[context.range]})`,
     extraNames,
+    colours: context.colours,
     decodeSucceeded: context.decodeSucceeded,
     builderLinkRaw: context.builderLinkRaw,
     locale: context.locale,

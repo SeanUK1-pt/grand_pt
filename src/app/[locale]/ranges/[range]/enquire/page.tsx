@@ -43,7 +43,7 @@ export default async function EnquirePage({ params, searchParams }: Props) {
   // Fall back to the range name as the heading when no model resolves.
   const model = bm ? getModelBySlug(bm) : undefined;
 
-  const { extrasDecoded, decodeSucceeded, builderLinkRaw } = decodeBuilderLink(
+  const { extrasDecoded, coloursDecoded, decodeSucceeded, builderLinkRaw } = decodeBuilderLink(
     builderLink ?? null
   );
 
@@ -55,6 +55,7 @@ export default async function EnquirePage({ params, searchParams }: Props) {
           modelName={model ? model.name : range.name}
           layoutName={layout}
           decodedExtras={extrasDecoded}
+          colours={coloursDecoded}
           locale={locale}
           decodeSucceeded={decodeSucceeded}
           builderLinkRaw={builderLinkRaw}

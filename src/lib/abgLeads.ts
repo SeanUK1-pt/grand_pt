@@ -7,6 +7,8 @@ export type AbgLeadInput = {
   notes: string;
   interest: string;
   extraNames: string[];
+  /** Colour choices from the 3D configurator (English wording). */
+  colours?: string[];
   decodeSucceeded: boolean;
   builderLinkRaw: string | null;
   locale: string;
@@ -28,6 +30,9 @@ export function buildAbgLeadPayload(input: AbgLeadInput): AbgLeadPayload {
   const detailLines: string[] = [];
   if (input.extraNames.length > 0) {
     detailLines.push(`Configured extras: ${input.extraNames.join(", ")}`);
+  }
+  if (input.colours && input.colours.length > 0) {
+    detailLines.push(`Colours: ${input.colours.join("; ")}`);
   }
   if (!input.decodeSucceeded && input.builderLinkRaw) {
     detailLines.push(

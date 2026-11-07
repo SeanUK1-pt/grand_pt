@@ -23,6 +23,7 @@ const context: EnquiryContext = {
   range: "golden",
   modelName: "Grand G580",
   decodedExtras: [],
+  colours: [],
   decodeSucceeded: false,
   builderLinkRaw: null,
   locale: "en",
@@ -57,6 +58,14 @@ describe("submitEnquiryAction spam protection", () => {
     expect(await submit(form())).toEqual({ status: "success" });
     expect(sendMail).toHaveBeenCalledTimes(1);
     expect(forwardEnquiryToAbg).toHaveBeenCalledTimes(1);
+  });
+
+  it("includes configurator colour choices in the email and the tracker forward", async () => {
+    const colours = ["Tube | Tube Color: Ice White", "Fiberglass | Gelcoat: White"];
+    const res = await submitEnquiryAction({ ...context, colours }, { status: "idle" }, form());
+    expect(res).toEqual({ status: "success" });
+    expect(sendMail.mock.calls[0][0].html).toContain("Tube | Tube Color: Ice White; Fiberglass | Gelcoat: White");
+    expect(forwardEnquiryToAbg).toHaveBeenCalledWith(expect.objectContaining({ colours }));
   });
 
   it("fakes success but sends nothing when the honeypot is filled", async () => {
