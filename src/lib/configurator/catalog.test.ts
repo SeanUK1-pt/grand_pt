@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import raw from "./__fixtures__/g680.json";
-import { engineSelector, parseCatalog, readEngineState } from "./catalog";
+import { engineSelector, isFeaturesOn, parseCatalog, readEngineState } from "./catalog";
 
 const catalog = parseCatalog(raw as Record<string, unknown>);
 
@@ -34,6 +34,15 @@ describe("engine state", () => {
     expect(engineSelector("swimming_platforms")).toBe(
       '[id="d_swimming_platforms"],[id="e_swimming_platforms"],[id="swimming_platforms"]'
     );
+  });
+
+  it("reads the features switch from whichever id the engine currently gives it", () => {
+    const doc = (cls: string[]) => ({
+      querySelector: (sel: string) => (sel.includes("toggle_features") ? { classList: { contains: (c: string) => cls.includes(c) } } : null),
+    });
+    expect(isFeaturesOn(doc(["toggle_component", "is-active"]))).toBe(true);
+    expect(isFeaturesOn(doc(["toggle_component"]))).toBe(false);
+    expect(isFeaturesOn({ querySelector: () => null })).toBe(false);
   });
 
   it("reads active and disabled sets from classes, ignoring the d_/e_ prefix", () => {

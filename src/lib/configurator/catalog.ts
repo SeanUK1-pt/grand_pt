@@ -108,6 +108,15 @@ export function engineSelector(id: string): string {
   return `[id="d_${esc}"],[id="e_${esc}"],[id="${esc}"]`;
 }
 
+// The "show features" switch (hotspot labels on the 3D model) is a button whose
+// id Grand's engine rewrites to d_/e_toggle_features at start-up, and whose
+// "is-active" class says whether the labels are showing.
+export const FEATURES_TOGGLE_ID = "toggle_features";
+
+export function isFeaturesOn(doc: { querySelector(sel: string): { classList: { contains(c: string): boolean } } | null }): boolean {
+  return doc.querySelector(engineSelector(FEATURES_TOGGLE_ID))?.classList.contains("is-active") ?? false;
+}
+
 export type EngineState = {
   active: Set<string>;
   disabled: Set<string>;

@@ -161,6 +161,8 @@
     "unavailableBody": "Please try again later, or open Grand's own configurator in a new tab.",
     "unavailableCta": "Open Grand's configurator →",
     "metaTitle": "3D Configurator — {model}",
-    "metaIndexTitle": "3D Boat Configurator — Grand RIBs"
+    "metaIndexTitle": "3D Boat Configurator — Grand RIBs",
+    "fullscreen": "Full screen",
+    "exitFullscreen": "Exit full screen"
   }
 }

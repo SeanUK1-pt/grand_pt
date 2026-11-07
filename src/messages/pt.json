@@ -161,6 +161,8 @@
     "unavailableBody": "Tente novamente mais tarde ou abra o configurador da própria Grand num novo separador.",
     "unavailableCta": "Abrir o configurador da Grand →",
     "metaTitle": "Configurador 3D — {model}",
-    "metaIndexTitle": "Configurador 3D de Barcos — RIBs Grand"
+    "metaIndexTitle": "Configurador 3D de Barcos — RIBs Grand",
+    "fullscreen": "Ecrã inteiro",
+    "exitFullscreen": "Sair do ecrã inteiro"
   }
 }

@@ -8,6 +8,8 @@ import { translateConfigurator } from "@/data/configurator-i18n";
 import { SITE_URL } from "@/lib/seo";
 import {
   engineSelector,
+  FEATURES_TOGGLE_ID,
+  isFeaturesOn,
   readEngineState,
   type Catalog,
   type EngineState,
@@ -50,6 +52,7 @@ export default function ConfiguratorClient({ variant, catalog, modelName, accent
   const tr = (text: string) => translateConfigurator(text, locale);
 
   const frameRef = useRef<HTMLIFrameElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
   const teardown = useRef<(() => void) | null>(null);
 
   const [ready, setReady] = useState(false);
@@ -58,6 +61,10 @@ export default function ConfiguratorClient({ variant, catalog, modelName, accent
   const [panel, setPanel] = useState<"colours" | "options">("colours");
   const [colourTab, setColourTab] = useState(catalog.tabs[0]?.key ?? "");
   const [featuresOn, setFeaturesOn] = useState(false);
+  // true for native browser full screen and for the CSS fallback (iPhone Safari
+  // can't full-screen an element), told apart by `nativeFull`.
+  const [fullscreen, setFullscreen] = useState(false);
+  const [nativeFull, setNativeFull] = useState(false);
   const [copied, setCopied] = useState(false);
 
   // The engine page (Grand's own UI + 3D scene, hidden by engine.css) is
@@ -75,6 +82,8 @@ export default function ConfiguratorClient({ variant, catalog, modelName, accent
       raf = 0;
       const next = readEngineState(doc);
       setState((prev) => (sameSet(prev.active, next.active) && sameSet(prev.disabled, next.disabled) ? prev : next));
+      const features = isFeaturesOn(doc);
+      setFeaturesOn((prev) => (prev === features ? prev : features));
 
       // Mirror the chosen configuration into our own URL so it can be shared.
       const params = new URLSearchParams(win.location.search);
@@ -125,10 +134,58 @@ export default function ConfiguratorClient({ variant, catalog, modelName, accent
     if (!state.active.has(s.id)) press(engineSelector(s.id));
   };
   const toggleOption = (id: string) => press(engineSelector(id));
-  const defaultView = () => press("#defaul_view_desktop");
-  const toggleFeatures = () => {
-    press("#toggle_features");
-    setFeaturesOn((v) => !v);
+  const defaultView = () => press(engineSelector("defaul_view_desktop"));
+  // The engine owns this state (and rewrites the button's id), so we click it
+  // and let the observer report back rather than keeping our own flag.
+  const toggleFeatures = () => press(engineSelector(FEATURES_TOGGLE_ID));
+
+  // Full screen: native where the browser allows it, otherwise a CSS overlay.
+  useEffect(() => {
+    const onChange = () => {
+      const native = document.fullscreenElement !== null && document.fullscreenElement === stageRef.current;
+      setNativeFull(native);
+      setFullscreen(native);
+    };
+    document.addEventListener("fullscreenchange", onChange);
+    return () => document.removeEventListener("fullscreenchange", onChange);
+  }, []);
+
+  // CSS fallback: lock page scroll and let Escape leave, as native does.
+  useEffect(() => {
+    if (!fullscreen || nativeFull) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setFullscreen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = previous;
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [fullscreen, nativeFull]);
+
+  const toggleFullscreen = async () => {
+    const stage = stageRef.current;
+    if (!stage) return;
+    if (document.fullscreenElement) {
+      await document.exitFullscreen().catch(() => {});
+      return;
+    }
+    if (fullscreen) {
+      setFullscreen(false);
+      return;
+    }
+    if (stage.requestFullscreen) {
+      // Some browsers refuse (rejecting) or never answer; don't leave the
+      // button dead — give native a moment, then use the CSS overlay.
+      const entered = await Promise.race([
+        stage.requestFullscreen().then(() => true),
+        new Promise<boolean>((resolve) => window.setTimeout(() => resolve(false), 1200)),
+      ]).catch(() => false);
+      if (entered || document.fullscreenElement) return;
+    }
+    setFullscreen(true);
   };
 
   const copyLink = async () => {
@@ -155,8 +212,17 @@ export default function ConfiguratorClient({ variant, catalog, modelName, accent
   return (
     <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_26rem] lg:items-start">
       {/* 3D view */}
-      <div className="lg:sticky lg:top-6">
-        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg border border-surface-line bg-surface-sunken lg:aspect-auto lg:h-[min(72vh,44rem)]">
+      {/* A sticky wrapper forms its own stacking layer, which would trap the
+          full-screen overlay beneath the site header, so drop it meanwhile. */}
+      <div className={fullscreen && !nativeFull ? "" : "lg:sticky lg:top-6"}>
+        <div
+          ref={stageRef}
+          className={`overflow-hidden bg-surface-sunken [&:fullscreen]:rounded-none [&:fullscreen]:border-0 ${
+            fullscreen && !nativeFull
+              ? "fixed inset-0 z-[100] h-full w-full"
+              : "relative aspect-[4/3] w-full rounded-lg border border-surface-line lg:aspect-auto lg:h-[min(72vh,44rem)]"
+          }`}
+        >
           <iframe
             ref={frameRef}
             title={t("iframeTitle", { model: modelName })}
@@ -188,6 +254,14 @@ export default function ConfiguratorClient({ variant, catalog, modelName, accent
                 className="rounded-md border border-surface-line bg-surface/90 px-3 py-1.5 text-caption font-medium text-text-strong backdrop-blur hover:bg-surface"
               >
                 {t("defaultView")}
+              </button>
+              <button
+                type="button"
+                onClick={toggleFullscreen}
+                aria-pressed={fullscreen}
+                className="rounded-md border border-surface-line bg-surface/90 px-3 py-1.5 text-caption font-medium text-text-strong backdrop-blur hover:bg-surface"
+              >
+                {fullscreen ? t("exitFullscreen") : t("fullscreen")}
               </button>
               <button
                 type="button"
