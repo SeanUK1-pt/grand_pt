@@ -1,6 +1,8 @@
 "use server";
 
+import { headers } from "next/headers";
 import { mailRow, mailParagraph, sendMail } from "@/lib/mailer";
+import { forwardEnquiryToAbg } from "@/lib/abgLeads";
 import { screenSubmission } from "@/lib/spamScreen";
 
 export type ContactActionState = {
@@ -8,7 +10,9 @@ export type ContactActionState = {
   message?: string;
 };
 
+// Bound via .bind(null, locale) in ContactForm, so `locale` arrives pre-filled.
 export async function submitContactAction(
+  locale: string,
   _prevState: ContactActionState,
   formData: FormData
 ): Promise<ContactActionState> {
@@ -65,6 +69,25 @@ export async function submitContactAction(
       message: "Something went wrong sending your message. Please try again or contact us directly.",
     };
   }
+
+  // Same as the model enquiry form: only delivered messages are forwarded to
+  // the ABG lead tracker, fire-and-forget (the helper never throws).
+  let referer: string | null = null;
+  try {
+    referer = (await headers()).get("referer");
+  } catch {}
+  void forwardEnquiryToAbg({
+    name,
+    email,
+    phone,
+    notes: message,
+    interest: "General enquiry — contact form",
+    extraNames: [],
+    decodeSucceeded: true,
+    builderLinkRaw: null,
+    locale,
+    sourceUrl: referer && /^https?:\/\//.test(referer) ? referer : null,
+  });
 
   return { status: "success" };
 }

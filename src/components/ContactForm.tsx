@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import SpamTraps from "@/components/SpamTraps";
 import {
   submitContactAction,
@@ -28,7 +28,8 @@ function SubmitButton() {
 
 export default function ContactForm() {
   const t = useTranslations("contact");
-  const [state, formAction] = useActionState(submitContactAction, initialState);
+  const locale = useLocale();
+  const [state, formAction] = useActionState(submitContactAction.bind(null, locale), initialState);
 
   if (state.status === "success") {
     return (
